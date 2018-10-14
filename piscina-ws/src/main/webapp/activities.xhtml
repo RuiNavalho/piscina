@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+	<title>Blue Roots</title>
+	<f:view contentType="text/html" locale="#{multilanguage.locale}" />
+	<link href="resources/css/jquery.dataTables.css" rel="stylesheet" />
+	<link href="resources/css/responsive.dataTables.css" rel="stylesheet" />
+	<style type="text/css" class="init">
+div.container {
+	max-width: 1200px
+}
+</style>
+
+	<script type="text/javascript" src="//code.jquery.com/jquery-1.12.3.js" />
+	<script type="text/javascript" src="resources/js/jquery.dataTables.js" />
+	<script type="text/javascript"
+		src="resources/js/dataTables.responsive.js" />
+	<script type="text/javascript" class="init">
+
+$(document).ready(function() {
+	$('#tasks').DataTable( {
+		"language": {
+            "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Portuguese.json"
+        },
+		
+        lengthMenu: [
+            [10, 25, 50, -1],
+            [10, 25, 50, "All"]
+        ],
+        filter: true,
+        sort: true,
+        info: true,
+        autoWidth: true,
+        order: [
+            [0, "asc"]
+        ],
+		responsive: true,
+		columnDefs: [
+			{ responsivePriority: 1, targets: 0 },
+			{ responsivePriority: 1, targets: -1 }
+		]
+	} );
+		
+} );
+	</script>
+	<link href="resources/css/primefaces.css" rel="stylesheet" />
+	<link href="resources/css/style.css" rel="stylesheet" />
+	<link href="resources/css/custom.css" rel="stylesheet" />
+	<link rel="shortcut icon" type="image/png"
+		href="resources/images/favicon.ico" />
+
+</h:head>
+<h:body class="navbar-fixed sidebar-nav fixed-nav">
+
+	<!-- Header -->
+	<header class="navbar">
+		<h:panelGroup layout="block" class="container-fluid">
+			<ui:insert name="mtopLayout">
+				<ui:include src="mtop.xhtml" />
+			</ui:insert>
+		</h:panelGroup>
+	</header>
+
+	<!-- Sidebar -->
+	<h:panelGroup layout="block" class="sidebar">
+		<nav class="sidebar-nav">
+			<ui:insert name="mleftLayout">
+				<ui:include src="mleft.xhtml" />
+			</ui:insert>
+		</nav>
+	</h:panelGroup>
+
+	<!-- Main content -->
+	<h:panelGroup layout="block" class="main">
+		<!-- Breadcrumb -->
+		<ol class="breadcrumb r-0">
+			<li>Home</li>
+			<li>#{msg['Activities']}</li>
+		</ol>
+		<h:panelGroup layout="block" class="container-fluid">
+			<h:panelGroup layout="block" class="animated fadeIn">
+
+				<h:panelGroup layout="block" class="row">
+					<h:panelGroup layout="block" class="col-md-12">
+						<h:panelGroup layout="block" class="card">
+							<h:panelGroup layout="block" class="card-block">
+
+								<h:panelGroup layout="block" styleClass="col-sm-10">
+									<h:panelGroup layout="block" styleClass="icons-Text">
+										<i class="fa fa-tasks" aria-hidden="true"></i>
+									</h:panelGroup>
+									<h3 class="card-title clearfix m-b-0">#{msg['Activities']}</h3>
+								</h:panelGroup>
+								<h:panelGroup layout="block" class="col-sm-2 text-sm-right">
+									<h:panelGroup layout="block" class="col-sm-12"
+										rendered="#{mySessionBean.directorRole}">
+										<h:form>
+											<h:commandLink
+												action="activities_new.xhtml?faces-redirect=true" value="+"
+												class="btn btn-primary btnBig"
+												actionListener="#{createTaskBean.resetFields()}">
+												<f:actionListener
+													binding="#{listProjectsBean.setType('open')}" />
+												<f:actionListener
+													binding="#{listProjectsBean.findProjectsForNewTask()}" />
+											</h:commandLink>
+										</h:form>
+									</h:panelGroup>
+								</h:panelGroup>
+								<h:panelGroup layout="block" styleClass="col-sm-12 p-y-2">
+									<hr class="m-a-0" />
+								</h:panelGroup>
+								
+								<h:panelGroup layout="block" class="row">
+
+									<h:panelGroup layout="block" class="col-md-12">
+
+										<h:panelGroup layout="block" class="col-md-12">
+											<h:panelGroup layout="block" class="col-md-12">
+												<h:form id="userListForm">
+
+													<h:panelGroup layout="block"
+														class="col-md-12 p-y-1 text-md-right">
+														<h:commandLink>
+															<p:graphicImage value="resources/images/pdf.png" />
+															<p:dataExporter type="pdf" target="tasksListX"
+																fileName="activities" pageOnly="false" />
+														</h:commandLink>
+
+														<h:commandLink>
+															<p:graphicImage value="resources/images/csv.png" />
+															<p:dataExporter type="csv" target="tasksListX"
+																fileName="activities" pageOnly="false" />
+														</h:commandLink>
+
+														<h:commandLink>
+															<p:graphicImage value="resources/images/xml.png" />
+															<p:dataExporter type="xml" target="tasksListX"
+																fileName="activities" pageOnly="false" />
+														</h:commandLink>
+													</h:panelGroup>
+
+
+													<p:dataTable id="tasksListX"
+														value="#{listTasksBean.findAllTasks()}" var="tkExp"
+														style="display:none">
+														<p:column>
+															<f:facet name="header">
+																<h:outputText value="#{msg['ActivityName']}" />
+															</f:facet>
+															<h:outputText value="#{tkExp.taskName}" />
+														</p:column>
+														<p:column>
+															<f:facet name="header">
+																<h:outputText value="#{msg['Project']}" />
+															</f:facet>
+															<h:outputText value="#{tkExp.projectTitle}" />
+														</p:column>
+														<p:column>
+															<f:facet name="header">
+																<h:outputText value="#{msg['Resource']}" />
+															</f:facet>
+															<h:outputText value="#{tkExp.allocatedUserName}" />
+														</p:column>
+														<p:column>
+															<f:facet name="header">
+																<h:outputText value="#{msg['BeginDate']}" />
+															</f:facet>
+															<h:outputText value="#{tkExp.beginDate}" />
+														</p:column>
+														<p:column>
+															<f:facet name="header">
+																<h:outputText value="#{msg['EndDate']}" />
+															</f:facet>
+															<h:outputText value="#{tkExp.endDate}" />
+														</p:column>
+														<p:column>
+															<f:facet name="header">
+																<h:outputText value="#{msg['InitialEstimate']}" />
+															</f:facet>
+															<h:outputText value="#{tkExp.durationHoursEstimate}" />
+														</p:column>
+														<p:column>
+															<f:facet name="header">
+																<h:outputText value="#{msg['CurrentEstimate']}" />
+															</f:facet>
+															<h:outputText value="#{tkExp.nowDurationHoursEstimate}" />
+														</p:column>
+														<p:column>
+															<f:facet name="header">
+																<h:outputText value="#{msg['Ratio']}" />
+															</f:facet>
+															<h:outputText
+																value="#{(task.nowDurationHoursEstimate/task.durationHoursEstimate)}" />
+														</p:column>
+														<p:column>
+															<f:facet name="header">
+																<h:outputText value="#{msg['ExecutedPercentage']}" />
+															</f:facet>
+															<h:outputText value="#{tkExp.executedPercentageEstimate}" />
+														</p:column>
+														<p:column>
+															<f:facet name="header">
+																<h:outputText value="#{msg['WorkedHours']}" />
+															</f:facet>
+															<h:outputText value="#{tkExp.workedHours}" />
+														</p:column>
+														<p:column>
+															<f:facet name="header">
+																<h:outputText value="#{msg['EstimatedEndTimes']}" />
+															</f:facet>
+															<h:outputText
+																value="#{tkExp.nowDurationHoursEstimate-tkExp.workedHours}" />
+														</p:column>
+													</p:dataTable>
+
+
+													<h:panelGroup layout="block" class="container">
+														<section>
+
+															<table id="tasks" class="display nowrap" cellspacing="0"
+																width="100%">
+																<thead>
+																	<tr>
+																		<th>#{msg['Name']}</th>
+																		<th>#{msg['Project']}</th>
+																		<th>#{msg['Resource']}</th>
+																		<th>#{msg['BeginDate']}</th>
+																		<th>#{msg['EndDate']}</th>
+																		<th>#{msg['InitialEstimate']} *</th>
+																		<th>#{msg['CurrentEstimate']} *</th>
+																		<th>#{msg['Ratio']}</th>
+																		<th>#{msg['ExecutedPercentage']}</th>
+																		<th>#{msg['WorkedHours']}</th>
+																		<th>#{msg['EstimatedEndTimes']}</th>
+																		<th></th>
+																	</tr>
+																</thead>
+																<tbody>
+																	<ui:repeat id="tasksList" var="task"
+																		value="#{listTasksBean.findAllTasks()}">
+																		<tr>
+																			<td><h:outputText value="#{task.taskName}" /></td>
+																			<td><h:outputText value="#{task.projectTitle}" /></td>
+
+																			<td><h:outputText
+																					value="#{task.allocatedUserName}"
+																					styleClass="label label-pill label-info" /></td>
+
+																			<td><p:calendar value="#{task.beginDate}"
+																					disabled="true" locale="#{multilanguage.locale}">
+																				</p:calendar></td>
+																			<td><p:calendar value="#{task.endDate}"
+																					disabled="true" locale="#{multilanguage.locale}">
+																				</p:calendar></td>
+																			<td><h:outputText
+																					value="#{task.durationHoursEstimate}" />h</td>
+																			<td><h:outputText
+																					value="#{task.nowDurationHoursEstimate}" />h</td>
+
+																			<td><h:outputText
+																					value="#{(task.nowDurationHoursEstimate/task.durationHoursEstimate)}"
+																					style="color:red"
+																					rendered="#{(task.nowDurationHoursEstimate/task.durationHoursEstimate)>1}">
+																					<f:convertNumber maxFractionDigits="2" />
+																				</h:outputText> <h:outputText
+																					value="#{(task.nowDurationHoursEstimate/task.durationHoursEstimate)}"
+																					style="color:green"
+																					rendered="#{(task.nowDurationHoursEstimate/task.durationHoursEstimate) lt 1}">
+																					<f:convertNumber maxFractionDigits="2" />
+																				</h:outputText> <h:outputText
+																					value="#{(task.nowDurationHoursEstimate/task.durationHoursEstimate)}"
+																					style="color:grey"
+																					rendered="#{(task.nowDurationHoursEstimate/task.durationHoursEstimate)==1}">
+																					<f:convertNumber maxFractionDigits="2" />
+																				</h:outputText></td>
+																			<td><h:outputText
+																					value="#{task.executedPercentageEstimate}" /></td>
+																			<td><h:outputText value="#{task.workedHours}" /></td>
+																			<td><h:outputText
+																					value="#{(task.nowDurationHoursEstimate-task.workedHours)}" /></td>
+
+																			<td><h:commandLink
+																					class="btn btn-info btn-xs icon-pencil"
+																					action="#{listTasksBean.updateSelectedTask(task)}"
+																					value="">
+																				</h:commandLink></td>
+
+
+																		</tr>
+																	</ui:repeat>
+																</tbody>
+															</table>
+
+														</section>
+													</h:panelGroup>
+
+												</h:form>
+											</h:panelGroup>
+											<h:panelGroup layout="block" class="col-md-12">
+												<p>* #{msg['TotalDuration']} h</p>
+											</h:panelGroup>
+										</h:panelGroup>
+									</h:panelGroup>
+
+								</h:panelGroup>
+								<!--/.row-->
+
+
+							</h:panelGroup>
+						</h:panelGroup>
+					</h:panelGroup>
+					<!--/.col-->
+				</h:panelGroup>
+				<!--/.row-->
+
+			</h:panelGroup>
+			<!--/.animated -->
+		</h:panelGroup>
+		<!-- /.container-fluid -->
+
+	</h:panelGroup>
+	<!-- /.main -->
+
+	<!-- Footer -->
+	<ui:insert name="footerLayout">
+		<ui:include src="footer.xhtml" />
+	</ui:insert>
+
+	<!-- JS -->
+	<script src="resources/js/libs/bootstrap.min.js"></script>
+	<script src="resources/js/app.js"></script>
+</h:body>
+</html>

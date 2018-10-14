@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.2.0" icons="true" always-add-relationships="false" generalizations="false" 
+  realizations="false" associations="true" dependencies="false" nesting-relationships="false" router="FAN">  
+  <class id="1" language="java" name="pt.uc.dei.ds.services.TaskService" project="aclgomes-rnavalho-project-ds" 
+    file="/aclgomes-rnavalho-project-ds/src/main/java/pt/uc/dei/ds/services/TaskService.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="53" width="98" x="450" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="false"/>    
+    </display>  
+  </class>  
+  <class id="2" language="java" name="pt.uc.dei.ds.daos.TasktypeDao" project="aclgomes-rnavalho-project-ds" 
+    file="/aclgomes-rnavalho-project-ds/src/main/java/pt/uc/dei/ds/daos/TasktypeDao.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="53" width="97" x="313" y="130"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="false"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="pt.uc.dei.ds.daos.AllocationDao" project="aclgomes-rnavalho-project-ds" 
+    file="/aclgomes-rnavalho-project-ds/src/main/java/pt/uc/dei/ds/daos/AllocationDao.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="53" width="102" x="831" y="130"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="false"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" name="pt.uc.dei.ds.daos.SkillDao" project="aclgomes-rnavalho-project-ds" 
+    file="/aclgomes-rnavalho-project-ds/src/main/java/pt/uc/dei/ds/daos/SkillDao.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="53" width="87" x="41" y="130"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="false"/>    
+    </display>  
+  </class>  
+  <class id="5" language="java" name="pt.uc.dei.ds.daos.UserDao" project="aclgomes-rnavalho-project-ds" 
+    file="/aclgomes-rnavalho-project-ds/src/main/java/pt/uc/dei/ds/daos/UserDao.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="53" width="87" x="704" y="130"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="false"/>    
+    </display>  
+  </class>  
+  <class id="6" language="java" name="pt.uc.dei.ds.daos.TaskDao" project="aclgomes-rnavalho-project-ds" 
+    file="/aclgomes-rnavalho-project-ds/src/main/java/pt/uc/dei/ds/daos/TaskDao.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="53" width="87" x="577" y="130"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="false"/>    
+    </display>  
+  </class>  
+  <class id="7" language="java" name="pt.uc.dei.ds.daos.TaskstageDao" project="aclgomes-rnavalho-project-ds" 
+    file="/aclgomes-rnavalho-project-ds/src/main/java/pt/uc/dei/ds/daos/TaskstageDao.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="53" width="105" x="168" y="130"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="false"/>    
+    </display>  
+  </class>  
+  <class id="8" language="java" name="pt.uc.dei.ds.daos.ProjectDao" project="aclgomes-rnavalho-project-ds" 
+    file="/aclgomes-rnavalho-project-ds/src/main/java/pt/uc/dei/ds/daos/ProjectDao.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="53" width="87" x="450" y="130"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="false"/>    
+    </display>  
+  </class>  
+  <association id="9">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="10" name="taskDao">        
+        <position height="0" width="0" x="-192" y="12"/>      
+      </attribute>      
+      <multiplicity id="11" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-192" y="12"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="12">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="13" name="projectDao">        
+        <position height="0" width="0" x="-192" y="12"/>      
+      </attribute>      
+      <multiplicity id="14" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-192" y="12"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="8" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="15">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="16" name="tasktypeDao">        
+        <position height="0" width="0" x="-509" y="9"/>      
+      </attribute>      
+      <multiplicity id="17" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-509" y="9"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="2" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="18">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="19" name="allocationDao">        
+        <position height="0" width="0" x="-192" y="12"/>      
+      </attribute>      
+      <multiplicity id="20" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-192" y="12"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="3" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="21">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="22" name="taskstageDao">        
+        <position height="0" width="0" x="-232" y="10"/>      
+      </attribute>      
+      <multiplicity id="23" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-232" y="10"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="7" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="24">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="25" name="skillDao">        
+        <position height="0" width="0" x="-211" y="8"/>      
+      </attribute>      
+      <multiplicity id="26" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-211" y="8"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="27">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="28" name="userDao">        
+        <position height="0" width="0" x="-192" y="12"/>      
+      </attribute>      
+      <multiplicity id="29" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-192" y="12"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="5" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="false" package="false" protected="false" private="false" static="false"/>    
+    <operations public="false" package="false" protected="false" private="false" static="false"/>  
+  </classifier-display>  
+  <association-display labels="false" multiplicity="false"/>
+</class-diagram>

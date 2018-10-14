@@ -1,0 +1,466 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui">
+<h:head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+	<title>Blue Roots</title>
+	<f:view contentType="text/html" locale="#{multilanguage.locale}" />
+	<link href="resources/css/style.css" rel="stylesheet" />
+	<link href="resources/css/custom.css" rel="stylesheet" />
+	<link href="resources/css/primefaces.css" rel="stylesheet" />
+	<link href="resources/css/gantt.css" rel="stylesheet" />
+
+	<link rel="shortcut icon" type="image/png"
+		href="resources/images/favicon.ico" />
+
+	<link href="resources/css/jquery.dataTables.css" rel="stylesheet" />
+	<link href="resources/css/responsive.dataTables.css" rel="stylesheet" />
+	<style type="text/css" class="init">
+div.container {
+	max-width: 1200px
+}
+</style>
+
+	<script type="text/javascript" src="resources/js/jquery.dataTables.js" />
+	<script type="text/javascript"
+		src="resources/js/dataTables.responsive.js" />
+	<script type="text/javascript" class="init">
+
+		$(document).ready(function() {
+			$('#agenda').DataTable( {
+				"language": {
+		            "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Portuguese.json"
+		        },
+		        filter: false,
+		        sort: false,
+		        info: true,
+		        autoWidth: true,
+		        bPaginate: false,
+		        order: [
+		            [0, "asc"]
+		        ],
+				responsive: true,
+				columnDefs: [
+					{ responsivePriority: 1, targets: 0 },
+					{ responsivePriority: 1, targets: -1 }
+				]
+			} );
+			$('#lastDay').DataTable( {
+				"language": {
+		            "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Portuguese.json"
+		        },
+		        filter: false,
+		        sort: false,
+		        info: true,
+		        autoWidth: true,
+		        bPaginate: false,
+		        order: [
+		            [0, "asc"]
+		        ],
+				responsive: true,
+				columnDefs: [
+					{ responsivePriority: 1, targets: 0 },
+					{ responsivePriority: 1, targets: -1 }
+				]
+			} );
+				
+		} );
+	</script>
+</h:head>
+<h:body class="navbar-fixed sidebar-nav fixed-nav">
+	<!-- Header -->
+	<header class="navbar">
+		<h:panelGroup layout="block" class="container-fluid">
+			<ui:insert name="mtopLayout">
+				<ui:include src="mtop.xhtml" />
+			</ui:insert>
+		</h:panelGroup>
+	</header>
+
+	<!-- Sidebar -->
+	<h:panelGroup layout="block" class="sidebar">
+		<nav class="sidebar-nav">
+			<ui:insert name="mleftLayout">
+				<ui:include src="mleft.xhtml" />
+			</ui:insert>
+		</nav>
+	</h:panelGroup>
+
+	<!-- Main content -->
+	<h:panelGroup layout="block" class="main">
+		<!-- Breadcrumb -->
+		<ol class="breadcrumb r-0">
+			<li>#{msg['Dashboard']}</li>
+		</ol>
+		<h:panelGroup layout="block" class="container-fluid">
+			<h:panelGroup layout="block" class="animated fadeIn">
+				<h:panelGroup layout="block" class="row row-equal"></h:panelGroup>
+				<!--/row-->
+
+
+				<h:panelGroup layout="block" styleClass="col-sm-12 p-y-2"
+					rendered="#{mySessionBean.visitorRole}">
+					<h:panelGroup layout="block" class="card">
+						<h:panelGroup layout="block" class="card-header">#{msg['PedidodeAcesso']}</h:panelGroup>
+						<h:panelGroup layout="block" class="card-block">
+
+							<h:panelGroup layout="block" class="row">
+								<h:panelGroup layout="block" class="col-sm-12 p-x-2">
+									<h:panelGroup layout="block" class="col-sm-12">
+										<h5 class="header-list">#{msg['Msg9']}</h5>
+										<h:form id="requestRoles">
+											<h:commandLink value="#{msg['PedidodeAcesso']}"
+												actionListener="#{mySessionBean.requestRoleAtribution()}"
+												rendered="#{mySessionBean.enableRequestRoleButton}"
+												class="btn btn-info" />
+											<h:panelGroup layout="block"
+												styleClass="#{styleResponse.cssClass}">
+												<h:message for="requestRoles" />
+											</h:panelGroup>
+										</h:form>
+
+
+									</h:panelGroup>
+								</h:panelGroup>
+							</h:panelGroup>
+						</h:panelGroup>
+					</h:panelGroup>
+				</h:panelGroup>
+
+				<h:panelGroup layout="block" styleClass="col-sm-12 p-y-2"
+					rendered="#{mySessionBean.directorRole or mySessionBean.userRole}">
+					<h:panelGroup layout="block" class="card">
+						<h:panelGroup layout="block" class="card-header">
+
+							<div class="padRight10 box-left dashboard-date">
+								<strong>#{msg['TodayAgenda']}:</strong>
+							</div>
+
+							<div class="dashboard-date">
+								<h:outputText value="#{tabs.hoje}">
+									<f:convertDateTime type="date" pattern="dd-MM-yyyy" />
+								</h:outputText>
+							</div>
+
+						</h:panelGroup>
+						<h:panelGroup layout="block" class="card-block">
+
+							<h:panelGroup layout="block" class="row">
+
+								<h:panelGroup layout="block" class="col-sm-6 p-x-2">
+
+									<h:panelGroup layout="block" class="card">
+										<h:panelGroup layout="block" class="card-header">#{msg['TasksToDo']}</h:panelGroup>
+										<h:panelGroup layout="block" class="card-block">
+
+											<h:panelGroup layout="block" class="row">
+
+												<h:panelGroup layout="block" class="col-sm-12 p-x-2">
+
+
+													<h:panelGroup layout="block" class="row">
+
+														<h:panelGroup layout="block" styleClass="col-md-12 p-y-1">
+
+															<h:form id="agendaForm">
+
+																<div class="">
+																	<section>
+
+																		<table id="agenda" class="display nowrap"
+																			cellspacing="0" width="100%">
+																			<thead>
+																				<tr>
+																					<th>#{msg['Project']}</th>
+																					<th>#{msg['Activity']}</th>
+																					<th class="text-md-right">#{msg['PercAlocation']}</th>
+																				</tr>
+																			</thead>
+																			<tbody>
+																				<ui:repeat id="agendaList" var="ag"
+																					value="#{mySessionBean.dailyAgenda.allocList}">
+																					<tr>
+																						<td><h:outputText
+																								value="#{ag.projectId} - #{ag.projectTitle}" /></td>
+																						<td><h:outputText value="#{ag.taskName}" /></td>
+																						<td class="text-md-right"><h:outputText
+																								value="#{ag.percAlloc}" />%</td>
+																					</tr>
+																				</ui:repeat>
+																			</tbody>
+																		</table>
+
+																	</section>
+
+																</div>
+
+															</h:form>
+
+														</h:panelGroup>
+													</h:panelGroup>
+
+												</h:panelGroup>
+												<h:panelGroup layout="block" class="col-sm-12 p-x-2">
+													<strong>#{msg['Note']}</strong> #{msg['LastDay']}
+							</h:panelGroup>
+
+											</h:panelGroup>
+										</h:panelGroup>
+									</h:panelGroup>
+									<!--/.card-->
+
+								</h:panelGroup>
+
+								<h:panelGroup layout="block" class="col-sm-6 p-x-2">
+
+									<h:panelGroup layout="block" class="card">
+										<h:panelGroup layout="block" class="card-header">#{msg['LastDay']}</h:panelGroup>
+										<h:panelGroup layout="block" class="card-block">
+
+											<h:panelGroup layout="block" class="row">
+
+												<h:panelGroup layout="block" class="col-sm-12 p-x-2">
+
+													<h:panelGroup layout="block" class="row">
+
+														<h:panelGroup layout="block" styleClass="col-md-12 p-y-1">
+
+															<h:form id="lastDayForm">
+
+																<div class="">
+																	<section>
+
+																		<table id="lastDay" class="display nowrap"
+																			cellspacing="0" width="100%">
+																			<thead>
+																				<tr>
+																					<th>#{msg['Project']}</th>
+																					<th>#{msg['Activity']}</th>
+																					<th class="text-md-right">#{msg['NumberHours']}</th>
+																				</tr>
+																			</thead>
+																			<tbody>
+																				<ui:repeat id="lastdayList" var="lastday"
+																					value="#{mySessionBean.lastDayRegisterList}">
+																					<tr>
+																						<td><h:outputText
+																								value="#{lastday.projectId} - #{lastday.projectTitle}" /></td>
+																						<td><h:outputText value="#{lastday.taskName}" /></td>
+																						<td class="text-md-right"><h:outputText
+																								value="#{lastday.maxHours}" />h</td>
+																					</tr>
+																				</ui:repeat>
+																			</tbody>
+																		</table>
+
+																	</section>
+
+																</div>
+
+															</h:form>
+
+														</h:panelGroup>
+
+														<h:panelGroup layout="block"
+															styleClass="col-md-12 p-y-1 text-md-right">
+															<h:form>
+																<h:commandButton action="#{tabs.goToPage('register')}"
+																	actionListener="#{workRegisterBean.findWorkRegisterList()}"
+																	value="#{msg['HoursRegister']}" class="btn btn-primary">
+																	<f:actionListener
+																		binding="#{tabs.showRegistoHoras('step1',2)}" />
+																	<f:actionListener
+																		binding="#{workRegisterBean.cleanFields()}" />
+																</h:commandButton>
+															</h:form>
+														</h:panelGroup>
+
+													</h:panelGroup>
+
+												</h:panelGroup>
+
+											</h:panelGroup>
+										</h:panelGroup>
+									</h:panelGroup>
+									<!--/.card-->
+
+								</h:panelGroup>
+
+							</h:panelGroup>
+						</h:panelGroup>
+
+
+						<h:panelGroup layout="block" class="card-block">
+
+							<h:panelGroup layout="block" class="row">
+
+								<h:panelGroup layout="block" class="col-sm-12 p-x-2">
+
+									<h:panelGroup layout="block" class="card">
+										<h:panelGroup layout="block" class="card-header">#{msg['MyReportAllocations']}</h:panelGroup>
+										<h:panelGroup layout="block" class="card-block">
+
+											<h:panelGroup layout="block" class="row">
+
+												<h:panelGroup layout="block" class="col-sm-12 p-x-2">
+
+													<h:panelGroup layout="block" class="row">
+
+														<h:panelGroup layout="block" styleClass="col-md-12 p-y-1">
+
+
+															<h:form id="userReportForm">
+
+																<h:panelGroup layout="block" class="col-sm-12"
+																	id="reportAdvanced">
+
+																	<h:panelGroup layout="block"
+																		class="form-group col-sm-12">
+
+																		<h:panelGroup layout="block" class="col-sm-3">
+																			<h:outputLabel for="beginDate"
+																				value="#{msg['BeginDate']}" />
+																			<p:calendar styleClass="form-control"
+																				name="beginDate" id="beginDate"
+																				value="#{listAllocationsBean.begin}"
+																				locale="#{multilanguage.locale}" required="true"
+																				requiredMessage="#{msg['NULL_OR_EMPTY_FIELDS']}">
+																			</p:calendar>
+																			<h:message for="beginDate" styleClass="error" />
+																		</h:panelGroup>
+
+																		<h:panelGroup layout="block" class="col-sm-3">
+																			<h:outputLabel for="endDate"
+																				value="#{msg['EndDate']}" />
+																			<p:calendar styleClass="form-control" name="endDate"
+																				id="endDate" value="#{listAllocationsBean.end}"
+																				locale="#{multilanguage.locale}" required="true"
+																				requiredMessage="#{msg['NULL_OR_EMPTY_FIELDS']}">
+																			</p:calendar>
+																			<h:message for="endDate" styleClass="error" />
+																		</h:panelGroup>
+
+
+																		<h:panelGroup layout="block" class="col-sm-2 padTop35">
+																			<h:outputLabel value="" />
+																			<p:commandButton
+																				styleClass="btn btn-info btn-xs btn-primefaces"
+																				actionListener="#{listAllocationsBean.findMyAllocationsBetweenDates()}"
+																				update="userReportForm userAllocations radioSearch"
+																				value="#{msg['Search']}">
+																				<f:actionListener
+																					binding="#{listAllocationsBean.findMyUserPerformanceChart()}" />
+																				<f:actionListener
+																					binding="#{tabs.setTypeLink2('relatorio1')}" />
+																				<f:actionListener
+																					binding="#{listAllocationsBean.setShowHidePanel('true')}" />
+																			</p:commandButton>
+																		</h:panelGroup>
+
+																		<h:panelGroup layout="block" class="col-sm-12">
+																			<p:outputPanel layout="block"
+																				styleClass="#{styleResponse.cssClass}">
+																				<h:message for="userReportForm" />
+																			</p:outputPanel>
+																		</h:panelGroup>
+																	</h:panelGroup>
+
+																</h:panelGroup>
+
+															</h:form>
+
+
+														</h:panelGroup>
+													</h:panelGroup>
+
+													<h:panelGroup layout="block" styleClass="col-sm-12">
+
+														<h:panelGroup layout="block" class="col-sm-12 p-y-2"
+															id="radioSearch">
+															<h:panelGroup layout="block" class="col-sm-12"
+																rendered="#{listAllocationsBean.showHidePanel}">
+																<h:form>
+																	<h:panelGroup layout="block" class="input-group">
+
+																		<p:selectOneRadio id="typeLink"
+																			value="#{tabs.typeLink2}">
+																			<p:ajax event="change" update="userAllocations" />
+																			<f:selectItem itemValue="relatorio1"
+																				itemLabel="#{msg['AllocationReports']}" />
+																			<f:selectItem itemValue="relatorio2"
+																				itemLabel="#{msg['PerformanceReports']}" />
+																		</p:selectOneRadio>
+
+																	</h:panelGroup>
+																</h:form>
+															</h:panelGroup>
+														</h:panelGroup>
+
+													</h:panelGroup>
+
+
+													<h:panelGroup layout="block" class="col-sm-12"
+														id="userAllocations">
+
+														<ui:insert>
+															<ui:include
+																src="dashboard_users_results_#{tabs.typeLink2}.xhtml" />
+														</ui:insert>
+
+													</h:panelGroup>
+
+
+												</h:panelGroup>
+
+
+											</h:panelGroup>
+										</h:panelGroup>
+									</h:panelGroup>
+									<!--/.card-->
+
+								</h:panelGroup>
+
+
+
+							</h:panelGroup>
+						</h:panelGroup>
+					</h:panelGroup>
+					<!--/.card-->
+				</h:panelGroup>
+
+
+				<div class="row row-equal"></div>
+				<!--/.row-->
+
+
+				<div class="row row-equal"></div>
+				<!--/.row-->
+
+
+			</h:panelGroup>
+			<!--/.animated -->
+		</h:panelGroup>
+		<!-- /.container-fluid -->
+
+	</h:panelGroup>
+	<!-- /.main -->
+
+	<!-- Footer -->
+	<ui:insert name="footerLayout">
+		<ui:include src="footer.xhtml" />
+	</ui:insert>
+
+	<!-- JS -->
+	<script src="resources/js/libs/bootstrap.min.js"></script>
+	<script src="resources/js/app.js"></script>
+</h:body>
+</html>

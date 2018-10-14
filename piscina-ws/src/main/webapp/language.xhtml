@@ -1,0 +1,21 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<ui:composition>
+	<!-- *** LANGUAGE *** -->
+	<h:form>
+		<div class="language">
+			<!-- <h:outputLabel value="#{msg['OutputLabel']}:" styleClass="language" /> -->
+			<h:selectOneMenu value="#{multilanguage.language}"
+				onchange="submit()" styleClass="language-select">
+				<f:selectItem itemValue="pt" itemLabel="PT" />
+				<f:selectItem itemValue="en" itemLabel="EN" />
+			</h:selectOneMenu>
+		</div>
+	</h:form>
+	<!-- *** LANGUAGE END *** -->
+</ui:composition>
+</html>

@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui"
+	xmlns:hf="http://highfaces.org">
+
+<ui:composition>
+<f:view contentType="text/html" locale="#{multilanguage.locale}" />
+	<link href="resources/css/jquery.dataTables.css" rel="stylesheet" />
+	<link href="resources/css/responsive.dataTables.css" rel="stylesheet" />
+
+	<script type="text/javascript" src="resources/js/jquery.dataTables.js" />
+	<script type="text/javascript"
+		src="resources/js/dataTables.responsive.js" />
+	<script type="text/javascript" class="init">
+
+$(document).ready(function() {
+	$('#usersAvailable').DataTable( {
+		"language": {
+            "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Portuguese.json"
+        },
+		
+        lengthMenu: [
+            [10, 25, 50, -1],
+            [10, 25, 50, "All"]
+        ],
+        filter: false,
+        sort: true,
+        info: true,
+        autoWidth: true,
+        order: [
+            [0, "asc"]
+        ],
+		responsive: true,
+		columnDefs: [
+			{ responsivePriority: 1, targets: 0 },
+			{ responsivePriority: 1, targets: -1 }
+		]
+	} );
+		
+} );
+	</script>
+
+	<h:panelGroup layout="block" class="row">
+		<h:panelGroup layout="block" class="col-sm-12">
+			<h:form id="searchUsersAllocForm">
+				<h:panelGroup layout="block" class="form-group col-sm-3">
+					<h:outputLabel for="beginDate" value="#{msg['BeginDate']}" />
+					<p:calendar id="beginDate" value="#{listTasksBean.beginDate}"
+						mindate="#{tabs.tomorrowOrLaterDate(listTasksBean.selectedTask.beginDate)}"
+						maxdate="#{listTasksBean.selectedTask.endDate}"
+						styleClass="form-control" required="true"
+						locale="#{multilanguage.locale}" disabledWeekends="true"
+						requiredMessage="#{msg['NULL_OR_EMPTY_FIELDS']}">
+					</p:calendar>
+					<h:message for="beginDate" styleClass="error" />
+				</h:panelGroup>
+
+				<h:panelGroup layout="block" class="form-group col-sm-3">
+					<h:outputLabel for="endDate" value="#{msg['EndDate']}" />
+					<p:calendar id="endDate" value="#{listTasksBean.endDate}"
+						styleClass="form-control" required="true"
+						mindate="#{tabs.tomorrowOrLaterDate(listTasksBean.selectedTask.beginDate)}"
+						maxdate="#{listTasksBean.selectedTask.endDate}"
+						locale="#{multilanguage.locale}" disabledWeekends="true"
+						requiredMessage="#{msg['NULL_OR_EMPTY_FIELDS']}">
+					</p:calendar>
+					<h:message for="endDate" styleClass="error" />
+				</h:panelGroup>
+
+
+				<h:panelGroup layout="block"
+					styleClass="form-group col-sm-3 padTop30">
+					<p:commandButton class="btn btn-info btn-xs btn-primefaces"
+						value="#{msg['Search']} #{msg['Users']}"
+						action="#{listTasksBean.resourceAllocation()}" update="datesPanel"
+						process="@form" />
+				</h:panelGroup>
+
+				<p:outputPanel layout="block"
+					styleClass="col-sm-12 #{styleResponse.cssClass}">
+					<h:message for="searchUsersAllocForm" />
+				</p:outputPanel>
+
+
+			</h:form>
+		</h:panelGroup>
+
+	</h:panelGroup>
+
+	<h:panelGroup layout="block" class="row" id="resultadosPesq">
+
+		<h:panelGroup layout="block" class="col-md-12"
+			rendered="#{listTasksBean.showResources}">
+
+			<h:panelGroup layout="block" class="col-md-12 p-y-1">
+				<h:panelGroup layout="block" class="col-md-12">
+					<h6>#{msg['AvailableResources']}:</h6>
+				</h:panelGroup>
+				<h:panelGroup layout="block" class="col-md-12">
+					<h:form id="alocForm">
+						<ui:repeat id="usersList1" var="worker1"
+							value="#{listTasksBean.findAvailableWorkersToTask()}">
+						</ui:repeat>
+
+						<p:outputPanel layout="block"
+							styleClass="col-sm-12 #{styleResponse.cssClass} p-y-1">
+							<h:message for="alocForm" />
+						</p:outputPanel>
+
+						<h:panelGroup layout="block" class="">
+							<section>
+
+								<table id="usersAvailable" class="display nowrap"
+									cellspacing="0" width="100%">
+									<thead>
+										<tr>
+											<th>#{msg['Name']}</th>
+											<th>% #{msg['Allocation']} #{msg['Available']}</th>
+											<th>#{msg['Skill']} #{msg['Necessary']}?</th>
+											<th>#{msg['Choose']} #{msg['Percentage']}</th>
+											<th>#{msg['Chart']}</th>
+											<th></th>
+										</tr>
+									</thead>
+									<tbody>
+										<ui:repeat id="usersList" var="worker"
+											value="#{listTasksBean.findAvailableWorkersToTask()}">
+											<tr>
+												<td><h:outputText value="#{worker.fullName}" /></td>
+												<td><h:outputText value="#{worker.freePercentage}" /></td>
+												<td><h:outputText style="color:red" value="#{msg['NO']}"
+														rendered="#{worker.gotSkillNeededTask eq false}" /> <h:outputText
+														style="color:green" value="#{msg['YES']}"
+														rendered="#{worker.gotSkillNeededTask eq true}" /></td>
+
+												<td><h:panelGroup layout="block"
+														class="form-group col-sm-5">
+														<h:selectOneMenu id="percAlloc"
+															value="#{worker.freePercentage}"
+															styleClass="form-control">
+															<f:selectItem itemValue="100" itemLabel="100%"
+																itemDisabled="#{worker.freePercentage lt 100}" />
+															<f:selectItem itemValue="90" itemLabel="90%"
+																itemDisabled="#{worker.freePercentage lt 90}" />
+															<f:selectItem itemValue="80" itemLabel="80%"
+																itemDisabled="#{worker.freePercentage lt 80}" />
+															<f:selectItem itemValue="70" itemLabel="70%"
+																itemDisabled="#{worker.freePercentage lt 70}" />
+															<f:selectItem itemValue="60" itemLabel="60%"
+																itemDisabled="#{worker.freePercentage lt 60}" />
+															<f:selectItem itemValue="50" itemLabel="50%"
+																itemDisabled="#{worker.freePercentage lt 50}" />
+															<f:selectItem itemValue="40" itemLabel="40%"
+																itemDisabled="#{worker.freePercentage lt 40}" />
+															<f:selectItem itemValue="30" itemLabel="30%"
+																itemDisabled="#{worker.freePercentage lt 30}" />
+															<f:selectItem itemValue="20" itemLabel="20%"
+																itemDisabled="#{worker.freePercentage lt 20}" />
+															<f:selectItem itemValue="10" itemLabel="10%"
+																itemDisabled="#{worker.freePercentage lt 10}" />
+														</h:selectOneMenu>
+													</h:panelGroup></td>
+												<td><p:commandButton
+														class="btn btn-info btn-xs btn-primefaces" value="#{msg['Chart']}"
+														actionListener="#{listTasksBean.setSelectedWorker(worker)}"
+														oncomplete="$('#myModalGraph').modal('show')"
+														update="myFormGraph">
+													</p:commandButton></td>
+												<td><p:commandButton
+														class="btn btn-info btn-xs btn-primefaces" value="#{msg['Allocation']}"
+														actionListener="#{listTasksBean.setSelectedWorker(worker)}"
+														oncomplete="$('#myModal1').modal('show')" /></td>
+											</tr>
+										</ui:repeat>
+									</tbody>
+								</table>
+
+							</section>
+						</h:panelGroup>
+
+
+
+					</h:form>
+				</h:panelGroup>
+			</h:panelGroup>
+
+		</h:panelGroup>
+
+		<h:panelGroup layout="block" class="col-md-12">
+			<h:form>
+				<h:panelGroup layout="block" styleClass="p-y-1">
+					<p:commandButton class="btn btn-info btn-xs btn-primefaces" value="#{msg['Cancel']}"
+						action="#{tabs.showActivities('allocations',2)}"
+						actionListener="#{listTasksBean.setShowResources(false)}" update="activitiesPanels datesPanel @form"/>
+				</h:panelGroup>
+			</h:form>
+		</h:panelGroup>
+
+
+
+	</h:panelGroup>
+
+	
+	<!-- Modal Graph -->
+	<div class="modal fade" id="myModalGraph" tabindex="-1" role="dialog"
+		aria-labelledby="myModalGraph" aria-hidden="true"
+		data-keyboard="false" data-backdrop="false" data-closable="true"
+		style="top: 80px">
+		<div class="modal-dialog modal-md">
+			<div class="modal-content">
+				<h:form id="myFormGraph">
+					<div class="modal-header">
+						<h4 class="modal-title">#{msg['Resource']} #{msg['Available']}</h4>
+					</div>
+					<div class="modal-body">
+
+						<hf:chart type="column" title=""
+							xaxisLabel="#{msg['DateInterval']}" yaxisLabel="#{msg['Percentage']}" 
+						width="500">
+							<hf:chartSerie name="#{msg['Percentage']}"
+								value="#{listTasksBean.selectedWorker.dateAlloc}" var="da" dataLabel="#{msg['Percentage']}"
+								point="#{da.percentage}"
+								tickLabel="#{da.date.toLocaleString()}" />
+						</hf:chart>
+
+						<h:panelGroup layout="block" styleClass="modal-footer">
+							<p:commandLink value="#{msg['Close']}" immediate="true"
+								styleClass="btn btn-default"
+								oncomplete="$('#myModalGraph').modal('hide');" />
+						</h:panelGroup>
+					</div>
+
+
+				</h:form>
+			</div>
+		</div>
+	</div>
+
+
+
+	<!-- Modal Graph -->
+	<div class="modal fade" id="myModal1" tabindex="-1" role="dialog"
+		aria-labelledby="myModal1" aria-hidden="true" data-keyboard="false"
+		data-backdrop="false" data-closable="true" style="top: 80px">
+		<div class="modal-dialog modal-md">
+			<div class="modal-content">
+				<h:form id="confirmAlocForm">
+					<div class="modal-header">
+						<h4 class="modal-title">#{msg['Allocate']} #{msg['Resource']}</h4>
+					</div>
+					<div class="">
+
+						<h:panelGroup layout="block" class="col-md-12 p-y-1">
+
+							<h:panelGroup layout="block" class="col-md-12 text-md-center">
+								<p>#{msg['PopUp1']}</p>
+								<p>#{msg['PopUp2']}</p>
+								<h6>#{msg['DoYouContinue']}</h6>
+							</h:panelGroup>
+							<h:panelGroup layout="block" class="col-md-12 text-md-center">
+								<h:form>
+									<h:panelGroup layout="block"
+										styleClass="col-md-6 text-md-right">
+										<h:commandButton class="btn btn-info btn-xs" value="#{msg['No']}"
+											action="#{tabs.goToPage('activities_edit')}" />
+									</h:panelGroup>
+									<h:panelGroup layout="block" styleClass="col-md-6 text-md-left">
+										<h:commandButton class="btn btn-info btn-xs" value="#{msg['Yes']}"
+											action="#{listTasksBean.allocateWorkerToTask()}"
+											actionListener="#{tabs.submitAllocation()}"
+											update="datesPanel" />
+									</h:panelGroup>
+								</h:form>
+							</h:panelGroup>
+						</h:panelGroup>
+					</div>
+
+					<h:panelGroup layout="block" styleClass="col-md-12">
+						<h:message for="confirmAlocForm" />
+					</h:panelGroup>
+
+					<h:panelGroup layout="block" styleClass="modal-footer">
+						<p:commandLink value="#{msg['Close']}" immediate="true"
+							class="btn btn-xs btn-primary" styleClass="btn btn-default"
+							oncomplete="$('#myModal1').modal('hide');" />
+					</h:panelGroup>
+
+				</h:form>
+			</div>
+		</div>
+	</div>
+
+
+</ui:composition>
+
+</html>

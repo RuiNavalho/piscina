@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui">
+
+<ui:composition>
+	<f:view contentType="text/html" locale="#{multilanguage.locale}" />
+	<link href="resources/css/jquery.dataTables.css" rel="stylesheet" />
+	<link href="resources/css/responsive.dataTables.css" rel="stylesheet" />
+
+	<script type="text/javascript" src="resources/js/jquery.dataTables.js" />
+	<script type="text/javascript"
+		src="resources/js/dataTables.responsive.js" />
+	<script type="text/javascript" class="init">
+
+	$(document).ready(function() {
+		$('#users').DataTable( {
+			"language": {
+	            "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Portuguese.json"
+	        },
+			
+	        lengthMenu: [
+	            [10, 25, 50, -1],
+	            [10, 25, 50, "All"]
+	        ],
+	        filter: true,
+	        sort: true,
+	        info: true,
+	        autoWidth: true,
+	        order: [
+	            [0, "asc"]
+	        ],
+			responsive: true,
+			columnDefs: [
+				{ responsivePriority: 1, targets: 0 },
+				{ responsivePriority: 1, targets: -1 }
+			]
+		} );
+			
+	} );
+	</script>
+
+
+		<h:panelGroup layout="block" class="col-sm-12 p-y-1">
+			<h:form id="resultsSearchForm">
+
+				<h:panelGroup layout="block" class="col-md-9 p-y-2"
+					rendered="#{listUsersBean.type eq 'active'}">
+					<h6 class="header-list">#{msg['SearchResults']}:
+						#{msg['activeSearch']}</h6>
+				</h:panelGroup>
+				<h:panelGroup layout="block" class="col-md-9 p-y-2"
+					rendered="#{listUsersBean.type eq 'inactive'}">
+					<h6 class="header-list">#{msg['SearchResults']}:
+						#{msg['inactiveSearch']}</h6>
+				</h:panelGroup>
+				<h:panelGroup layout="block" class="col-md-9 p-y-2"
+					rendered="#{listUsersBean.type eq 'all'}">
+					<h6 class="header-list">#{msg['SearchResults']}:
+						#{msg['allSearch']}</h6>
+				</h:panelGroup>
+				<h:panelGroup layout="block" class="col-md-9 p-y-2"
+					rendered="#{listUsersBean.type eq 'name'}">
+					<h6 class="header-list">#{msg['SearchResults']}:
+						#{msg['nameSearch']}</h6>
+				</h:panelGroup>
+				<h:panelGroup layout="block" class="col-md-9 p-y-2"
+					rendered="#{listUsersBean.type eq 'role'}">
+					<h6 class="header-list">#{msg['SearchResults']}:
+						#{msg['roleSearch']}</h6>
+				</h:panelGroup>
+				<h:panelGroup layout="block" class="col-md-9 p-y-2"
+					rendered="#{listUsersBean.type eq 'skill'}">
+					<h6 class="header-list">#{msg['SearchResults']}:
+						#{msg['skillSearch']}</h6>
+				</h:panelGroup>
+				<h:panelGroup layout="block" class="col-md-9 p-y-2"
+					rendered="#{listUsersBean.type eq 'date'}">
+					<h6>#{msg['SearchResults']}: #{msg['dateSearch']}</h6>
+				</h:panelGroup>
+
+				<h:panelGroup layout="block" class="col-md-3 p-y-1 text-md-right">
+					<h:commandLink>
+						<p:graphicImage value="resources/images/pdf.png" />
+						<p:dataExporter type="pdf" target="usersListX"
+							fileName="utilizadores" pageOnly="false" />
+					</h:commandLink>
+
+					<h:commandLink>
+						<p:graphicImage value="resources/images/csv.png" />
+						<p:dataExporter type="csv" target="usersListX"
+							fileName="utilizadores" pageOnly="false" />
+					</h:commandLink>
+
+					<h:commandLink>
+						<p:graphicImage value="resources/images/xml.png" />
+						<p:dataExporter type="xml" target="usersListX"
+							fileName="utilizadores" pageOnly="false" />
+					</h:commandLink>
+				</h:panelGroup>
+
+				<p:dataTable id="usersListX" value="#{listUsersBean.usersList}"
+					var="userExp" style="display:none">
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="#{msg['Name']}" />
+						</f:facet>
+						<h:outputText value="#{userExp.fullName}" />
+					</p:column>
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="#{msg['Role']}" />
+						</f:facet>
+						<h:outputText value="#{userExp.roles}" />
+					</p:column>
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="#{msg['Email']}" />
+						</f:facet>
+						<h:outputText value="#{userExp.email}" />
+					</p:column>
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="#{msg['Skill']}" />
+						</f:facet>
+						<h:outputText value="#{userExp.skills}" />
+					</p:column>
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="#{msg['Stage']}" />
+						</f:facet>
+						<h:outputText value="#{userExp.active}" />
+					</p:column>
+				</p:dataTable>
+
+				<h:panelGroup layout="block" styleClass="col-md-12 p-y-1">
+					<div class="container">
+						<section>
+
+							<table id="users" class="display nowrap" cellspacing="0"
+								width="100%">
+								<thead>
+									<tr>
+										<th>#{msg['Name']}</th>
+										<th>#{msg['Role']}</th>
+										<th>#{msg['Email']}</th>
+										<th>#{msg['Skill']}</th>
+										<th>#{msg['Stage']}</th>
+										<th></th>
+									</tr>
+								</thead>
+								<tbody>
+									<ui:repeat id="usersList" var="utilizador"
+										value="#{listUsersBean.usersList}">
+										<tr>
+											<td><h:outputText value="#{utilizador.fullName}" /></td>
+											<td><h:outputText value="#{msg['Administrator']}"
+													rendered="#{utilizador.roles == Administrator}" /> <h:outputText
+													value="#{utilizador.roles}" /></td>
+											<td><h:outputText value="#{utilizador.email}" /></td>
+											<td><h:outputText value="#{utilizador.skills}" /></td>
+											<td><h:outputText value="#{msg['Active']}"
+													rendered="#{utilizador.active == true}" /> <h:outputText
+													value="Inativo" rendered="#{utilizador.active == false}" /></td>
+											<td><h:commandLink
+													class="btn btn-info btn-xs icon-pencil"
+													action="users_edit.xhtml?faces-redirect=true" value=""
+													actionListener="#{listUsersBean.setSelectedUser(utilizador)}" />
+											</td>
+										</tr>
+									</ui:repeat>
+								</tbody>
+							</table>
+
+						</section>
+					</div>
+				</h:panelGroup>
+
+			</h:form>
+		</h:panelGroup>
+
+</ui:composition>
+
+</html>

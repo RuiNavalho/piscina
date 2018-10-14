@@ -1,0 +1,100 @@
+/* Custom styles for the Timeline */
+div.timeline-frame {
+	border-color: #efefef;
+	border-radius: 0px;
+}
+
+div.timeline-axis {
+	border-color: white;
+	background-color: #62a8ea;
+}
+
+div.timeline-groups-axis {
+	border-color: #5D99C3;
+}
+
+div.timeline-groups-axis-onleft {
+	border-style: none solid none none;
+}
+
+div.timeline-axis-text {
+	color: white;
+}
+
+div.timeline-event {
+	color: white !important;
+	border-radius: 5px !important;
+}
+
+div.timeline-event-content {
+	padding: 5px;
+	text-shadow: none;
+}
+
+
+div.red {
+	background: #F03030 none !important; /* red */
+	border-color: grey !important; /* red */
+}
+
+div.green {
+	background: #1AA11A none !important; /* green */
+	border-color: grey !important; /* green */
+}
+
+div.orange {
+	background: #FFA500 none !important; /* orange */
+	border-color: grey !important; /* orange */
+}
+
+div.yellow {
+	background: #ebf034 none !important; /* yellow */
+	border-color: grey !important; /* yellow */
+}
+
+div.almostGreen {
+	background: olive none !important; /* yellow */
+	border-color: grey !important; /* yellow */
+}
+
+
+div.blue1 {
+	background:#006DD9 none !important;
+	border-color: #006DD9 !important;
+}
+div.blue2 {
+	background: #2693FF none !important;
+	border-color: #2693FF !important;
+}
+div.blue3 {
+	background: #73B9FF none !important;
+	border-color: #73B9FF !important;
+}
+div.blue4 {
+	background: #BFDFFF none !important;
+	border-color: #BFDFFF !important;
+}
+
+div.unavailable {
+	background: #F03030 none !important; /* red */
+	border-color: #bd2828 !important; /* red */
+}
+
+div.available {
+	background: #1AA11A none !important; /* green */
+	border-color: #136e13 !important; /* green */
+}
+
+div.maybe {
+	background: #FFA500 none !important; /* orange */
+	border-color: #cc8100 !important; /* orange */
+}
+
+div.timeline-event-selected {
+	background: #BECEFE none !important;
+	border-color: #97B0F8 !important;
+}
+
+.div.timeline-content {
+    font-size: 11px !important;
+}

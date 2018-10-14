@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui"
+	xmlns:hf="http://highfaces.org">
+
+<ui:composition>
+<f:view contentType="text/html" locale="#{multilanguage.locale}" />
+	<h:panelGroup layout="block" class="col-md-12 bkg-color1">
+		#{msg['Chart']}
+	</h:panelGroup>
+
+
+	<h:panelGroup layout="block" class="col-md-12  p-y-2 bkg-color3">
+
+		<h:panelGroup layout="block" class="row">
+
+
+			<h:panelGroup layout="block" styleClass="col-sm-8">
+
+				<h:panelGroup layout="block" class="col-md-12  p-y-1">
+					<h:panelGroup layout="block" class="col-sm-12">
+						<h6 class="header-list">#{msg['ChooseChart']}:</h6>
+					</h:panelGroup>
+					<h:panelGroup layout="block" class="col-sm-12">
+						<h:form>
+
+							<h:panelGroup layout="block" class="input-group">
+								<p:selectOneRadio value="#{chartLine.typeChart}">
+									<p:ajax event="change" update="boxGraficos" />
+									<f:selectItem itemValue="budgetProj"
+										itemLabel="#{msg['Budget']}" />
+									<f:selectItem itemValue="totalProj" itemLabel="#{msg['ProjectsTotal']}" />
+
+								</p:selectOneRadio>
+
+							</h:panelGroup>
+
+						</h:form>
+					</h:panelGroup>
+
+				</h:panelGroup>
+
+				<h:panelGroup layout="block" class="col-md-12  p-y-1"
+					id="boxGraficos">
+
+					<h:panelGroup layout="block" styleClass="col-sm-12" id="grafico1"
+						rendered="#{chartLine.typeChart eq 'budgetProj'}">
+
+						<hf:chart type="pie" title="#{msg['ProjectBudget']}">
+							<hf:chartSerie name="Budget" value="#{chartLine.budgetPie}"
+								var="point" point="#{point.budget}" tickLabel="#{point.title}"
+								dataLabel="&lt;b>{point.name}&lt;/b>: &lt;i>{point.y:.2f} €&lt;/i>" />
+						</hf:chart>
+
+					</h:panelGroup>
+
+
+					<h:panelGroup layout="block" styleClass="col-sm-12" id="grafico2"
+						rendered="#{chartLine.typeChart eq 'totalProj'}">
+
+						<hf:chart type="pie" title="#{msg['ProjectBudget']}">
+							<hf:chartSerie name="Total" value="#{chartLine.countPie}"
+								var="point" point="#{point.count}" tickLabel="#{point.title}"
+								dataLabel="&lt;b>{point.name}&lt;/b>: &lt;i>{point.y}&lt;/i>" />
+						</hf:chart>
+
+					</h:panelGroup>
+
+				</h:panelGroup>
+				<!--/.col-->
+
+			</h:panelGroup>
+			<!--/.col-->
+
+
+			<h:panelGroup layout="block"
+				styleClass="col-sm-4 p-y-1 text-md-align">
+
+				<h6 class="header-list">#{msg['BusinessArea']}:
+					#{listBusinessesBean.selectedBusinessStats.area}</h6>
+
+				<table id="gradient-style">
+					<thead>
+						<tr>
+							<th scope="col">#{msg['BudgetTotal']}:</th>
+							<th scope="col">#{msg['NumberOfProjects']}:</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>#{chartLine.chart2.budgetThis}€</td>
+							<td>#{chartLine.chart2.projCountThis}</td>
+
+						</tr>
+					</tbody>
+				</table>
+
+			</h:panelGroup>
+			<!--/.col-->
+
+		</h:panelGroup>
+	</h:panelGroup>
+
+	<h:panelGroup layout="block" class="col-md-12  p-y-2 bkg-color3">
+
+		<h:panelGroup layout="block" class="row">
+
+
+			<h:panelGroup layout="block" styleClass="col-sm-8">
+
+				<h:panelGroup layout="block" class="col-md-12  p-y-1">
+					<h:panelGroup layout="block" class="col-sm-12">
+						<h6 class="header-list">#{msg['ProjectBudget']}:</h6>
+					</h:panelGroup>
+					<h:panelGroup layout="block" class="col-sm-12">
+						<h:form>
+
+							<h:panelGroup layout="block" class="input-group">
+								<p:selectOneRadio value="#{chartLine.typeChart}">
+									<p:ajax event="change" update="boxGraficos2" />
+									<f:selectItem itemValue="evTProj"
+										itemLabel="#{msg['EvolutionProjectNumber']}" />
+									<f:selectItem itemValue="evBProj"
+										itemLabel="#{msg['EvolutionProjectBudget']}" />
+
+								</p:selectOneRadio>
+
+							</h:panelGroup>
+
+
+						</h:form>
+					</h:panelGroup>
+
+				</h:panelGroup>
+
+				<h:panelGroup layout="block" class="col-md-12  p-y-1"
+					id="boxGraficos2">
+
+					<h:panelGroup layout="block" styleClass="col-sm-12" id="grafico3"
+						rendered="#{chartLine.typeChart eq 'evTProj'}">
+
+						<hf:chart type="line" xaxisLabel="Data"
+							yaxisLabel="#{msg['NumberOfProjects']} #{msg['Cumulative']}"
+							title="#{msg['EvolutionProjectNumber']} #{listBusinessesBean.selectedBusinessStats.area}">
+							<hf:chartSerie name="#{msg['NumberOfProjects']}"
+								value="#{chartLine.chart2.list}" var="totalProjs"
+								point="#{totalProjs.projCount}" tickLabel="#{totalProjs.date}">
+							</hf:chartSerie>
+
+							<hf:chartAxis position="s" title="Data" type="datetime"
+								tickAngle="-45" style="font-weight: bold;"
+								format="{value:%d.%m.%Y}" />
+
+							<hf:chartAxis position="w" title="#{msg['NumberOfProjects']}"
+								tickAngle="-45" style="font-weight: bold;" />
+
+							<hf:chartTooltip backgroundColor="#000000" shared="true">
+								<f:facet name="header">
+									<h:outputText escape="false"
+										value="&lt;table>&lt;tr>&lt;td style='color:white;font-weight:bold;padding-right:5px;'>{point.key}&lt;/td>&lt;td style='border-left:1px solid white;padding-left: 10px;'>" />
+								</f:facet>
+								<f:facet name="body">
+									<h:outputText escape="false"
+										value="&lt;span style='color:white'>{series.name}: &lt;b> {point.y}&lt;/b>&lt;/span>&lt;br/>" />
+								</f:facet>
+								<f:facet name="footer">
+									<h:outputText escape="false"
+										value='&lt;/td>&lt;/tr>&lt;/table>' />
+								</f:facet>
+							</hf:chartTooltip>
+						</hf:chart>
+
+					</h:panelGroup>
+
+
+					<h:panelGroup layout="block" styleClass="col-sm-12" id="grafico4"
+						rendered="#{chartLine.typeChart eq 'evBProj'}">
+
+						<hf:chart type="line" xaxisLabel="Data"
+							yaxisLabel="#{msg['Cumulative']} #{msg['Budget']}"
+							title="#{msg['EvolutionProjectBudget']} #{listBusinessesBean.selectedBusinessStats.area}">
+							<hf:chartSerie name="Budget" value="#{chartLine.chart2.list}"
+								var="budget" point="#{budget.budget}" tickLabel="#{budget.date}">
+							</hf:chartSerie>
+
+							<hf:chartAxis position="s" title="Data" type="datetime"
+								tickAngle="-45" style="font-weight: bold;"
+								format="{value:%d.%m.%Y}" />
+
+							<hf:chartAxis position="w" title="#{msg['Cumulative']} #{msg['Budget']}"
+								tickAngle="-45" style="font-weight: bold;" />
+
+							<hf:chartTooltip backgroundColor="#000000" shared="true">
+								<f:facet name="header">
+									<h:outputText escape="false"
+										value="&lt;table>&lt;tr>&lt;td style='color:white;font-weight:bold;padding-right:5px;'>{point.key}&lt;/td>&lt;td style='border-left:1px solid white;padding-left: 10px;'>" />
+								</f:facet>
+								<f:facet name="body">
+									<h:outputText escape="false"
+										value="&lt;span style='color:white'>{series.name}: &lt;b> {point.y:.2f} €&lt;/b>&lt;/span>&lt;br/>" />
+								</f:facet>
+								<f:facet name="footer">
+									<h:outputText escape="false"
+										value='&lt;/td>&lt;/tr>&lt;/table>' />
+								</f:facet>
+							</hf:chartTooltip>
+						</hf:chart>
+
+					</h:panelGroup>
+
+				</h:panelGroup>
+				<!--/.col-->
+
+			</h:panelGroup>
+			<!--/.col-->
+
+
+		</h:panelGroup>
+	</h:panelGroup>
+
+
+
+</ui:composition>
+
+</html>

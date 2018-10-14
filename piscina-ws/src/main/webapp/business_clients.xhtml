@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui">
+
+<ui:composition>
+<f:view contentType="text/html" locale="#{multilanguage.locale}" />
+	<link href="resources/css/jquery.dataTables.css" rel="stylesheet" />
+	<link href="resources/css/responsive.dataTables.css" rel="stylesheet" />
+
+	<script type="text/javascript" src="resources/js/jquery.dataTables.js">
+	</script>
+	<script type="text/javascript"
+		src="resources/js/dataTables.responsive.js">
+	</script>
+	<script type="text/javascript" class="init">
+
+$(document).ready(function() {
+	$('#clients').DataTable( {
+		"language": {
+            "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Portuguese.json"
+        },
+		
+        lengthMenu: [
+            [10, 25, 50, -1],
+            [10, 25, 50, "All"]
+        ],
+        filter: true,
+        sort: true,
+        info: true,
+        autoWidth: true,
+        order: [
+            [0, "asc"]
+        ],
+		responsive: true,
+		columnDefs: [
+			{ responsivePriority: 1, targets: 0 },
+			{ responsivePriority: 1, targets: -1 }
+		],
+		scrollY:        "300px",
+        scrollX:        true,
+        scrollCollapse: true,
+        paging:         false,
+        fixedColumns:   {
+            leftColumns: 1,
+            rightColumns: 1
+        }
+	} );
+		
+} );
+	</script>
+	<h:panelGroup layout="block" class="col-md-12 bkg-color1">
+		#{msg['Businesses']}:
+	</h:panelGroup>
+
+	<h:panelGroup layout="block" class="col-md-12  p-y-2">
+
+		<h:panelGroup layout="block" class="row">
+
+			<h:panelGroup layout="block" class="col-sm-12">
+
+				<h:form>
+
+					<h:panelGroup layout="block" class="col-md-12  p-y-1">
+
+
+						<h:panelGroup layout="block" class="col-md-9 p-y-2">
+							<span class="header-list">#{msg['Companies']}:</span> #{listBusinessesBean.selectedBusinessStats.area}
+						</h:panelGroup>
+
+						<h:panelGroup layout="block" class="col-md-3 p-y-1 text-md-right">
+							<h:commandLink>
+								<p:graphicImage value="resources/images/pdf.png" />
+								<p:dataExporter type="pdf" target="clientsListX"
+									fileName="clientes" pageOnly="false" />
+							</h:commandLink>
+
+							<h:commandLink>
+								<p:graphicImage value="resources/images/csv.png" />
+								<p:dataExporter type="csv" target="clientsListX"
+									fileName="clientes" pageOnly="false" />
+							</h:commandLink>
+
+							<h:commandLink>
+								<p:graphicImage value="resources/images/xml.png" />
+								<p:dataExporter type="xml" target="clientsListX"
+									fileName="clientes" pageOnly="false" />
+							</h:commandLink>
+						</h:panelGroup>
+
+
+						<p:dataTable id="clientsListX"
+							value="#{listBusinessesBean.getAllBusinessClientsList()}" var="clientExp"
+							style="display:none">
+							<p:column>
+								<f:facet name="header">
+									<h:outputText value="#{msg['Company']}" />
+								</f:facet>
+								<h:outputText value="#{clientExp.company}" />
+							</p:column>
+							<p:column>
+								<f:facet name="header">
+									<h:outputText value="#{msg['Address']}" />
+								</f:facet>
+								<h:outputText value="#{clientExp.address}" />
+							</p:column>
+							<p:column>
+								<f:facet name="header">
+									<h:outputText value="#{msg['NameContact']}" />
+								</f:facet>
+								<h:outputText value="#{clientExp.contact}" />
+							</p:column>
+							<p:column>
+								<f:facet name="header">
+									<h:outputText value="#{msg['Phone']}" />
+								</f:facet>
+								<h:outputText value="#{clientExp.phone}" />
+							</p:column>
+							<p:column>
+								<f:facet name="header">
+									<h:outputText value="#{msg['NumberOfProjects']}" />
+								</f:facet>
+								<h:outputText value="#{clientExp.numeroProjetos}" />
+							</p:column>
+							<p:column>
+								<f:facet name="header">
+									<h:outputText value="#{msg['BudgetTotal']}" />
+								</f:facet>
+								<h:outputText value="#{clientExp.budgetTotal}" />
+							</p:column>
+						</p:dataTable>
+
+						<h:panelGroup layout="block" styleClass="col-md-12 p-y-1">
+							<div class="">
+								<section>
+
+									<table id="clients" class="display nowrap" cellspacing="0"
+										width="100%">
+										<thead>
+											<tr>
+												<th>#{msg['Company']}</th>
+												<th>#{msg['Address']}</th>
+												<th>#{msg['NameContact']}</th>
+												<th>#{msg['Phone']}</th>
+												<th>#{msg['NumberOfProjects']}</th>
+												<th>#{msg['BudgetTotal']}</th>
+											</tr>
+										</thead>
+										<tbody>
+
+											<ui:repeat id="clientsList" var="client"
+												value="#{listBusinessesBean.getAllBusinessClientsList()}">
+												<tr>
+													<td><h:commandLink
+															action="clients_edit.xhtml?faces-redirect=true"
+															class="label label-pill label-info"
+															value="#{client.company}"
+															actionListener="#{listClientsBean.setSelectedClient(client)}">
+														</h:commandLink></td>
+													<td><h:outputText value="#{client.address}" /></td>
+													<td><h:outputText value="#{client.contact}" /></td>
+													<td><h:outputText value="#{client.phone}" /></td>
+													<td><h:outputText value="#{client.numeroProjetos}" /></td>
+													<td><h:outputText value="#{client.budgetTotal}" /> €</td>
+												</tr>
+											</ui:repeat>
+
+
+
+
+										</tbody>
+									</table>
+
+								</section>
+							</div>
+
+						</h:panelGroup>
+
+					</h:panelGroup>
+				</h:form>
+
+
+			</h:panelGroup>
+		</h:panelGroup>
+	</h:panelGroup>
+
+
+</ui:composition>
+
+</html>

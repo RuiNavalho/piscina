@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui">
+
+<ui:composition>
+	<f:view contentType="text/html" locale="#{multilanguage.locale}" />
+	<link href="resources/css/jquery.dataTables.css" rel="stylesheet" />
+	<link href="resources/css/responsive.dataTables.css" rel="stylesheet" />
+
+	<script type="text/javascript" src="resources/js/jquery.dataTables.js" />
+	<script type="text/javascript"
+		src="resources/js/dataTables.responsive.js" />
+	<script type="text/javascript" class="init">
+
+$(document).ready(function() {
+	$('#allocTable').DataTable( {
+		"language": {
+            "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Portuguese.json"
+        },
+		
+        lengthMenu: [
+            [10, 25, 50, -1],
+            [10, 25, 50, "All"]
+        ],
+        filter: true,
+        sort: true,
+        info: true,
+        autoWidth: true,
+        order: [
+            [0, "asc"]
+        ],
+		responsive: true,
+		columnDefs: [
+			{ responsivePriority: 1, targets: 0 },
+			{ responsivePriority: 1, targets: -1 }
+		]
+	} );
+		
+} );
+	</script>
+
+	<h:panelGroup layout="block" class="col-sm-12">
+
+		<h:panelGroup layout="block" class="col-md-12 bkg-color1">
+			#{msg['AllocationSearch']}
+		</h:panelGroup>
+
+
+		<h:panelGroup layout="block" class="col-sm-12 p-y-1 bkg-color2"
+			id="searchFast">
+
+			<h:form id="allocationsFastSearchForm">
+				<h:panelGroup layout="block" class="col-sm-12">
+
+					<h:panelGroup layout="block" class="box-left padRight10 padTop5">
+						<h6>
+							<i class="fa fa-search" aria-hidden="true"></i>
+							#{msg['FastSearch']}:
+						</h6>
+					</h:panelGroup>
+
+					<h:panelGroup layout="block" class="box-left padLR10">
+						<h:panelGroup layout="block" class="">
+							<h:panelGroup layout="block" class="input-group">
+
+								<p:selectOneRadio value="#{listAllocationsBean.type}">
+									<p:ajax event="change" update="searchResults searchAdvancedBox"
+										process="#{tabs.showRegisterInclude('allocations_results')}"
+										listener="#{listAllocationsBean.findMyAllocations()}" />
+									<f:selectItem itemValue="present" itemLabel="#{msg['Running']}" />
+									<f:selectItem itemValue="future" itemLabel="#{msg['Futures']}" />
+									<f:selectItem itemValue="all" itemLabel="#{msg['All']}" />
+								</p:selectOneRadio>
+
+							</h:panelGroup>
+						</h:panelGroup>
+					</h:panelGroup>
+
+				</h:panelGroup>
+
+			</h:form>
+
+		</h:panelGroup>
+
+
+		<h:panelGroup layout="block"
+			class="col-sm-12 p-y-1 bkg-color2 borderBottom"
+			id="searchAdvancedBox">
+
+			<h:form id="allocationsAdvancedSearchForm">
+
+				<h:panelGroup layout="block" class="col-sm-3">
+					<h:panelGroup layout="block" class="row">
+						<h:panelGroup layout="block" class="col-sm-12">
+							<h6>
+								<i class="fa fa-search" aria-hidden="true"></i>
+								#{msg['AdvancedSearch']}
+							</h6>
+							<p>#{msg['RunningBetweenDates']}</p>
+						</h:panelGroup>
+					</h:panelGroup>
+
+				</h:panelGroup>
+
+				<h:panelGroup layout="block" class="col-sm-9" id="searchAdvanced">
+
+					<h:panelGroup layout="block" class="form-group col-sm-12">
+						<h:panelGroup layout="block" class="col-sm-5">
+							<h:outputLabel for="beginDate" value="#{msg['BeginDate']}" />
+							<p:calendar styleClass="form-control" name="beginDate"
+								id="beginDate" value="#{listAllocationsBean.begin}"
+								locale="#{multilanguage.locale}" required="true"
+								requiredMessage="#{msg['NULL_OR_EMPTY_FIELDS']}">
+							</p:calendar>
+							<h:message for="beginDate" styleClass="error" />
+						</h:panelGroup>
+
+						<h:panelGroup layout="block" class="col-sm-5">
+							<h:outputLabel for="endDate" value="#{msg['EndDate']}" />
+							<p:calendar styleClass="form-control" name="endDate" id="endDate"
+								value="#{listAllocationsBean.end}"
+								locale="#{multilanguage.locale}" required="true"
+								requiredMessage="#{msg['NULL_OR_EMPTY_FIELDS']}">
+							</p:calendar>
+							<h:message for="endDate" styleClass="error" />
+						</h:panelGroup>
+
+						<h:panelGroup layout="block" class="col-sm-2">
+							<h:panelGroup layout="block" class="padTop5">
+								<h:outputLabel value="" />
+								<p:commandButton styleClass="btn btn-info btn-xs btn-primefaces"
+									action="#{listAllocationsBean.findMyAllocationsBetweenDates()}"
+									update="searchResults searchFast searchAdvanced"
+									value="#{msg['Search']}">
+									<f:actionListener
+										binding="#{listAllocationsBean.cleanFastSearch()}" />
+								</p:commandButton>
+							</h:panelGroup>
+						</h:panelGroup>
+
+						<h:panelGroup layout="block" class="col-sm-12">
+							<p:outputPanel layout="block"
+								styleClass="#{styleResponse.cssClass}">
+								<h:message for="allocationsAdvancedSearchForm" />
+							</p:outputPanel>
+						</h:panelGroup>
+					</h:panelGroup>
+
+				</h:panelGroup>
+
+			</h:form>
+		</h:panelGroup>
+
+
+		<h:panelGroup layout="block" class="col-sm-12" id="searchResults">
+			<ui:insert>
+				<ui:include src="#{tabs.registerInclude}.xhtml" />
+			</ui:insert>
+		</h:panelGroup>
+
+
+	</h:panelGroup>
+
+</ui:composition>
+
+</html>

@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui">
+
+<ui:composition>
+<f:view contentType="text/html" locale="#{multilanguage.locale}" />
+	<script type="text/javascript" src="resources/js/js_index.js" />
+
+	<h:panelGroup layout="block" class="col-md-12 bkg-color1">
+		#{msg['Update']} #{msg['Activities']}
+	</h:panelGroup>
+
+	<h:form id="updateTaskForm">
+
+		<p:outputPanel layout="block" class="col-md-6  p-y-1">
+
+			<h:panelGroup layout="block" class="form-group col-sm-12">
+
+				<!-- Diretor / Gestor -->
+				<h:panelGroup layout="block" class="form-group row"
+					rendered="#{(mySessionBean.directorRole or (listTasksBean.selectedTask.managerEmail eq mySessionBean.loggedUser.email))}">
+					<h:outputLabel class="col-md-12 form-control-label" for="taskName">#{msg['Name']} *</h:outputLabel>
+
+					<h:panelGroup layout="block" class="col-md-12">
+						<h:inputText id="taskName" name="taskName" class="form-control"
+							value="#{listTasksBean.selectedTask.taskName}" required="true"
+							requiredMessage="#{msg['NULL_OR_EMPTY_FIELDS']}"
+							validatorMessage="#{msg['NULL_OR_EMPTY_FIELDS']}">
+							<f:validateRegex pattern=".*[\S]+.*" />
+							<f:validateLength minimum="3" />
+						</h:inputText>
+					</h:panelGroup>
+					<h:message for="taskName" styleClass="error" />
+				</h:panelGroup>
+
+				<!-- Not Diretor -->
+				<h:panelGroup layout="block" class="form-group row"
+					rendered="#{(!mySessionBean.directorRole and (listTasksBean.selectedTask.managerEmail ne mySessionBean.loggedUser.email))}">
+					<h:outputLabel class="col-md-12 form-control-label">#{msg['Name']}</h:outputLabel>
+
+					<h:panelGroup layout="block" class="col-md-12">
+						<h:outputText class="form-control input-off"
+							value="#{listTasksBean.selectedTask.taskName}" />
+					</h:panelGroup>
+				</h:panelGroup>
+
+
+			</h:panelGroup>
+
+			<!-- Diretor / Gestor -->
+			<h:panelGroup layout="block" class="form-group col-sm-12"
+				rendered="#{(mySessionBean.directorRole or (listTasksBean.selectedTask.managerEmail eq mySessionBean.loggedUser.email))}">
+				<h:outputLabel class="" for="description">#{msg['Description']} *</h:outputLabel>
+				<h:panelGroup layout="block" class="">
+					<h:inputTextarea id="description" name="description"
+						class="form-control"
+						value="#{listTasksBean.selectedTask.description}" required="true"
+						requiredMessage="#{msg['NULL_OR_EMPTY_FIELDS']}"
+						validatorMessage="#{msg['NULL_OR_EMPTY_FIELDS']}">
+						<f:validateRegex pattern=".*[\S]+.*" />
+					</h:inputTextarea>
+				</h:panelGroup>
+				<h:message for="description" styleClass="error" />
+			</h:panelGroup>
+
+
+			<!-- Not Diretor -->
+			<h:panelGroup layout="block" class="form-group col-sm-12"
+				rendered="#{(!mySessionBean.directorRole and (listTasksBean.selectedTask.managerEmail ne mySessionBean.loggedUser.email))}">
+				<h:outputLabel class="">#{msg['Description']}</h:outputLabel>
+				<h:panelGroup layout="block" class="">
+					<h:inputTextarea class="form-control input-off"
+						value="#{listTasksBean.selectedTask.description}" disabled="true" />
+				</h:panelGroup>
+			</h:panelGroup>
+
+
+			<!-- Diretor / Gestor -->
+			<h:panelGroup layout="block" class="form-group col-sm-12"
+				rendered="#{(mySessionBean.directorRole or (listTasksBean.selectedTask.managerEmail eq mySessionBean.loggedUser.email))}">
+				<h:outputLabel class="" for="skill">#{msg['Skill']} *</h:outputLabel>
+				<h:panelGroup layout="block" class="row">
+					<div class="changeTb">
+						<h:selectOneRadio id="skill" name="skill"
+							value="#{listTasksBean.selectedTask.skill}" required="true"
+							requiredMessage="#{msg['NULL_OR_EMPTY_FIELDS']}">
+							<f:selectItem itemValue="Nenhum" itemLabel="#{msg['None']}" />
+							<f:selectItems value="#{util.skillsList}" var="skill"
+								itemValue="#{skill.skill}" itemLabel="#{skill.skill}" />
+						</h:selectOneRadio>
+					</div>
+				</h:panelGroup>
+				<h:message for="skill" styleClass="error" />
+			</h:panelGroup>
+
+
+			<!-- Not Diretor / Gestor -->
+			<h:panelGroup layout="block" class="form-group col-sm-12"
+				rendered="#{(!mySessionBean.directorRole and (listTasksBean.selectedTask.managerEmail ne mySessionBean.loggedUser.email))}">
+				<h:outputLabel>#{msg['Skill']}</h:outputLabel>
+				<h:panelGroup layout="block">
+					<h:outputText value="#{listTasksBean.selectedTask.skill}"
+						id="skill2" name="skill2" class="form-control input-off" />
+				</h:panelGroup>
+			</h:panelGroup>
+
+		</p:outputPanel>
+
+		<p:outputPanel layout="block" class="col-md-6  p-y-1">
+
+
+			<!-- Diretor / Gestor -->
+			<p:outputPanel layout="block" class="form-group col-sm-6"
+				rendered="#{listTasksBean.selectedTask.executedPercentageEstimate>0 and 
+				(mySessionBean.directorRole or (listTasksBean.selectedTask.managerEmail eq mySessionBean.loggedUser.email))}">
+				<h:outputLabel value="#{msg['BeginDate']} *" />
+				<p:calendar value="#{listTasksBean.selectedTask.beginDate}"
+					styleClass="form-control input-off"
+					locale="#{multilanguage.locale}" disabled="true">
+				</p:calendar>
+			</p:outputPanel>
+
+			<!-- Not Diretor / Gestor -->
+			<p:outputPanel layout="block" class="form-group col-sm-6"
+				rendered="#{listTasksBean.selectedTask.executedPercentageEstimate>0 and 
+				(!mySessionBean.directorRole and (listTasksBean.selectedTask.managerEmail ne mySessionBean.loggedUser.email))}">
+				<h:outputLabel value="#{msg['BeginDate']}" />
+				<p:calendar value="#{listTasksBean.selectedTask.beginDate}"
+					styleClass="form-control input-off"
+					locale="#{multilanguage.locale}" disabled="true">
+				</p:calendar>
+			</p:outputPanel>
+
+
+
+			<!-- Diretor / Gestor -->
+			<p:outputPanel layout="block" class="form-group col-sm-6"
+				rendered="#{listTasksBean.selectedTask.executedPercentageEstimate==0 and 
+				(mySessionBean.directorRole or (listTasksBean.selectedTask.managerEmail eq mySessionBean.loggedUser.email))}">
+				<h:outputLabel for="beginDate" value="#{msg['BeginDate']} *" />
+				<p:calendar id="beginDate" name="beginDate"
+					value="#{listTasksBean.selectedTask.beginDate}"
+					styleClass="form-control" required="true"
+					locale="#{multilanguage.locale}" disabledWeekends="true"
+					requiredMessage="#{msg['NULL_OR_EMPTY_FIELDS']}">
+				</p:calendar>
+				<h:message for="beginDate" styleClass="error" />
+			</p:outputPanel>
+
+			<!-- Not Diretor / Gestor -->
+			<p:outputPanel layout="block" class="form-group col-sm-6"
+				rendered="#{listTasksBean.selectedTask.executedPercentageEstimate==0 and 
+				(!mySessionBean.directorRole and (listTasksBean.selectedTask.managerEmail ne mySessionBean.loggedUser.email))}">
+				<h:outputLabel value="#{msg['BeginDate']}" />
+				<p:calendar value="#{listTasksBean.selectedTask.beginDate}"
+					styleClass="form-control input-off"
+					locale="#{multilanguage.locale}" disabled="true">
+				</p:calendar>
+			</p:outputPanel>
+
+
+			<!-- Diretor / Gestor -->
+			<p:outputPanel layout="block" class="form-group col-sm-6"
+				rendered="#{mySessionBean.directorRole or (listTasksBean.selectedTask.managerEmail eq mySessionBean.loggedUser.email)}">
+				<h:outputLabel for="endDate" value="#{msg['EndDate']} *" />
+				<p:calendar id="endDate" name="endDate"
+					value="#{listTasksBean.selectedTask.endDate}"
+					styleClass="form-control" required="true"
+					locale="#{multilanguage.locale}" disabledWeekends="true"
+					requiredMessage="#{msg['NULL_OR_EMPTY_FIELDS']}">
+				</p:calendar>
+				<h:message for="endDate" styleClass="error" />
+			</p:outputPanel>
+
+
+			<!-- Not Diretor / Gestor -->
+			<p:outputPanel layout="block" class="form-group col-sm-6"
+				rendered="#{!mySessionBean.directorRole and (listTasksBean.selectedTask.managerEmail ne mySessionBean.loggedUser.email)}">
+				<h:outputLabel value="#{msg['EndDate']}" />
+				<p:calendar value="#{listTasksBean.selectedTask.endDate}"
+					styleClass="form-control input-off"
+					locale="#{multilanguage.locale}" disabled="true">
+				</p:calendar>
+			</p:outputPanel>
+
+
+			<!-- Diretor / Gestor -->
+			<h:panelGroup layout="block" class="form-group col-sm-6"
+				rendered="#{mySessionBean.directorRole or (listTasksBean.selectedTask.managerEmail eq mySessionBean.loggedUser.email)}">
+				<h:outputLabel for="durationhoursestimate">#{msg['EstimatedDuration']} *</h:outputLabel>
+				<div class="input-group">
+					<h:outputText id="durationhoursestimate"
+						name="durationhoursestimate" class="form-control input-off"
+						value="#{listTasksBean.selectedTask.durationHoursEstimate}" />
+					<span class="input-group-addon">h</span>
+				</div>
+				<h:message for="durationhoursestimate" />
+			</h:panelGroup>
+
+
+			<!-- Diretor / Gestor -->
+			<h:panelGroup layout="block" class="form-group col-sm-6"
+				rendered="#{mySessionBean.directorRole or (listTasksBean.selectedTask.managerEmail eq mySessionBean.loggedUser.email)}">
+				<h:outputLabel for="hourCost">#{msg['HourCost']} *</h:outputLabel>
+				<div class="input-group">
+					<h:inputText id="hourCost" name="hourCost" class="form-control"
+						value="#{listTasksBean.selectedTask.hourCost}" required="true"
+						converterMessage="#{msg['ValidateNumber']}"
+						requiredMessage="#{msg['NULL_OR_EMPTY_FIELDS']}"
+						validatorMessage="#{msg['ValidateNumber']}">
+						<f:validateDoubleRange minimum="0.0" maximum="999999.9" />
+					</h:inputText>
+					<span class="input-group-addon">€</span>
+				</div>
+				<h:panelGroup layout="block" styleClass="col-sm-12 error">
+					<h:message for="hourCost" />
+				</h:panelGroup>
+			</h:panelGroup>
+
+
+			<!-- Diretor / Gestor -->
+			<h:panelGroup layout="block" class="form-group col-sm-6"
+				rendered="#{mySessionBean.directorRole or (listTasksBean.selectedTask.managerEmail eq mySessionBean.loggedUser.email)}">
+				<h:outputLabel class="" for="taskType">#{msg['Type']}
+														*</h:outputLabel>
+
+				<h:selectOneMenu value="#{listTasksBean.selectedTask.tasktype}"
+					id="taskType" name="taskType" styleClass="form-control"
+					required="true" requiredMessage="#{msg['NULL_OR_EMPTY_FIELDS']}">
+					<f:selectItems value="#{util.tasktypesList}" var="type"
+						itemValue="#{type.taskType}" itemLabel="#{type.taskType}" />
+				</h:selectOneMenu>
+				<h:panelGroup layout="block" styleClass="col-sm-12">
+					<h:message for="taskType" styleClass="error" />
+				</h:panelGroup>
+			</h:panelGroup>
+
+
+			<!-- Not Diretor / Gestor -->
+			<h:panelGroup layout="block" class="form-group col-sm-6"
+				rendered="#{!mySessionBean.directorRole and (listTasksBean.selectedTask.managerEmail ne mySessionBean.loggedUser.email)}">
+				<h:outputLabel class="">#{msg['Type']}</h:outputLabel>
+
+				<h:panelGroup layout="block">
+					<h:outputText value="#{listTasksBean.selectedTask.tasktype}"
+						class="form-control input-off" />
+				</h:panelGroup>
+			</h:panelGroup>
+
+
+
+			<!-- Diretor / Gestor -->
+			<h:panelGroup layout="block" class="form-group col-sm-6"
+				rendered="#{mySessionBean.directorRole or (listTasksBean.selectedTask.managerEmail eq mySessionBean.loggedUser.email)}">
+				<h:outputLabel for="taskStage" class="">#{msg['Stage']} *</h:outputLabel>
+				<h:selectOneMenu value="#{listTasksBean.selectedTask.taskstage}"
+					name="taskStage" id="taskStage" styleClass="form-control"
+					required="true" requiredMessage="#{msg['NULL_OR_EMPTY_FIELDS']}">
+					<f:selectItems value="#{util.taskstagesList}" var="stage"
+						itemValue="#{stage.taskStage}" itemLabel="#{stage.taskStage}" />
+				</h:selectOneMenu>
+				<h:panelGroup layout="block" styleClass="col-sm-12">
+					<h:message for="taskStage" styleClass="error" />
+				</h:panelGroup>
+			</h:panelGroup>
+
+
+			<!-- Not Diretor / Gestor -->
+			<h:panelGroup layout="block" class="form-group col-sm-6"
+				rendered="#{!mySessionBean.directorRole and (listTasksBean.selectedTask.managerEmail ne mySessionBean.loggedUser.email)}">
+				<h:outputLabel class="">#{msg['Stage']}</h:outputLabel>
+				<h:panelGroup layout="block">
+					<h:outputText value="#{listTasksBean.selectedTask.taskstage}"
+						class="form-control input-off" />
+				</h:panelGroup>
+			</h:panelGroup>
+
+
+
+			<h:panelGroup layout="block" class="form-actions">
+
+				<h:panelGroup layout="block" class="form-group col-sm-6">
+					<h:commandButton styleClass="btn btn-primary"
+						value="#{msg['Update']} #{msg['Activity']}"
+						action="#{listTasksBean.updateTask()}"
+						rendered="#{mySessionBean.directorRole or (listTasksBean.selectedTask.managerEmail eq mySessionBean.loggedUser.email)}">
+					</h:commandButton>
+				</h:panelGroup>
+
+				<h:panelGroup layout="block" class="form-group col-sm-6">
+					<h:commandButton styleClass="btn btn-default"
+						value="#{msg['BackToProject']}"
+						action="#{tabs.backPage('projects_edit')}"
+						actionListener="#{listProjectsBean.updateProjectWithTask(listTasksBean.selectedTask)}">
+						<f:actionListener binding="#{tabs.showProject('details',1)}" />
+					</h:commandButton>
+				</h:panelGroup>
+			</h:panelGroup>
+
+
+			<h:panelGroup layout="block" class="col-sm-12 p-y-1">
+				<p:outputPanel layout="block" styleClass="#{styleResponse.cssClass}">
+					<h:message for="updateTaskForm" />
+				</p:outputPanel>
+			</h:panelGroup>
+
+		</p:outputPanel>
+		<!--/.col-->
+
+
+	</h:form>
+
+</ui:composition>
+
+</html>

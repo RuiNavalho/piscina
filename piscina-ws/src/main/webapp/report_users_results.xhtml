@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" xmlns:hf="http://highfaces.org">
+
+<ui:composition>
+<f:view contentType="text/html" locale="#{multilanguage.locale}" />
+	<link href="resources/css/jquery.dataTables.css" rel="stylesheet" />
+	<link href="resources/css/responsive.dataTables.css" rel="stylesheet" />
+
+	<script type="text/javascript" src="resources/js/jquery.dataTables.js" />
+	<script type="text/javascript"
+		src="resources/js/dataTables.responsive.js" />
+	<script type="text/javascript" class="init">
+
+$(document).ready(function() {
+	$('#usersTable').DataTable( {
+		"language": {
+            "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Portuguese.json"
+        },
+		
+        lengthMenu: [
+            [10, 25, 50, -1],
+            [10, 25, 50, "All"]
+        ],
+        filter: false,
+        sort: true,
+        info: true,
+        autoWidth: true,
+        order: [
+            [0, "asc"]
+        ],
+		responsive: true,
+		columnDefs: [
+			{ responsivePriority: 1, targets: 0 },
+			{ responsivePriority: 1, targets: -1 }
+		]
+	} );
+		
+} );
+
+
+$(document).ready(function() {
+$('#usersPITable').DataTable( {
+	"language": {
+        "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Portuguese.json"
+    },
+	
+    lengthMenu: [
+        [10, 25, 50, -1],
+        [10, 25, 50, "All"]
+    ],
+    filter: false,
+    sort: true,
+    info: true,
+    autoWidth: true,
+    order: [
+        [0, "asc"]
+    ],
+	responsive: true,
+	columnDefs: [
+		{ responsivePriority: 1, targets: 0 },
+		{ responsivePriority: 1, targets: -1 }
+	]
+} );
+
+} );
+	</script>
+
+	<h:panelGroup layout="block" class="col-sm-12">
+
+
+
+		<h:panelGroup layout="block" class="col-sm-12" id="extraSearchType">
+
+			<h:panelGroup layout="block" class="col-sm-12" id="relatorio1"
+				rendered="#{tabs.type eq 'relatorio1'}">
+
+				<h:panelGroup layout="block" class="col-md-12 p-y-2">
+					<h6 class="header-list">
+						#{msg['UserAllocations']}:
+						<h:outputText value="#{listAllocationsBean.email}" />
+					</h6>
+				</h:panelGroup>
+				<h:panelGroup layout="block" class="col-md-12 p-y-1">
+					<h:form id="graphForm">
+						<p:timeline id="allocationsUserGantt"
+							value="#{chartAllocations.model}" groupMinHeight="20"
+							min="#{chartAllocations.start}"
+							max="#{chartAllocations.endPlusOne}"
+							start="#{chartAllocations.start}" end="#{chartAllocations.end}"
+							showNavigation="true" zoomMin="86400000" editable="false"
+							eventMargin="10" eventMarginAxis="0" responsive="true"
+							selectable="false" showButtonNew="false" axisOnTop="false"
+							stackEvents="true" locale="#{languages.locale}" />
+					</h:form>
+				</h:panelGroup>
+
+
+				<h:panelGroup layout="block" class="col-md-12 p-y-2">
+					<h:panelGroup layout="block" class="col-md-12 p-y-2">
+						<h6 class="header-list">
+							#{msg['UserAllocationsTable']}:
+							<h:outputText value="#{listAllocationsBean.email}" />
+						</h6>
+					</h:panelGroup>
+
+					<h:panelGroup layout="block" class="col-md-12">
+						<h:form id="tableForm">
+
+							<h:panelGroup layout="block" class="">
+								<section>
+									<table id="usersTable" class="display nowrap" cellspacing="0"
+										width="100%">
+										<thead>
+											<tr>
+												<th>#{msg['Project']}</th>
+												<th>#{msg['Task']}</th>
+												<th>#{msg['AllocationBegin']}</th>
+												<th>#{msg['AllocationEnd']}</th>
+												<th>% #{msg['Allocation']}</th>
+											</tr>
+										</thead>
+										<tbody>
+											<ui:repeat id="usersList" var="alloc"
+												value="#{listAllocationsBean.allocsList}">
+												<tr>
+													<td><h:outputText value="#{alloc.projectId}" /></td>
+													<td><h:outputText value="#{alloc.taskName}" /></td>
+													<td><h:outputText value="#{alloc.beginDate}">
+															<f:convertDateTime type="date" pattern="yyyy-MM-dd" />
+														</h:outputText></td>
+													<td><h:outputText value="#{alloc.endDate}">
+															<f:convertDateTime type="date" pattern="yyyy-MM-dd" />
+														</h:outputText></td>
+													<td><h:outputText value="#{alloc.allocPercentage}" /></td>
+												</tr>
+											</ui:repeat>
+										</tbody>
+									</table>
+
+								</section>
+							</h:panelGroup>
+						</h:form>
+					</h:panelGroup>
+
+				</h:panelGroup>
+
+			</h:panelGroup>
+
+			<h:panelGroup layout="block" class="col-sm-12" id="relatorio2"
+				rendered="#{tabs.type eq 'relatorio2'}">
+				<h:panelGroup layout="block" class="col-sm-12">
+
+					<h:panelGroup layout="block" class="col-md-12 p-y-2">
+						<h6 class="header-list">
+							#{msg['UserProductivityReport']}:
+							<h:outputText value="#{listAllocationsBean.email}" />
+						</h6>
+					</h:panelGroup>
+
+					<h:panelGroup layout="block" class="col-md-12 p-y-2">
+
+
+						<hf:chart type="line" xaxisLabel="#{msg['Date']}"
+							yaxisLabel="#{msg['PerformanceIndex']}" title="#{msg['User']} #{msg['PerformanceIndex']}">
+							<hf:chartSerie name="Performance Index"
+								value="#{listAllocationsBean.workList}" var="pi"
+								point="#{pi.prodIndex}" tickLabel="#{pi.date}" />
+
+							<hf:chartAxis position="s" title="#{msg['Date']}" type="datetime"
+								tickAngle="-45" style="font-weight: bold;"
+								format="{value:%d.%m.%Y}" />
+
+							<hf:chartAxis position="w" title="#{msg['PerformanceIndex']}"
+								tickAngle="-45" style="font-weight: bold;" format="{value:.2f}" />
+
+
+							<hf:chartTooltip backgroundColor="#000000" shared="true">
+								<f:facet name="header">
+									<h:outputText escape="false"
+										value="&lt;table>&lt;tr>&lt;td style='color:white;font-weight:bold;padding-right:5px;'>{point.key}&lt;/td>&lt;td style='border-left:1px solid white;padding-left: 10px;'>" />
+								</f:facet>
+								<f:facet name="body">
+									<h:outputText escape="false"
+										value="&lt;span style='color:white'>{series.name}: &lt;b> {point.y:.2f}&lt;/b>&lt;/span>&lt;br/>" />
+								</f:facet>
+								<f:facet name="footer">
+									<h:outputText escape="false"
+										value='&lt;/td>&lt;/tr>&lt;/table>' />
+								</f:facet>
+							</hf:chartTooltip>
+						</hf:chart>
+
+					</h:panelGroup>
+
+					<h:panelGroup layout="block" class="col-md-12 p-y-2" id="reportSearchResultsPI">
+
+						<ui:insert>
+							<ui:include src="#{tabs.reportSearchResultsInclude}.xhtml" />
+						</ui:insert>
+
+					</h:panelGroup>
+				</h:panelGroup>
+			</h:panelGroup>
+
+		</h:panelGroup>
+
+	</h:panelGroup>
+
+</ui:composition>
+
+</html>

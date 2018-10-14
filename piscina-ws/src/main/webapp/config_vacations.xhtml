@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+	<title>Blue Roots</title>
+<f:view contentType="text/html" locale="#{multilanguage.locale}" />
+	<link href="resources/css/jquery.dataTables.css" rel="stylesheet" />
+	<link href="resources/css/responsive.dataTables.css" rel="stylesheet" />
+	<style type="text/css" class="init">
+div.container {
+	max-width: 1200px
+}
+</style>
+
+	<script type="text/javascript" src="resources/js/jquery.dataTables.js" />
+	<script type="text/javascript"
+		src="resources/js/dataTables.responsive.js" />
+	<script type="text/javascript" class="init">
+
+$(document).ready(function() {
+	$('#holidays').DataTable( {
+		"language": {
+            "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Portuguese.json"
+        },
+		
+        lengthMenu: [
+            [10, 25, 50, -1],
+            [10, 25, 50, "All"]
+        ],
+        filter: false,
+        sort: true,
+        info: true,
+        autoWidth: true,
+        order: [
+            [0, "asc"]
+        ],
+		responsive: true,
+		columnDefs: [
+			{ responsivePriority: 1, targets: 0 },
+			{ responsivePriority: 1, targets: -1 }
+		]
+	} );
+		
+} );
+	</script>
+	<link href="resources/css/primefaces.css" rel="stylesheet" />
+	<link href="resources/css/style.css" rel="stylesheet" />
+	<link href="resources/css/custom.css" rel="stylesheet" />
+	<link rel="shortcut icon" type="image/png"
+		href="resources/images/favicon.ico" />
+
+</h:head>
+<h:body class="navbar-fixed sidebar-nav fixed-nav">
+
+	<!-- Header -->
+	<header class="navbar">
+		<div class="container-fluid">
+			<ui:insert name="mtopLayout">
+				<ui:include src="mtop.xhtml" />
+			</ui:insert>
+		</div>
+	</header>
+
+	<!-- Sidebar -->
+	<div class="sidebar">
+		<nav class="sidebar-nav">
+			<ui:insert name="mleftLayout">
+				<ui:include src="mleft.xhtml" />
+			</ui:insert>
+		</nav>
+	</div>
+
+	<!-- Main content -->
+	<div class="main">
+		<!-- Breadcrumb -->
+		<ol class="breadcrumb r-0">
+			<li>Home</li>
+			<li>Configurações</li>
+			<li>Férias</li>
+		</ol>
+		<div class="container-fluid">
+			<div class="animated fadeIn">
+
+				<div class="row">
+					<div class="col-md-12">
+						<div class="card">
+							<div class="card-block">
+								<h3 class="card-title clearfix m-b-0">Férias</h3>
+								<hr class="m-a-0" />
+								<div class="row">
+
+									<div class="col-md-12 p-y-2">
+
+										<div class="col-md-12">
+											<div class="row">
+												<div class="col-md-8">
+													<div class="col-sm-12">
+														<h6>Lista Férias</h6>
+													</div>
+													<div class="col-sm-12">
+
+														<div class="row">
+															<h:form id="holidayListForm">
+
+																<div class="container">
+																	<section>
+
+																		<table id="holidays" class="display nowrap"
+																			cellspacing="0" width="100%">
+																			<thead>
+																				<tr>
+																					<th>Férias</th>
+																					<th>Data</th>
+																					<th></th>
+																				</tr>
+																			</thead>
+																			<tbody>
+																				<ui:repeat id="holidayList" var="holiday"
+																					value="#{listTasksBean.findAllTasks()}">
+																					<tr>
+																						<td><h:outputText id="taskName"
+																								name="taskName"
+																								value="#{holiday.taskName}" /></td>
+																						<td><p:calendar id="endDate"
+																								value="#{holiday.beginDate}" disabled="true"
+																								locale="#{multilanguage.locale}"
+																								disabledWeekends="true">
+																							</p:calendar></td>
+
+																						<td><h:commandLink
+																								class="btn btn-info btn-xs icon-pencil"
+																								action="config_calendar_edit.xhtml?faces-redirect=true"
+																								value="" /></td>
+																					</tr>
+																				</ui:repeat>
+																			</tbody>
+																		</table>
+
+																	</section>
+																</div>
+
+															</h:form>
+														</div>
+													</div>
+
+												</div>
+												<div class="col-md-4">
+													<h6>Férias</h6>
+													<h:form id="registoFeriadosForm">
+
+														<div class="row">
+															<h:panelGroup layout="block" class="col-sm-12  p-y-1">
+															
+															<p:outputPanel layout="block" class="form-group">
+																	<p:outputLabel for="holidayTitle" value="Férias" />
+																	<h:inputText id="holidayTitle" name="holidayTitle"
+																		class="form-control"
+																		value="#{taskBean.holidayTitle}"
+																		required="true" />
+																		<h:message for="holidayTitle"
+																			errorStyle="color: red; display: block" />
+																</p:outputPanel>
+
+							
+																
+																<p:outputPanel layout="block" class="form-group">
+																	<p:outputLabel for="holidayDate" value="Data" />
+																	<p:calendar id="holidayDate" name="holidayDate"
+																		value="#{taskBean.holidayDate}"
+																		styleClass="form-control" required="true">
+																	</p:calendar>
+																	<h:message for="holidayDate"
+																		errorStyle="color: red; display: block" />
+																</p:outputPanel>
+
+
+																<h:panelGroup layout="block" class="form-group">
+																	<h:outputLabel value="" />
+																	<h:panelGroup layout="block" class="input-group">
+																		<h:commandButton styleClass="btn btn-primary"
+																			value="Adicionar"
+																			action="#{projectBridge.saveTaskHours()}">
+																		</h:commandButton>
+																	</h:panelGroup>
+
+																</h:panelGroup>
+
+															</h:panelGroup>
+
+															<p:outputPanel layout="block" styleClass="error">
+																<h:message for="registoFeriadosForm" styleClass="error" />
+															</p:outputPanel>
+
+														</div>
+													</h:form>
+												</div>
+											</div>
+										</div>
+									</div>
+
+								</div>
+								<!--/.row-->
+
+
+							</div>
+						</div>
+					</div>
+					<!--/.col-->
+				</div>
+				<!--/.row-->
+
+			</div>
+			<!--/.animated -->
+		</div>
+		<!-- /.container-fluid -->
+
+	</div>
+	<!-- /.main -->
+
+	<!-- Footer -->
+	<ui:insert name="footerLayout">
+		<ui:include src="footer.xhtml" />
+	</ui:insert>
+
+	<!-- JS -->
+	<script src="resources/js/libs/bootstrap.min.js"></script>
+	<script src="resources/js/app.js"></script>
+</h:body>
+</html>

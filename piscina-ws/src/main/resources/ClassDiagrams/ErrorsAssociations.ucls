@@ -1,0 +1,439 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.2.0" icons="true" always-add-relationships="false" generalizations="false" 
+  realizations="false" associations="true" dependencies="false" nesting-relationships="false" router="FAN">  
+  <class id="1" language="java" name="pt.uc.dei.ws.beans.ListBusinessesBean" project="aclgomes-rnavalho-project-ws" 
+    file="/aclgomes-rnavalho-project-ws/src/main/java/pt/uc/dei/ws/beans/ListBusinessesBean.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="396" y="119"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="false"/>    
+    </display>  
+  </class>  
+  <class id="2" language="java" name="pt.uc.dei.ws.beans.ListSkillsBean" project="aclgomes-rnavalho-project-ws" 
+    file="/aclgomes-rnavalho-project-ws/src/main/java/pt/uc/dei/ws/beans/ListSkillsBean.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="53" width="134" x="62" y="94"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="false"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="pt.uc.dei.ws.beans.CreateTaskBean" project="aclgomes-rnavalho-project-ws" 
+    file="/aclgomes-rnavalho-project-ws/src/main/java/pt/uc/dei/ws/beans/CreateTaskBean.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="53" width="132" x="62" y="291"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="false"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" name="pt.uc.dei.ws.beans.ListClientsBean" project="aclgomes-rnavalho-project-ws" 
+    file="/aclgomes-rnavalho-project-ws/src/main/java/pt/uc/dei/ws/beans/ListClientsBean.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="53" width="147" x="911" y="455"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="false"/>    
+    </display>  
+  </class>  
+  <class id="5" language="java" name="pt.uc.dei.ws.beans.ListHolidayBean" project="aclgomes-rnavalho-project-ws" 
+    file="/aclgomes-rnavalho-project-ws/src/main/java/pt/uc/dei/ws/beans/ListHolidayBean.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="53" width="150" x="908" y="338"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="false"/>    
+    </display>  
+  </class>  
+  <class id="6" language="java" name="pt.uc.dei.ws.beans.CreateClientBean" project="aclgomes-rnavalho-project-ws" 
+    file="/aclgomes-rnavalho-project-ws/src/main/java/pt/uc/dei/ws/beans/CreateClientBean.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="53" width="150" x="909" y="396"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="false"/>    
+    </display>  
+  </class>  
+  <class id="7" language="java" name="pt.uc.dei.ws.beans.WorkRegisterBean" project="aclgomes-rnavalho-project-ws" 
+    file="/aclgomes-rnavalho-project-ws/src/main/java/pt/uc/dei/ws/beans/WorkRegisterBean.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="53" width="151" x="905" y="151"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="false"/>    
+    </display>  
+  </class>  
+  <class id="8" language="java" name="pt.uc.dei.ws.beans.MySessionBean" project="aclgomes-rnavalho-project-ws" 
+    file="/aclgomes-rnavalho-project-ws/src/main/java/pt/uc/dei/ws/beans/MySessionBean.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="53" width="151" x="908" y="279"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="false"/>    
+    </display>  
+  </class>  
+  <class id="9" language="java" name="pt.uc.dei.ws.beans.ListProjectsBean" project="aclgomes-rnavalho-project-ws" 
+    file="/aclgomes-rnavalho-project-ws/src/main/java/pt/uc/dei/ws/beans/ListProjectsBean.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="53" width="133" x="63" y="421"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="false"/>    
+    </display>  
+  </class>  
+  <class id="10" language="java" name="pt.uc.dei.ws.beans.CreateUserBean" project="aclgomes-rnavalho-project-ws" 
+    file="/aclgomes-rnavalho-project-ws/src/main/java/pt/uc/dei/ws/beans/CreateUserBean.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="53" width="135" x="62" y="357"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="false"/>    
+    </display>  
+  </class>  
+  <class id="11" language="java" name="pt.uc.dei.ws.beans.CreateProjectBean" project="aclgomes-rnavalho-project-ws" 
+    file="/aclgomes-rnavalho-project-ws/src/main/java/pt/uc/dei/ws/beans/CreateProjectBean.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="53" width="149" x="908" y="218"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="false"/>    
+    </display>  
+  </class>  
+  <class id="12" language="java" name="pt.uc.dei.ws.beans.ListUsersBean" project="aclgomes-rnavalho-project-ws" 
+    file="/aclgomes-rnavalho-project-ws/src/main/java/pt/uc/dei/ws/beans/ListUsersBean.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="53" width="133" x="61" y="224"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="false"/>    
+    </display>  
+  </class>  
+  <class id="13" language="java" name="pt.uc.dei.ws.beans.ChartBean" project="aclgomes-rnavalho-project-ws" 
+    file="/aclgomes-rnavalho-project-ws/src/main/java/pt/uc/dei/ws/beans/ChartBean.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="53" width="151" x="904" y="92"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="false"/>    
+    </display>  
+  </class>  
+  <class id="14" language="java" name="pt.uc.dei.ws.beans.ListTasksBean" project="aclgomes-rnavalho-project-ws" 
+    file="/aclgomes-rnavalho-project-ws/src/main/java/pt/uc/dei/ws/beans/ListTasksBean.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="537" y="119"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="false"/>    
+    </display>  
+  </class>  
+  <class id="15" language="java" name="pt.uc.dei.ws.beans.ListAllocationsBean" project="aclgomes-rnavalho-project-ws" 
+    file="/aclgomes-rnavalho-project-ws/src/main/java/pt/uc/dei/ws/beans/ListAllocationsBean.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="53" width="137" x="60" y="159"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="false"/>    
+    </display>  
+  </class>  
+  <class id="16" language="java" name="pt.uc.dei.ws.bridges.UserBridge" project="aclgomes-rnavalho-project-ws" 
+    file="/aclgomes-rnavalho-project-ws/src/main/java/pt/uc/dei/ws/bridges/UserBridge.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="843" y="117"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="false"/>    
+    </display>  
+  </class>  
+  <class id="17" language="java" name="pt.uc.dei.ws.charts.ChartBarUserPerformance" 
+    project="aclgomes-rnavalho-project-ws" 
+    file="/aclgomes-rnavalho-project-ws/src/main/java/pt/uc/dei/ws/charts/ChartBarUserPerformance.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="693" y="120"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="false"/>    
+    </display>  
+  </class>  
+  <class id="18" language="java" name="pt.uc.dei.ws.charts.ChartTimeline" project="aclgomes-rnavalho-project-ws" 
+    file="/aclgomes-rnavalho-project-ws/src/main/java/pt/uc/dei/ws/charts/ChartTimeline.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="259" y="118"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="false"/>    
+    </display>  
+  </class>  
+  <class id="19" language="java" name="pt.uc.dei.ws.util.StyleResponse" project="aclgomes-rnavalho-project-ws" 
+    file="/aclgomes-rnavalho-project-ws/src/main/java/pt/uc/dei/ws/util/StyleResponse.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="552" y="513"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="false"/>    
+    </display>  
+  </class>  
+  <class id="20" language="java" name="pt.uc.dei.ws.util.ErrorsHandler" project="aclgomes-rnavalho-project-ws" 
+    file="/aclgomes-rnavalho-project-ws/src/main/java/pt/uc/dei/ws/util/ErrorsHandler.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="549" y="369"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="false"/>    
+    </display>  
+  </class>  
+  <association id="21">    
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="22" name="errorsHandler">        
+        <position height="0" width="0" x="-913" y="85"/>      
+      </attribute>      
+      <multiplicity id="23" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-913" y="85"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="20" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="24">    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="25" name="errorsHandler">        
+        <position height="0" width="0" x="-913" y="85"/>      
+      </attribute>      
+      <multiplicity id="26" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-913" y="85"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="20" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="27">    
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="28" name="errorsHandler">        
+        <position height="0" width="0" x="-913" y="85"/>      
+      </attribute>      
+      <multiplicity id="29" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-913" y="85"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="20" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="30">    
+    <end type="SOURCE" refId="11" navigable="false">      
+      <attribute id="31" name="errorsHandler">        
+        <position height="0" width="0" x="-913" y="85"/>      
+      </attribute>      
+      <multiplicity id="32" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-913" y="85"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="20" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="33">    
+    <end type="SOURCE" refId="9" navigable="false">      
+      <attribute id="34" name="errorsHandler">        
+        <position height="0" width="0" x="-913" y="85"/>      
+      </attribute>      
+      <multiplicity id="35" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-913" y="85"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="20" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="36">    
+    <end type="SOURCE" refId="17" navigable="false">      
+      <attribute id="37" name="errorsHandler">        
+        <position height="0" width="0" x="-913" y="85"/>      
+      </attribute>      
+      <multiplicity id="38" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-913" y="85"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="20" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="39">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="40" name="errorsHandler">        
+        <position height="0" width="0" x="-913" y="85"/>      
+      </attribute>      
+      <multiplicity id="41" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-913" y="85"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="20" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="42">    
+    <end type="SOURCE" refId="16" navigable="false">      
+      <attribute id="43" name="errorsHandler">        
+        <position height="0" width="0" x="-913" y="85"/>      
+      </attribute>      
+      <multiplicity id="44" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-913" y="85"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="20" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="45">    
+    <end type="SOURCE" refId="15" navigable="false">      
+      <attribute id="46" name="errorsHandler">        
+        <position height="0" width="0" x="-913" y="85"/>      
+      </attribute>      
+      <multiplicity id="47" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-913" y="85"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="20" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="48">    
+    <end type="SOURCE" refId="18" navigable="false">      
+      <attribute id="49" name="errorsHandler">        
+        <position height="0" width="0" x="-913" y="85"/>      
+      </attribute>      
+      <multiplicity id="50" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-913" y="85"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="20" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="51">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="52" name="errorsHandler">        
+        <position height="0" width="0" x="-913" y="85"/>      
+      </attribute>      
+      <multiplicity id="53" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-913" y="85"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="20" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="54">    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="55" name="errorsHandler">        
+        <position height="0" width="0" x="-913" y="85"/>      
+      </attribute>      
+      <multiplicity id="56" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-913" y="85"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="20" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="57">    
+    <end type="SOURCE" refId="12" navigable="false">      
+      <attribute id="58" name="errorsHandler">        
+        <position height="0" width="0" x="-913" y="85"/>      
+      </attribute>      
+      <multiplicity id="59" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-913" y="85"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="20" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="60">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="61" name="errorsHandler">        
+        <position height="0" width="0" x="-913" y="85"/>      
+      </attribute>      
+      <multiplicity id="62" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-913" y="85"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="20" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="63">    
+    <end type="SOURCE" refId="14" navigable="false">      
+      <attribute id="64" name="errorsHandler">        
+        <position height="0" width="0" x="-913" y="85"/>      
+      </attribute>      
+      <multiplicity id="65" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-913" y="85"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="20" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="66">    
+    <end type="SOURCE" refId="13" navigable="false">      
+      <attribute id="67" name="errorsHandler">        
+        <position height="0" width="0" x="-913" y="85"/>      
+      </attribute>      
+      <multiplicity id="68" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-913" y="85"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="20" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="69">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="70" name="errorsHandler">        
+        <position height="0" width="0" x="-913" y="85"/>      
+      </attribute>      
+      <multiplicity id="71" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-913" y="85"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="20" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="72">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="73" name="errorsHandler">        
+        <position height="0" width="0" x="-913" y="85"/>      
+      </attribute>      
+      <multiplicity id="74" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-913" y="85"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="20" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="75">    
+    <end type="SOURCE" refId="20" navigable="false">      
+      <attribute id="76" name="styleResponse">        
+        <position height="0" width="0" x="-905" y="137"/>      
+      </attribute>      
+      <multiplicity id="77" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-905" y="137"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="19" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="false" package="false" protected="false" private="false" static="false"/>    
+    <operations public="false" package="false" protected="false" private="false" static="false"/>  
+  </classifier-display>  
+  <association-display labels="false" multiplicity="false"/>
+</class-diagram>

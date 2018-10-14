@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui">
+
+<ui:composition>
+	<f:view contentType="text/html" locale="#{multilanguage.locale}" />
+	<h:panelGroup layout="block" class="col-md-12 bkg-color1">
+		#{msg['RegisterHoursStep2']}
+	</h:panelGroup>
+
+	<h:form id="registHoursForm">
+
+
+		<div class="col-md-6 p-y-2">
+
+
+			<h:panelGroup layout="block" class="form-group row">
+				<h:outputLabel class="col-xs-12 form-control-label">#{msg['Project']}</h:outputLabel>
+				<h:panelGroup layout="block" class="col-xs-12">
+					<h:outputText class="form-control input-off"
+						value="#{workRegisterBean.selectedWorkRegister.idProject} - #{workRegisterBean.selectedWorkRegister.title}" />
+				</h:panelGroup>
+			</h:panelGroup>
+
+
+			<h:panelGroup layout="block" class="form-group row">
+				<h:outputLabel class="col-xs-12 form-control-label">#{msg['ActivityName']}</h:outputLabel>
+				<h:panelGroup layout="block" class="col-xs-12">
+					<h:outputText class="form-control input-off"
+						value="#{workRegisterBean.selectedWorkRegister.taskName}" />
+				</h:panelGroup>
+			</h:panelGroup>
+
+
+			<h:panelGroup layout="block" class="form-group row">
+				<div class="col-md-6">
+					<div class="row">
+						<h:outputLabel class="col-xs-12 form-control-label">#{msg['AllocationBegin']}</h:outputLabel>
+						<h:panelGroup layout="block" class="col-lg-8 col-md-10 col-xs-8">
+							<p:calendar styleClass="form-control input-off"
+								value="#{workRegisterBean.selectedWorkRegister.allocationBeginDate}"
+								disabled="true" locale="#{multilanguage.locale}" />
+						</h:panelGroup>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="row">
+						<h:outputLabel class="col-xs-12 form-control-label">#{msg['AllocationEnd']}</h:outputLabel>
+						<h:panelGroup layout="block" class="col-lg-8 col-md-10 col-xs-8">
+
+							<p:calendar styleClass="form-control input-off"
+								value="#{workRegisterBean.selectedWorkRegister.allocationEndDate}"
+								disabled="true" locale="#{multilanguage.locale}" />
+						</h:panelGroup>
+					</div>
+				</div>
+			</h:panelGroup>
+
+
+
+
+			<h:panelGroup layout="block" class="form-group row">
+				<div class="col-sm-12">
+					<div class="">
+						<h:outputLabel for="comment" class="">#{msg['Comments']} *</h:outputLabel>
+						<h:panelGroup layout="block" class="input-group col-sm-12">
+							<h:inputTextarea class="form-control" id="comment" name="comment"
+								value="#{workRegisterBean.comments}" required="true"
+								requiredMessage="#{msg['NULL_OR_EMPTY_FIELDS']}"
+								validatorMessage="#{msg['NULL_OR_EMPTY_FIELDS']}">
+								<f:validateRegex pattern=".*[\S]+.*" />
+								<f:validateLength minimum="3" maximum="100"/>
+							</h:inputTextarea>
+						</h:panelGroup>
+						<h:panelGroup layout="block"
+							styleClass="col-sm-12 #{styleResponse.cssClass}">
+							<h:message for="comment" styleClass="error" />
+						</h:panelGroup>
+					</div>
+				</div>
+
+			</h:panelGroup>
+
+
+
+
+		</div>
+
+		<div class="col-md-6 p-y-2">
+
+			<h:panelGroup layout="block" class="form-group row">
+				<div class="col-md-6">
+					<div class="">
+						<h:outputLabel class="">% #{msg['Executed']}</h:outputLabel>
+						<h:panelGroup layout="block" class="input-group col-xs-4">
+							<h:outputText class="form-control input-off"
+								value="#{workRegisterBean.selectedWorkRegister.taskPercentageExecuted}" />
+							<span class="input-group-addon">%</span>
+						</h:panelGroup>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="row">
+						<h:outputLabel class="col-xs-12 form-control-label">#{msg['HoursEstimateToEnd']}</h:outputLabel>
+						<h:panelGroup layout="block"
+							class="col-lg-5 col-md-7 col-sm-6 col-xs-5">
+							<h:outputText class="form-control input-off"
+								value="#{workRegisterBean.selectedWorkRegister.hoursToFinish}" />
+						</h:panelGroup>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="row">
+						<h:outputLabel class="col-xs-12 form-control-label">#{msg['MaxHourRegister']}</h:outputLabel>
+						<h:panelGroup layout="block"
+							class="col-lg-5 col-md-7 col-sm-6 col-xs-5">
+							<h:outputText class="form-control  input-off"
+								value="#{workRegisterBean.selectedWorkRegister.maxWorkingHours}" />
+						</h:panelGroup>
+					</div>
+				</div>
+			</h:panelGroup>
+
+			<h:panelGroup layout="block" class="form-group row">
+				<div class="col-md-6">
+					<div class="row">
+						<h:outputLabel for="htrabalhadas"
+							class="col-xs-12 form-control-label">#{msg['WorkedHours']} *</h:outputLabel>
+						<h:panelGroup layout="block"
+							class="col-lg-5 col-md-7 col-sm-6 col-xs-5">
+							<h:inputText class="form-control" id="htrabalhadas"
+								name="htrabalhadas" value="#{workRegisterBean.hoursWorked}"
+								required="true" converterMessage="#{msg['ValidateNumber']}"
+								requiredMessage="#{msg['NULL_OR_EMPTY_FIELDS']}"
+								validatorMessage="#{msg['ValidateNumber1']}">
+								<f:validateLongRange minimum="1"
+									maximum="#{workRegisterBean.selectedWorkRegister.maxWorkingHours}"></f:validateLongRange>
+
+							</h:inputText>
+						</h:panelGroup>
+						<h:panelGroup layout="block" styleClass="col-sm-12">
+							<h:message for="htrabalhadas" styleClass="error" />
+						</h:panelGroup>
+					</div>
+				</div>
+
+				<div class="col-md-6">
+					<div class="row">
+						<h:outputLabel for="faltamh" class="col-xs-12 form-control-label">#{msg['Missing']} (h) *</h:outputLabel>
+						<h:panelGroup layout="block"
+							class="col-lg-5 col-md-7 col-sm-6 col-xs-5">
+							<h:inputText class="form-control" id="faltamh" name="faltamh"
+								value="#{workRegisterBean.remainingHours}" required="true"
+								converterMessage="#{msg['ValidateNumber']}"
+								requiredMessage="#{msg['NULL_OR_EMPTY_FIELDS']}"
+								validatorMessage="#{msg['ValidateNumber2']}">
+								<f:validateLongRange minimum="0"></f:validateLongRange>
+							</h:inputText>
+						</h:panelGroup>
+						<h:panelGroup layout="block" styleClass="col-sm-12">
+							<h:message for="faltamh" styleClass="error" />
+						</h:panelGroup>
+					</div>
+				</div>
+			</h:panelGroup>
+
+		</div>
+		<div class="col-md-6">
+
+			<h:panelGroup layout="block" class="form-group">
+
+				<p:commandButton class="btn btn-info btn-xs btn-primefaces"
+					value="#{msg['Register']}" update="myModalForm"
+					oncomplete="$('#myModal').modal('show');"
+					 />
+
+			</h:panelGroup>
+
+		</div>
+
+		<h:panelGroup layout="block" class="col-md-12 p-y-1">
+			<p:outputPanel layout="block" styleClass="error">
+				<h:message for="registHoursForm" styleClass="error" />
+			</p:outputPanel>
+		</h:panelGroup>
+
+	</h:form>
+
+	<p:outputPanel layout="block" class="col-md-6  p-y-1">
+		<h:panelGroup layout="block" class="col-md-12">
+			<small>* #{msg['RequiredFields']}</small>
+		</h:panelGroup>
+	</p:outputPanel>
+
+
+
+	<!-- Modal Graph -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+		aria-labelledby="myModal" aria-hidden="true" data-keyboard="false"
+		data-backdrop="false" data-closable="true" style="top: 80px">
+		<div class="modal-dialog modal-md">
+			<div class="modal-content">
+				<h:form id="myModalForm">
+					<div class="modal-header">
+						<h4 class="modal-title">#{msg['RegistrationHours']}</h4>
+					</div>
+					<div class="">
+
+						<h:panelGroup layout="block" class="col-md-12 p-y-1">
+
+							<h:panelGroup layout="block" class="col-md-12 text-md-center">
+								<h:panelGroup layout="block" styleClass="col-md-12">
+									<p class="error">#{msg['Msg7']} #{workRegisterBean.remainingHours} #{msg['Msg8']}</p>
+									<p>#{msg['DoYouContinue']}</p>
+								</h:panelGroup>
+
+								<h:panelGroup layout="block" styleClass="col-md-6 text-md-right">
+									<p:commandButton class="btn btn-info btn-xs btn-primefaces"
+										value="#{msg['NO']}" oncomplete="$('#myModal').modal('hide');" />
+								</h:panelGroup>
+								
+								<h:panelGroup layout="block" styleClass="col-md-6 text-md-left">
+									<p:commandButton class="btn btn-info btn-xs btn-primefaces"
+										value="#{msg['YES']}"
+										action="#{tabs.moveStep('register_step3')}"
+										update="registoHorasPanels"
+										actionListener="#{workRegisterBean.registerWorkingHoursInTaskFirstStep()}"
+										oncomplete="$('#myModal').modal('hide');" />
+								</h:panelGroup>
+
+							</h:panelGroup>
+						</h:panelGroup>
+					</div>
+
+					<h:panelGroup layout="block" styleClass="col-md-12">
+						<h:message for="myModalForm" />
+					</h:panelGroup>
+
+					<h:panelGroup layout="block" styleClass="modal-footer">
+						<p:commandLink value="#{msg['Close']}" immediate="true"
+							class="btn btn-xs btn-primary" styleClass="btn btn-default"
+							oncomplete="$('#myModal').modal('hide');" />
+					</h:panelGroup>
+
+				</h:form>
+			</div>
+		</div>
+	</div>
+
+</ui:composition>
+
+</html>

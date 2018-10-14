@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui">
+
+<ui:composition>
+<f:view contentType="text/html" locale="#{multilanguage.locale}" />
+	<h:panelGroup layout="block" class="col-md-12 bkg-color1">
+		#{msg['Details']}
+	</h:panelGroup>
+
+	<h:form id="updateClientForm">
+
+		<div class="col-md-6 p-y-2">
+
+
+			<div class="form-group row">
+				<label class="col-md-12 form-control-label" for="text-input">#{msg['Contact']}
+					*</label>
+				<div class="col-md-12">
+					<h:inputText a:placeholder="Contato" a:autocomplete="off"
+						id="contato" name="contato" class="form-control"
+						value="#{listClientsBean.selectedClient.contact}" required="true"
+						requiredMessage="#{msg['NULL_OR_EMPTY_FIELDS']}"
+						validatorMessage="#{msg['NULL_OR_EMPTY_FIELDS']}">
+						<f:validateRegex pattern=".*[\S]+.*" />
+						<f:validateLength minimum="3" maximum="80"/>
+					</h:inputText>
+				</div>
+				<h:panelGroup layout="block" styleClass="col-sm-12">
+					<h:message for="contato" styleClass="error" />
+				</h:panelGroup>
+			</div>
+
+
+			<div class="form-group row">
+				<label class="col-md-12 form-control-label" for="text-input">#{msg['Address']}
+					*</label>
+				<div class="col-md-12">
+					<h:inputTextarea a:placeholder="Morada" a:autocomplete="off"
+						id="morada" name="morada" class="form-control"
+						value="#{listClientsBean.selectedClient.address}" required="true"
+						requiredMessage="#{msg['NULL_OR_EMPTY_FIELDS']}"
+						validatorMessage="#{msg['NULL_OR_EMPTY_FIELDS']}">
+						<f:validateRegex pattern=".*[\S]+.*" />
+						<f:validateLength minimum="3" maximum="100"/>
+					</h:inputTextarea>
+				</div>
+				<h:panelGroup layout="block" styleClass="col-sm-12">
+					<h:message for="morada" styleClass="error" />
+				</h:panelGroup>
+			</div>
+
+
+
+		</div>
+		<!--/.col-->
+
+		<div class="col-md-6  p-y-2">
+
+
+			<div class="form-group row">
+				<label class="col-md-12 form-control-label" for="text-input">#{msg['Phone']}
+					*</label>
+				<div class="col-md-12">
+					<h:inputText a:placeholder="Telefone" a:autocomplete="off"
+						id="telefone" name="telefone" class="form-control"
+						value="#{listClientsBean.selectedClient.phone}" required="true"
+						requiredMessage="#{msg['NULL_OR_EMPTY_FIELDS']}"
+						validatorMessage="#{msg['NULL_OR_EMPTY_FIELDS']}">
+						<f:validateRegex pattern=".*[\S]+.*" />
+						<f:validateLength minimum="9" maximum="12"/>
+					</h:inputText>
+				</div>
+				<h:panelGroup layout="block" styleClass="col-sm-12">
+					<h:message for="telefone" styleClass="error" />
+				</h:panelGroup>
+			</div>
+
+
+			<div class="form-actions">
+				<div class="row">
+					<div class="col-md-2 margR10">
+						<h:commandButton styleClass="btn btn-primary" value="#{msg['Update']}"
+							action="#{listClientsBean.updateClient()}">
+						</h:commandButton>
+					</div>
+				</div>
+			</div>
+
+			<h:panelGroup layout="block" styleClass="col-sm-12 p-y-1">
+				<h:panelGroup layout="block" styleClass="row #{styleResponse.cssClass}">
+					<h:message for="updateClientForm" />
+				</h:panelGroup>
+			</h:panelGroup>
+		
+		</div>
+		<!--/.col-->
+
+
+
+		<div class="col-md-12">
+			<small>* #{msg['RequiredFields']}</small>
+		</div>
+
+	</h:form>
+</ui:composition>
+
+</html>

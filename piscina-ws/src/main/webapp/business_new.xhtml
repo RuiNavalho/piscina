@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui">
+<h:head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+	<title>Blue Roots</title>
+	<f:view contentType="text/html" locale="#{multilanguage.locale}" />
+	<link href="resources/css/bootstrap.min.css" rel="stylesheet" />
+	<link href="resources/css/primefaces.css" rel="stylesheet" />
+	<link href="resources/css/style.css" rel="stylesheet" />
+	<link href="resources/css/custom.css" rel="stylesheet" />
+	<link href="resources/css/fixeb.css" rel="stylesheet" />
+	
+	<link rel="shortcut icon" type="image/png"
+		href="resources/images/favicon.ico" />
+
+</h:head>
+<h:body class="navbar-fixed sidebar-nav fixed-nav">
+
+	<!-- Header -->
+	<header class="navbar">
+		<div class="container-fluid">
+			<ui:insert name="mtopLayout">
+				<ui:include src="mtop.xhtml" />
+			</ui:insert>
+		</div>
+	</header>
+
+	<!-- Sidebar -->
+	<div class="sidebar">
+		<nav class="sidebar-nav">
+			<ui:insert name="mleftLayout">
+				<ui:include src="mleft.xhtml" />
+			</ui:insert>
+		</nav>
+	</div>
+
+	<!-- Main content -->
+	<div class="main">
+		<!-- Breadcrumb -->
+		<ol class="breadcrumb r-0">
+			<li>#{msg['Home']}</li>
+			<li>#{msg['BusinessArea']}</li>
+			<li>#{msg['New']} #{msg['BusinessArea']}</li>
+		</ol>
+		<div class="container-fluid">
+			<div class="animated fadeIn">
+
+				<div class="row">
+					<div class="col-md-12">
+						<div class="card">
+							<div class="card-block">
+								<h:panelGroup layout="block" styleClass="">
+									<h:panelGroup layout="block" styleClass="icons-Text">
+										<i class="icon-book-open" aria-hidden="true"></i>
+									</h:panelGroup>
+									<h3 class="card-title clearfix m-b-0">#{msg['New']} #{msg['BusinessArea']}</h3>
+								</h:panelGroup>
+								<hr class="m-a-0" />
+								<div class="row">
+									<div class="col-md-12">
+										<h:form id="createBusinessForm">
+											<div class="col-md-6 p-y-2">
+												<div class="form-group row">
+													<label class="col-md-12 form-control-label"
+														for="text-input">#{msg['Name']} *</label>
+													<div class="col-md-12">
+														<h:inputText a:placeholder="Nome" a:autocomplete="off"
+															id="name" name="name" class="form-control"
+															value="#{listBusinessesBean.area}" required="true"
+															requiredMessage="#{msg['NULL_OR_EMPTY_FIELDS']}"
+															validatorMessage="#{msg['NULL_OR_EMPTY_FIELDS']}">
+															<f:validateRegex pattern="[^/]+" />
+															<f:validateLength minimum="3" maximum="100"/>
+															
+														</h:inputText>
+														<h:panelGroup layout="block" styleClass="error">
+															<h:message for="name" />
+														</h:panelGroup>
+													</div>
+												</div>
+
+												<div class="form-actions">
+													<div class="row">
+														<div class="col-md-2 margR10">
+															<h:commandButton styleClass="btn btn-primary"
+																value="#{msg['Add']}"
+																action="#{listBusinessesBean.createBusiness()}">
+															</h:commandButton>
+														</div>
+
+													</div>
+												</div>
+
+												<h:panelGroup layout="block" styleClass="#{styleResponse.cssClass} p-y-1">
+													<h:message for="createBusinessForm" />
+												</h:panelGroup>
+
+
+											</div>
+											<!--/.col-->
+
+											<div class="col-md-6  p-y-2"></div>
+											<!--/.col-->
+
+
+
+										</h:form>
+										<div class="row">
+											<div class="col-md-12 align-right">
+												<h:form>
+													<h:commandButton styleClass="btn btn-default"
+														value="#{msg['Cancel']}"
+														action="business.xhtml?faces-redirect=true">
+													</h:commandButton>
+												</h:form>
+											</div>
+										</div>
+									</div>
+
+								</div>
+								<!--/.card-block-->
+
+								<div class="row">
+									<div class="col-md-6">
+										<small>* #{msg['RequiredFields']}</small>
+									</div>
+									<div class="col-md-6 align-right"></div>
+								</div>
+								<!--/.col-->
+
+
+							</div>
+						</div>
+					</div>
+					<!--/.col-->
+				</div>
+				<!--/.row-->
+
+
+
+			</div>
+			<!--/.animated -->
+		</div>
+		<!-- /.container-fluid -->
+
+	</div>
+	<!-- /.main -->
+
+	<!-- Footer -->
+	<ui:insert name="footerLayout">
+		<ui:include src="footer.xhtml" />
+	</ui:insert>
+
+	<!-- JS -->
+	<script src="resources/js/libs/jquery.min.js"></script>
+	<script src="resources/js/libs/bootstrap.min.js"></script>
+	<script src="resources/js/app.js"></script>
+</h:body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:o="http://omnifaces.org/ui" xmlns:p="http://primefaces.org/ui">
+
+<ui:composition>
+<f:view contentType="text/html" locale="#{multilanguage.locale}" />
+	<!-- *** Menu Top START *** -->
+	<button class="navbar-toggler mobile-toggler hidden-lg-up"
+		type="button">&#9776;</button>
+	<a class="navbar-brand" href="dashboard.xhtml"></a>
+	<h:form>
+		<ul class="nav navbar-nav pull-right hidden-md-down">
+			<li class="nav-item">
+				<div>
+					<ui:insert name="languageLayout">
+						<ui:include src="language.xhtml" />
+					</ui:insert>
+				</div>
+			</li>
+
+			<li class="nav-item dropdown"><a
+				class="nav-link dropdown-toggle nav-link" data-toggle="dropdown"
+				href="#" role="button" aria-haspopup="true" aria-expanded="false">
+					<o:graphicImage value="#{mySessionBean.loggedUser.photo}"
+						dataURI="true" width="35" height="35"
+						rendered="#{mySessionBean.loggedUser.photo !=null}" styleClass="imgTop" /> <p:graphicImage
+						value="resources/images/noPhoto.png" width="35" height="35"
+						rendered="#{empty mySessionBean.loggedUser.photo}" styleClass="imgTop"/> <span
+					class="hidden-md-down">#{mySessionBean.loggedUser.fullName}
+				</span>
+			</a>
+				<div class="dropdown-menu dropdown-menu-right">
+
+					<div class="dropdown-header text-xs-center">
+						<strong>Perfil</strong>
+					</div>
+					<a class="dropdown-item" href="users_self_edit.xhtml"><i
+						class="fa fa-user"></i> #{msg['Profile']}</a> 
+				</div></li>
+			<li class="nav-item dropdown btn-logout"><h:commandLink
+					actionListener="#{mySessionBean.logoutUser()}"
+					action="index.xhtml?faces-redirect=true" styleClass="nav-link">
+					<i class="icon-logout"></i>
+
+				</h:commandLink></li>
+		</ul>
+	</h:form>
+	<!-- *** Menu Top END *** -->
+</ui:composition>
+</html>

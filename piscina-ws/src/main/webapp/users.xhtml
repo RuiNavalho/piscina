@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+	<title>Blue Roots</title>
+	<f:view locale="#{multilanguage.locale}" />
+
+	<link href="resources/css/primefaces.css" rel="stylesheet" />
+	<link href="resources/css/gantt.css" rel="stylesheet" />
+	<link href="resources/css/style.css" rel="stylesheet" />
+	<link href="resources/css/custom.css" rel="stylesheet" />
+	<link rel="stylesheet"
+		href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
+	<link rel="shortcut icon" type="image/png"
+		href="resources/images/favicon.ico" />
+
+
+</h:head>
+<h:body class="navbar-fixed sidebar-nav fixed-nav">
+
+	<!-- Header -->
+	<header class="navbar">
+		<h:panelGroup layout="block" class="container-fluid">
+			<ui:insert name="mtopLayout">
+				<ui:include src="mtop.xhtml" />
+			</ui:insert>
+		</h:panelGroup>
+	</header>
+
+	<!-- Sidebar -->
+	<h:panelGroup layout="block" class="sidebar">
+		<nav class="sidebar-nav">
+			<ui:insert name="mleftLayout">
+				<ui:include src="mleft.xhtml" />
+			</ui:insert>
+		</nav>
+	</h:panelGroup>
+
+	<!-- Main content -->
+	<h:panelGroup layout="block" class="main">
+		<!-- Breadcrumb -->
+		<ol class="breadcrumb r-0">
+			<li>Home</li>
+			<li>#{msg['Users']}</li>
+		</ol>
+		<h:panelGroup layout="block" class="container-fluid">
+			<h:panelGroup layout="block" class="animated fadeIn">
+
+				<h:panelGroup layout="block" class="row">
+					<h:panelGroup layout="block" class="col-md-12">
+						<h:panelGroup layout="block" class="card">
+							<h:panelGroup layout="block" class="card-block">
+								<h:panelGroup layout="block" styleClass="">
+									<h:panelGroup layout="block" styleClass="icons-Text">
+										<i class="icon-people" aria-hidden="true"></i>
+									</h:panelGroup>
+									<h3 class="card-title clearfix m-b-0">#{msg['Users']}</h3>
+								</h:panelGroup>
+								<hr class="m-a-0" />
+								<h:panelGroup layout="block" class="row">
+
+									<h:panelGroup layout="block" class="col-md-12">
+
+										<h:panelGroup layout="block" class="row">
+
+											
+
+											<h:panelGroup layout="block" class="row">
+												<h:panelGroup layout="block" class="col-md-12 p-y-1">
+													<h:panelGroup id="changeUsers">
+														<ui:insert>
+															<ui:include src="#{tabs.userInclude}.xhtml" />
+														</ui:insert>
+													</h:panelGroup>
+												</h:panelGroup>
+											</h:panelGroup>
+										</h:panelGroup>
+									</h:panelGroup>
+
+
+								</h:panelGroup>
+								<!--/.row-->
+
+
+							</h:panelGroup>
+						</h:panelGroup>
+					</h:panelGroup>
+					<!--/.col-->
+				</h:panelGroup>
+				<!--/.row-->
+
+			</h:panelGroup>
+			<!--/.animated -->
+
+
+
+
+		</h:panelGroup>
+		<!-- /.container-fluid -->
+
+
+	</h:panelGroup>
+	<!-- /.main -->
+
+	<!-- Modal Graph -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+		aria-labelledby="myModal" aria-hidden="true" data-keyboard="false"
+		data-backdrop="false" data-closable="true" style="top: 80px">
+		<div class="modal-dialog modal-md">
+			<div class="modal-content">
+
+				<div class="modal-header">
+					<h4 class="modal-title">#{msg['Charts']}</h4>
+				</div>
+				<div class="">
+
+					<h:panelGroup layout="block" class="col-md-12 p-y-1">
+
+						<h:panelGroup layout="block" class="col-md-12">
+							<h:panelGroup layout="block" styleClass="col-sm-12">
+								<h:form id="graficoGantt">
+									<p:timeline id="timeline" value="#{gantt.model}"
+										editable="false" eventMargin="10" eventMarginAxis="0"
+										start="#{gantt.start}" end="#{gantt.end}"
+										showNavigation="true" showButtonNew="false" axisOnTop="false"
+										stackEvents="true" locale="#{languages.locale}" />
+								</h:form>
+							</h:panelGroup>
+						</h:panelGroup>
+					</h:panelGroup>
+				</div>
+				<h:panelGroup layout="block" styleClass="modal-footer">
+					<p:commandLink value="Close" immediate="true"
+						class="btn btn-xs btn-info" styleClass="btn btn-default"
+						oncomplete="$('#myModal').modal('hide');" />
+				</h:panelGroup>
+
+
+			</div>
+		</div>
+	</div>
+
+
+	<!-- Footer -->
+	<ui:insert name="footerLayout">
+		<ui:include src="footer.xhtml" />
+	</ui:insert>
+
+
+	<!-- JS -->
+	<script src="resources/js/libs/bootstrap.min.js"></script>
+	<script src="resources/js/app.js"></script>
+
+</h:body>
+</html>

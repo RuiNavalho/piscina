@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui">
+<h:head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+	<title>Blue Roots</title>
+	<f:view contentType="text/html" locale="#{multilanguage.locale}" />
+	<link href="resources/css/bootstrap.min.css" rel="stylesheet" />
+	<link href="resources/css/primefaces.css" rel="stylesheet" />
+	<link href="resources/css/style.css" rel="stylesheet" />
+	<link href="resources/css/custom.css" rel="stylesheet" />
+	<link href="resources/css/fixeb.css" rel="stylesheet" />
+
+	<script src="resources/js/calendarLocales.js" />
+	<link rel="shortcut icon" type="image/png"
+		href="resources/images/favicon.ico" />
+
+</h:head>
+<h:body class="navbar-fixed sidebar-nav fixed-nav">
+
+	<!-- Header -->
+	<header class="navbar">
+		<h:panelGroup layout="block" class="container-fluid">
+			<ui:insert name="mtopLayout">
+				<ui:include src="mtop.xhtml" />
+			</ui:insert>
+		</h:panelGroup>
+	</header>
+
+	<!-- Sidebar -->
+	<h:panelGroup layout="block" class="sidebar">
+		<nav class="sidebar-nav">
+			<ui:insert name="mleftLayout">
+				<ui:include src="mleft.xhtml" />
+			</ui:insert>
+		</nav>
+	</h:panelGroup>
+
+	<!-- Main content -->
+	<h:panelGroup layout="block" class="main">
+		<!-- Breadcrumb -->
+		<ol class="breadcrumb r-0">
+			<li>Home</li>
+			<li>#{msg['Projects']}</li>
+			<li>#{msg['New']} #{msg['Project']}</li>
+		</ol>
+		<h:panelGroup layout="block" class="container-fluid">
+			<h:panelGroup layout="block" class="animated fadeIn">
+
+				<h:panelGroup layout="block" class="row">
+					<h:panelGroup layout="block" class="col-md-12">
+						<h:panelGroup layout="block" class="card">
+							<h:panelGroup layout="block" class="card-block">
+
+								<h:panelGroup layout="block" styleClass="">
+									<h:panelGroup layout="block" styleClass="icons-Text">
+										<i class="icon-layers" aria-hidden="true"></i>
+									</h:panelGroup>
+									<h3 class="card-title clearfix m-b-0">#{msg['New']} #{msg['Project']}</h3>
+								</h:panelGroup>
+
+								<hr class="m-a-0" />
+								<h:panelGroup layout="block" class="row">
+									<h:panelGroup layout="block" class="col-md-12">
+
+										<h:form id="createProjectForm">
+
+											<h:panelGroup layout="block" class="col-md-6 p-y-2">
+
+												<h:panelGroup layout="block" class="form-group row">
+													<h:outputLabel class="col-md-12 form-control-label"
+														for="idProject">#{msg['Code']} *</h:outputLabel>
+													<h:panelGroup layout="block" class="col-md-12">
+														<h:inputText a:placeholder="Código" a:autocomplete="off"
+															id="idProject" name="idProject" class="form-control"
+															value="#{createProjectBean.idProject}" required="true"
+															requiredMessage="#{msg['NULL_OR_EMPTY_FIELDS']}"
+															validatorMessage="#{msg['NULL_OR_EMPTY_FIELDS']}">
+															<f:validateRegex pattern="[^/]+" />
+															<f:validateLength minimum="3" maximum="80"/>
+														</h:inputText>
+													</h:panelGroup>
+													<h:panelGroup layout="block" styleClass="col-sm-12">
+														<h:message for="idProject" styleClass="error" />
+													</h:panelGroup>
+												</h:panelGroup>
+
+												<h:panelGroup layout="block" class="form-group row">
+													<h:outputLabel class="col-md-12 form-control-label"
+														for="title">#{msg['Name']} *</h:outputLabel>
+													<h:panelGroup layout="block" class="col-md-12">
+														<h:inputText a:placeholder="Nome" a:autocomplete="off"
+															id="title" name="title" class="form-control"
+															value="#{createProjectBean.title}" required="true"
+															requiredMessage="#{msg['NULL_OR_EMPTY_FIELDS']}"
+															validatorMessage="#{msg['NULL_OR_EMPTY_FIELDS']}">
+															<f:validateRegex pattern=".*[\S]+.*" />
+															<f:validateLength minimum="3" maximum="100" />
+														</h:inputText>
+													</h:panelGroup>
+													<h:panelGroup layout="block" styleClass="col-sm-12">
+														<h:message for="title" styleClass="error" />
+													</h:panelGroup>
+												</h:panelGroup>
+
+
+												<h:panelGroup layout="block" class="form-group row">
+													<h:outputLabel class="col-md-12 form-control-label"
+														for="description">#{msg['Description']} *</h:outputLabel>
+													<h:panelGroup layout="block" class="col-md-12">
+														<h:inputTextarea a:placeholder="Descrição"
+															a:autocomplete="off" id="description" name="description"
+															class="form-control"
+															value="#{createProjectBean.description}" required="true"
+															requiredMessage="#{msg['NULL_OR_EMPTY_FIELDS']}"
+															validatorMessage="#{msg['NULL_OR_EMPTY_FIELDS']}">
+															<f:validateRegex pattern=".*[\S]+.*" />
+															<f:validateLength minimum="3" maximum="200" />
+														</h:inputTextarea>
+													</h:panelGroup>
+													<h:panelGroup layout="block" styleClass="col-sm-12">
+														<h:message for="description" styleClass="error" />
+													</h:panelGroup>
+												</h:panelGroup>
+
+
+												<!-- Client -->
+												<h:panelGroup layout="block" class="form-group row"
+													rendered="#{not createProjectBean.projectToClient}">
+													<h:outputLabel class="col-md-12 form-control-label"
+														for="clientCompanyName">#{msg['Company']} *</h:outputLabel>
+													<h:panelGroup layout="block" class="col-md-12 controls">
+
+														<h:selectOneMenu
+															value="#{createProjectBean.clientCompanyName}"
+															id="clientCompanyName" styleClass="form-control"
+															requiredMessage="#{msg['NULL_OR_EMPTY_FIELDS']}">
+															<f:selectItems var="client"
+																value="#{listClientsBean.clientsList}"
+																itemValue="#{client.company}"
+																itemLabel="#{client.company}" />
+														</h:selectOneMenu>
+
+													</h:panelGroup>
+													<h:panelGroup layout="block" styleClass="col-sm-12 text-md-right padTop10">
+													<a href="clients_new.xhtml?faces-redirect=true">+
+														#{msg['Newa']} #{msg['Company']}</a>
+													</h:panelGroup>
+													
+													<h:panelGroup layout="block" styleClass="col-sm-12">
+														<h:message for="clientCompanyName" styleClass="error" />
+													</h:panelGroup>
+												</h:panelGroup>
+
+
+
+												<!-- From Client -->
+												<h:panelGroup layout="block" class="form-group row"
+													rendered="#{createProjectBean.projectToClient}">
+													<h:outputLabel class="col-md-12 form-control-label"
+														for="clientCompanyName1">#{msg['Company']} *</h:outputLabel>
+													<h:panelGroup layout="block" class="col-md-12 controls">
+														<h:outputText id="clientCompanyName1"
+															name="clientCompanyName1" class="form-control input-off"
+															value="#{createProjectBean.clientCompanyName}" />
+													</h:panelGroup>
+												</h:panelGroup>
+
+
+											</h:panelGroup>
+											<!--/.col-->
+
+											<h:panelGroup layout="block" class="col-md-6  p-y-2">
+
+
+												<h:panelGroup layout="block" class="form-group col-sm-12">
+													<h:outputLabel for="gestor">#{msg['Manager']} *</h:outputLabel>
+													<h:panelGroup layout="block" class="">
+														<h:selectOneMenu value="#{createProjectBean.managerEmail}"
+															id="gestor" styleClass="form-control"
+															requiredMessage="#{msg['NULL_OR_EMPTY_FIELDS']}">
+															<f:selectItems
+																value="#{listUsersBean.findManagersList()}" var="u"
+																itemLabel="#{u.fullName}" itemValue="#{u.email}" />
+														</h:selectOneMenu>
+													</h:panelGroup>
+													<h:panelGroup layout="block" styleClass="col-sm-12">
+														<h:message for="gestor" styleClass="error" />
+													</h:panelGroup>
+												</h:panelGroup>
+
+
+												<p:outputPanel layout="block" class="form-group col-sm-6">
+													<h:outputLabel for="beginDate">#{msg['BeginDate']} *</h:outputLabel>
+													<p:calendar id="beginDate" name="beginDate"
+														value="#{createProjectBean.beginDate}"
+														styleClass="form-control" required="true"
+														mindate="#{tabs.hoje}" locale="#{multilanguage.locale}"
+														disabledWeekends="true"
+														requiredMessage="#{msg['NULL_OR_EMPTY_FIELDS']}">
+													</p:calendar>
+													<h:message for="beginDate" styleClass="error" />
+												</p:outputPanel>
+
+												<p:outputPanel layout="block" class="form-group col-sm-6">
+													<h:outputLabel for="endDate">#{msg['EndDate']} *</h:outputLabel>
+													<p:calendar id="endDate" name="endDate"
+														value="#{createProjectBean.endDate}"
+														styleClass="form-control" required="true"
+														mindate="#{tabs.amanha}" locale="#{multilanguage.locale}"
+														disabledWeekends="true"
+														requiredMessage="#{msg['NULL_OR_EMPTY_FIELDS']}">
+													</p:calendar>
+													<h:message for="endDate" styleClass="error" />
+												</p:outputPanel>
+
+												<h:panelGroup layout="block" class="form-group col-sm-6">
+													<h:outputLabel for="stage">#{msg['Stage']} *</h:outputLabel>
+
+													<h:selectOneMenu value="#{createProjectBean.stage}"
+														id="stage" required="true" styleClass="form-control"
+														requiredMessage="#{msg['NULL_OR_EMPTY_FIELDS']}">
+
+														<f:selectItems value="#{listStagesBean.stagesList}"
+															var="stg" itemLabel="#{stg.stage}"
+															itemValue="#{stg.stage}" />
+													</h:selectOneMenu>
+
+													<h:panelGroup layout="block" styleClass="col-sm-12">
+														<h:message for="stage" styleClass="error" />
+													</h:panelGroup>
+												</h:panelGroup>
+
+												<h:panelGroup layout="block" class="form-group col-sm-6">
+													<h:outputLabel for="budget">#{msg['Budget']} *</h:outputLabel>
+													<div class="input-group">
+														<h:inputText id="budget" name="budget"
+															class="form-control" value="#{createProjectBean.budget}"
+															required="true"
+															converterMessage="#{msg['ValidateNumber']}"
+															requiredMessage="#{msg['NULL_OR_EMPTY_FIELDS']}"
+															validatorMessage="#{msg['ValidateNumber']}">
+															<f:validateDoubleRange minimum="0.1" maximum="999999.9" />
+														</h:inputText>
+														<span class="input-group-addon">€</span>
+													</div>
+													<h:panelGroup layout="block" styleClass="col-sm-12">
+														<h:message for="budget" styleClass="error" />
+													</h:panelGroup>
+
+												</h:panelGroup>
+
+												<h:panelGroup layout="block" class="form-group col-sm-6">
+													<h:outputLabel for="tipology">#{msg['Typology']}
+														*</h:outputLabel>
+													<h:panelGroup layout="block">
+
+														<h:selectOneMenu value="#{createProjectBean.tipology}"
+															id="tipology" styleClass="form-control"
+															requiredMessage="#{msg['NULL_OR_EMPTY_FIELDS']}">
+															<f:selectItems
+																value="#{listTypologiesBean.typologiesList}" var="typo"
+																itemLabel="#{typo.typology}"
+																itemValue="#{typo.typology}" />
+														</h:selectOneMenu>
+
+													</h:panelGroup>
+													<h:panelGroup layout="block" styleClass="col-sm-12">
+														<h:message for="tipology" styleClass="error" />
+													</h:panelGroup>
+												</h:panelGroup>
+
+
+												<h:panelGroup layout="block" class="form-actions">
+													<h:panelGroup layout="block" class="form-group">
+														<h:panelGroup layout="block" class="col-md-12 margR10">
+															<h:commandButton styleClass="btn btn-primary"
+																value="#{msg['Add']}"
+																action="#{createProjectBean.createNewProject()}">
+															</h:commandButton>
+														</h:panelGroup>
+													</h:panelGroup>
+												</h:panelGroup>
+
+												<h:panelGroup layout="block" styleClass="col-sm-12 p-y-1">
+													<h:panelGroup layout="block"
+														styleClass="#{styleResponse.cssClass}">
+														<h:message for="createProjectForm" />
+													</h:panelGroup>
+												</h:panelGroup>
+
+											</h:panelGroup>
+											<!--/.col-->
+
+
+
+										</h:form>
+										<h:panelGroup layout="block" class="row">
+											<h:panelGroup layout="block" class="col-md-12">
+												<h:panelGroup layout="block" class="col-md-6">
+													<small>* #{msg['RequiredFields']}</small>
+												</h:panelGroup>
+
+												<h:panelGroup layout="block" class="col-md-6 align-right">
+													<h:form>
+														<h:commandButton styleClass="btn btn-default"
+															value="#{msg['Cancel']}"
+															action="#{tabs.goToPage('projects')}">
+															<f:actionListener
+																binding="#{tabs.showProject('details',1)}" />
+															<f:actionListener
+																binding="#{tabs.showActivities('details',1)}" />
+															<f:actionListener
+																binding="#{tabs.showClient('details',1)}" />
+															<f:actionListener
+																binding="#{tabs.showBusiness('details',1)}" />
+															<f:actionListener
+																binding="#{tabs.showRegistoHoras('details',1)}" />
+															<f:actionListener
+																binding="#{tabs.setProjectInclude('projects_search')}" />
+															<f:actionListener
+																binding="#{tabs.setProjectSearchInclude('none')}" />
+															<f:actionListener
+																binding="#{listProjectsBean.cleanFields()}" />
+														</h:commandButton>
+													</h:form>
+												</h:panelGroup>
+											</h:panelGroup>
+										</h:panelGroup>
+									</h:panelGroup>
+
+								</h:panelGroup>
+								<!--/.card-block-->
+
+
+							</h:panelGroup>
+						</h:panelGroup>
+					</h:panelGroup>
+					<!--/.col-->
+				</h:panelGroup>
+				<!--/.row-->
+
+
+
+			</h:panelGroup>
+			<!--/.animated -->
+		</h:panelGroup>
+		<!-- /.container-fluid -->
+
+	</h:panelGroup>
+	<!-- /.main -->
+
+	<!-- Footer -->
+	<ui:insert name="footerLayout">
+		<ui:include src="footer.xhtml" />
+	</ui:insert>
+
+	<!-- JS -->
+	<script src="resources/js/libs/bootstrap.min.js"></script>
+	<script src="resources/js/app.js"></script>
+</h:body>
+</html>

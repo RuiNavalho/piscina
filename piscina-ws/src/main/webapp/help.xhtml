@@ -1,0 +1,511 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui">
+<h:head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+	<title>Blue Roots</title>
+	<f:view contentType="text/html" locale="#{multilanguage.locale}" />
+	<link href="resources/css/bootstrap.min.css" rel="stylesheet" />
+	<link href="resources/css/primefaces.css" rel="stylesheet" />
+	<link href="resources/css/style.css" rel="stylesheet" />
+	<link href="resources/css/custom.css" rel="stylesheet" />
+	<link href="resources/css/fixeb.css" rel="stylesheet" />
+
+	<script src="resources/js/calendarLocales.js" />
+	<link rel="shortcut icon" type="image/png"
+		href="resources/images/favicon.ico" />
+
+
+
+</h:head>
+<h:body class="navbar-fixed sidebar-nav fixed-nav">
+
+	<!-- Header -->
+	<header class="navbar">
+		<h:panelGroup layout="block" class="container-fluid">
+			<ui:insert name="mtopLayout">
+				<ui:include src="mtop.xhtml" />
+			</ui:insert>
+		</h:panelGroup>
+	</header>
+
+	<!-- Sidebar -->
+	<h:panelGroup layout="block" class="sidebar">
+		<nav class="sidebar-nav">
+			<ui:insert name="mleftLayout">
+				<ui:include src="mleft.xhtml" />
+			</ui:insert>
+		</nav>
+	</h:panelGroup>
+
+	<!-- Main content -->
+	<h:panelGroup layout="block" class="main">
+		<!-- Breadcrumb -->
+		<ol class="breadcrumb r-0">
+			<li>#{msg['Home']}</li>
+			<li>#{msg['Help']}</li>
+		</ol>
+		<h:panelGroup layout="block" class="container-fluid">
+			<h:panelGroup layout="block" class="animated fadeIn">
+
+				<h:panelGroup layout="block" class="row">
+					<h:panelGroup layout="block" class="col-md-12">
+						<h:panelGroup layout="block" class="card">
+							<h:panelGroup layout="block" class="card-block">
+								<h:panelGroup layout="block" styleClass="">
+									<h:panelGroup layout="block" styleClass="icons-Text">
+										<i class="fa fa-question-circle-o" aria-hidden="true"></i>
+									</h:panelGroup>
+									<h3 class="card-title clearfix m-b-0">#{msg['Help']}</h3>
+								</h:panelGroup>
+
+								<hr class="m-a-0" />
+								<h:panelGroup layout="block" class="row p-y-1">
+
+								</h:panelGroup>
+								<!--/.card-block-->
+
+
+
+								<h:panelGroup layout="block" class="row">
+									<h:panelGroup layout="block" class="col-md-12 p-y-1">
+
+										<h:panelGroup id="helpPanel">
+											<!-- Tab panes -->
+											<div class="accordion-content">
+												<h3>Faq's</h3>
+												<p>Aqui pode encontrar as respostas às suas dúvidas.</p>
+												<div id="accordion">
+													<h3>Como criar um Projeto?</h3>
+													<div>
+														<div class="col-sm-12">
+															<div class="col-sm-5 p-y-2">
+																<img src="resources/help/1criar_projeto.png"
+																	width="100%" />
+															</div>
+															<div class="col-sm-7 p-y-2">
+																<h5>Existem dois acessos rápidos para criar um
+																	Projeto:</h5>
+																<p>
+																	1. Para criar um novo projeto aceda ao menu <strong>Projetos
+																		> Adicionar Novo</strong>.
+																</p>
+																<p>
+																	2. Ou na página de pesquisa de projetos tem acesso ao
+																	botão + no topo da página para criar novo projeto (<strong>Projetos
+																		> Pesquisa Projetos</strong>).
+																</p>
+															</div>
+														</div>
+														<div class="col-sm-12">
+															<div class="col-sm-5 p-y-2 text-md-center">
+																<img src="resources/help/2criar_projeto.png"
+																	width="100%" />
+															</div>
+															<div class="col-sm-7 p-y-2">
+																<p>Os campos Nome, Descrição, Empresa, Data de
+																	início e fim, Estado, Orçamento e Tipologia são de
+																	preenchimento obrigatório.</p>
+																<p>Só é possível criar um projeto com a Data de
+																	Início a partir da data de hoje.</p>
+																<p>
+																	<strong>Nota:</strong> O utilizador selecionado como
+																	gestor terá acesso aos projetos geridos por si.
+																</p>
+
+															</div>
+														</div>
+
+													</div>
+
+
+
+
+													<h3>Como editar um Projeto?</h3>
+													<div>
+
+														<div class="col-sm-12">
+															<div class="col-sm-5">
+																<div class="col-sm-12 p-y-2">
+																	<img src="resources/help/3criar_projeto.png"
+																		width="100%" />
+																</div>
+																<div class="col-sm-12 p-y-2">
+																	<img src="resources/help/4criar_projeto.png"
+																		width="100%" />
+																</div>
+																<div class="col-sm-12 p-y-2">
+																	<img src="resources/help/5criar_projeto.png"
+																		width="100%" />
+																</div>
+
+															</div>
+															<div class="col-sm-7 p-y-2">
+																<h5>Para aceder aos Projetos pode utilizar os dois
+																	tipos de pesquisa:</h5>
+																<p>
+																	<strong>1. Pesquisa Rápida</strong>
+																</p>
+																<p>
+																	<strong>2. Pesquisa Avançada</strong>
+																</p>
+																<p>Aceda ao menu Projetos > Pesquisa Projetos.</p>
+																<h6 class="header-list">Pesquisa Rápida:</h6>
+																<p>
+																	Na opção <strong>Pesquisa Rápida,</strong> pode aceder
+																	de uma forma fácil aos projetos Abertos, Fechados e a
+																	todos os projetos onde o utilizador têm uma atividade
+																	atribuida ou é gestor se tiver o perfil de utilizador.
+																</p>
+																<p>O diretor tem acesso a todos os projetos
+																	existentes: abertos ou fechados.</p>
+																<h6 class="header-list">Pesquisa Avançada:</h6>
+																<p>
+																	Na opção <strong>Pesquisa Avançada,</strong> pode
+																	filtrar por tipo: Código/ Nome, Data, Empresa, Estado,
+																	Setor de Negócio, e aceder aos projetos onde também têm
+																	uma atividade atribuida ou é gestor.
+																</p>
+																<p>Após o resultado da pesquisa, clique no botão
+																	editar (icone lápis) do lado direito da lista do
+																	projeto a modificar.</p>
+																<p></p>
+															</div>
+														</div>
+													</div>
+
+
+
+													<h3>Como criar uma Atividade?</h3>
+													<div>
+														<div class="col-sm-12">
+															<div class="col-sm-5 p-y-2">
+																<div class="col-sm-12 p-y-2">
+																	<img src="resources/help/6criar_projeto.png"
+																		width="100%" />
+																</div>
+																<div class="col-sm-12 p-y-2">
+																	<img src="resources/help/7criar_projeto.png"
+																		width="100%" />
+																</div>
+															</div>
+															<div class="col-sm-7 p-y-2">
+
+																<p>
+																	1. Para criar uma nova Atividade aceda ao menu <strong>Atividades
+																		> Adicionar Nova</strong>.
+																</p>
+																<p>
+																	2. Ou na página de Lista de Atividades tem acesso ao
+																	botão + no topo da página para criar nova Atividade (<strong>Atividades
+																		> Lista Atividades</strong>).
+																</p>
+																<p>3. É possível criar uma atividade sem selecionar
+																	um projeto se já se encontrar no projeto.</p>
+																<p>Assim, dentro de um projeto selecionado, escolha
+																	o separador Atividades e e clique no botão Criar Nova
+																	Atividade para o Projeto.</p>
+															</div>
+														</div>
+														<div class="col-sm-12">
+															<div class="col-sm-5 p-y-2 text-md-center">
+																<div class="col-sm-12 p-y-2">
+																	<img src="resources/help/8criar_projeto.png"
+																		width="100%" />
+																</div>
+															</div>
+															<div class="col-sm-7 p-y-2">
+																<p>Os campos Nome, Descrição, Data de início e fim,
+																	Função, Custo Hora, Tipo e Estado são de preenchimento
+																	obrigatório.</p>
+																<p>Só é possível criar uma atividade com a Data de
+																	Início a partir de amanhã.</p>
+																<p>
+																	<strong>Nota:</strong> O utilizador selecionado como
+																	gestor terá acesso às atividades geridas por si.
+																</p>
+
+															</div>
+														</div>
+
+													</div>
+
+
+													<h3>Como editar uma Atividade?</h3>
+													<div>
+														<div class="col-sm-12">
+															<div class="col-sm-5 p-y-2">
+																<div class="col-sm-12 p-y-2">
+																	<img src="resources/help/9criar_projeto.png"
+																		width="100%" />
+																</div>
+															</div>
+															<div class="col-sm-7 p-y-2">
+																<h5>É possível editar uma atividade através de dois
+																	acessos diferentes:</h5>
+																<p>
+																	1. Acedendo a partir do menu <strong>Atividades
+																		> Lista Atividades</strong>.
+																</p>
+																<p>Selecione a atividade que pretende editar através
+																	do botão com icone do lápis ou no nome da atividade.</p>
+															</div>
+														</div>
+														<div class="col-sm-12">
+															<div class="col-sm-5 p-y-2">
+																<div class="col-sm-12 p-y-2">
+																	<img src="resources/help/10criar_projeto.png"
+																		width="100%" />
+																</div>
+															</div>
+															<div class="col-sm-7 p-y-2">
+																<p>
+																	2. Ou através de um <strong>Projeto</strong>
+																	selecionado no separador <strong>Atividades</strong>.
+																</p>
+																<p>Na lista de Atividades selecione a atividade a
+																	editar.</p>
+
+															</div>
+														</div>
+
+
+													</div>
+
+
+
+
+
+													<h3>Como alocar um recurso?</h3>
+													<div>
+														<div class="col-sm-12">
+															<div class="col-sm-5 p-y-2">
+																<div class="col-sm-12 p-y-2">
+																	<img src="resources/help/11criar_projeto.png"
+																		width="100%" />
+																</div>
+															</div>
+															<div class="col-sm-7 p-y-2">
+																<p>
+																	1. Para criar uma nova Alocação aceda ao menu <strong>Atividades
+																		> Lista Atividades </strong>
+																</p>
+																<p>Selecione atividade onde pretende alocar um
+																	recurso.</p>
+																<p>Escolha o separador Alocações.</p>
+																<p>
+																	Clique no botão adicionar novo e escolha <strong>entre
+																		datas a alocação</strong> que pretende fazer para o recurso.
+																</p>
+
+															</div>
+														</div>
+														<div class="col-sm-12">
+															<div class="col-sm-5 p-y-2">
+																<div class="col-sm-12 p-y-2">
+																	<img src="resources/help/12criar_projeto.png"
+																		width="100%" />
+																</div>
+																<div class="col-sm-12 p-y-2">
+																	<img src="resources/help/13criar_projeto.png"
+																		width="100%" />
+																</div>
+															</div>
+															<div class="col-sm-7 p-y-2">
+
+																<p>São apresentados os recursos disponíveis e a
+																	percentagem de alocação disponível de cada um para o
+																	intervalo de datas escolhidas previamente.</p>
+																<p>É possível alocar vários recursos numa mesma
+																	atividade com diferentes percentagens de alocação.</p>
+																<p>Está disponível um gráfico de alocações da
+																	atividade para referência.</p>
+															</div>
+														</div>
+													</div>
+
+
+
+													<h3>Como criar uma precedência?</h3>
+													<div>
+														<div class="col-sm-12">
+															<div class="col-sm-5 p-y-2">
+																<div class="col-sm-12 p-y-2">
+																	<img src="resources/help/14criar_projeto.png"
+																		width="100%" />
+																</div>
+															</div>
+															<div class="col-sm-7 p-y-2">
+
+																<p>Selecione atividade onde pretende alocar um
+																	recurso.</p>
+																<p>
+																	Escolha o separador <strong>Precedências</strong>.
+																</p>
+
+															</div>
+														</div>
+
+														<div class="col-sm-12">
+															<div class="col-sm-5 p-y-2">
+																<div class="col-sm-12 p-y-2">
+																	<img src="resources/help/15criar_projeto.png"
+																		width="100%" />
+																</div>
+															</div>
+															<div class="col-sm-7 p-y-2">
+
+																<p>
+																	Este separador tem uma lista de atividades precedentes
+																	disponiveis para <strong>adicionar</strong> e <strong>remover</strong>
+																	precedências.
+																</p>
+															</div>
+														</div>
+													</div>
+
+
+
+
+													<h3>Como Registar Horas?</h3>
+													<div>
+														<div class="col-sm-12">
+															<div class="col-sm-5 p-y-2">
+																<div class="col-sm-12 p-y-2">
+																	<img src="resources/help/16criar_projeto.png"
+																		width="100%" />
+																</div>
+															</div>
+															<div class="col-sm-7 p-y-2">
+
+																<p>
+																	1. Para registar horas aceda ao menu <strong>Registo
+																		Horas > Registar Horas </strong>
+																</p>
+																<p>Selecione a atividade onde pretende registar
+																	número de horas e clique no botão registar.</p>
+																<p>Os campos Comentário, horas trabalhadas e faltam
+																	(h) são de preenchimento obrigatório.</p>
+
+															</div>
+														</div>
+
+
+														<div class="col-sm-12">
+															<div class="col-sm-5 p-y-2">
+																<div class="col-sm-12 p-y-2">
+																	<img src="resources/help/17criar_projeto.png"
+																		width="100%" />
+																</div>
+																<div class="col-sm-12 p-y-2">
+																	<img src="resources/help/18criar_projeto.png"
+																		width="100%" />
+																</div>
+															</div>
+															<div class="col-sm-7 p-y-2">
+
+
+																<p>
+																	No passo 2 de <strong>Registar Horas</strong> é
+																	possível fazer uploads de 5 ficheiros com limite máximo
+																	de 10Mb cada um.
+																</p>
+																<p>Após upload de ficheiros (não são obrigatórios)
+																	clique no botão finalizar para terminar registo de
+																	horas.</p>
+															</div>
+														</div>
+
+													</div>
+
+
+
+
+													<h3>Onde posso consultar os ficheiros de download de
+														registo de horas?</h3>
+													<div>
+
+														<div class="col-sm-12">
+															<div class="col-sm-5 p-y-2">
+																<div class="col-sm-12 p-y-2">
+																	<img src="resources/help/19criar_projeto.png"
+																		width="100%" />
+																</div>
+															</div>
+															<div class="col-sm-7  p-y-2">
+																<p>
+																	Para consulta dos registos aceda ao menu <strong>Registo
+																		Horas > Consultar Registos</strong>
+																</p>
+																<p>Nesta página pode consultar as atividades de
+																	registo de horas com a possibilidade de descarregar os
+																	ficheiros e ler os comentários.</p>
+															</div>
+														</div>
+													</div>
+
+
+												</div>
+											</div>
+										</h:panelGroup>
+
+
+
+									</h:panelGroup>
+
+								</h:panelGroup>
+
+								<h:panelGroup layout="block" class="row">
+									<h:panelGroup layout="block" class="col-md-12">
+
+									</h:panelGroup>
+								</h:panelGroup>
+
+							</h:panelGroup>
+						</h:panelGroup>
+					</h:panelGroup>
+					<!--/.col-->
+				</h:panelGroup>
+				<!--/.row-->
+
+
+
+			</h:panelGroup>
+			<!--/.animated -->
+		</h:panelGroup>
+		<!-- /.container-fluid -->
+
+	</h:panelGroup>
+	<!-- /.main -->
+
+	<!-- Footer -->
+	<ui:insert name="footerLayout">
+		<ui:include src="footer.xhtml" />
+	</ui:insert>
+
+	<link rel="stylesheet"
+		href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
+	<link rel="stylesheet" href="/resources/demos/style.css" />
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script>
+	  $( function() {
+	    $( "#accordion" ).accordion();
+	  } );
+	  </script>
+
+	<!-- JS -->
+	<script src="resources/js/libs/bootstrap.min.js"></script>
+	<script src="resources/js/app.js"></script>
+
+</h:body>
+</html>

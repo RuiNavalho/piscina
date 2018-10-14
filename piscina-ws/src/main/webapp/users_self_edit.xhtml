@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui">
+<h:head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+	<title>Blue Roots</title>
+	<f:view contentType="text/html" locale="#{multilanguage.locale}" />
+	<link href="resources/css/bootstrap.min.css" rel="stylesheet" />
+	<link href="resources/css/primefaces.css" rel="stylesheet" />
+	<link href="resources/css/style.css" rel="stylesheet" />
+	<link href="resources/css/custom.css" rel="stylesheet" />
+	<link href="resources/css/fixeb.css" rel="stylesheet" />
+	
+	<link rel="shortcut icon" type="image/png"
+		href="resources/images/favicon.ico" />
+
+</h:head>
+<h:body class="navbar-fixed sidebar-nav fixed-nav">
+
+	<!-- Header -->
+	<header class="navbar">
+		<h:panelGroup layout="block" class="container-fluid">
+			<ui:insert name="mtopLayout">
+				<ui:include src="mtop.xhtml" />
+			</ui:insert>
+		</h:panelGroup>
+	</header>
+
+	<!-- Sidebar -->
+	<h:panelGroup layout="block" class="sidebar">
+		<nav class="sidebar-nav">
+			<ui:insert name="mleftLayout">
+				<ui:include src="mleft.xhtml" />
+			</ui:insert>
+		</nav>
+	</h:panelGroup>
+
+	<!-- Main content -->
+	<h:panelGroup layout="block" class="main">
+		<!-- Breadcrumb -->
+		<ol class="breadcrumb r-0">
+			<li>Home</li>
+			<li>#{msg['Profile']}</li>
+		</ol>
+		<h:panelGroup layout="block" class="container-fluid">
+			<h:panelGroup layout="block" class="animated fadeIn">
+
+				<h:panelGroup layout="block" class="row">
+					<h:panelGroup layout="block" class="col-md-12">
+						<h:panelGroup layout="block" class="card">
+							<h:panelGroup layout="block" class="card-block">
+								<h:panelGroup layout="block" styleClass="">
+									<h:panelGroup layout="block" styleClass="icons-Text">
+										<i class="icon-people" aria-hidden="true"></i>
+									</h:panelGroup>
+									<h3 class="card-title clearfix m-b-0">#{msg['My']} #{msg['Profile']}</h3>
+								</h:panelGroup>
+								<hr class="m-a-0" />
+								<h:panelGroup layout="block" class="row">
+									<h:panelGroup layout="block" class="col-md-12">
+
+										<h:form id="updateUserForm" enctype="multipart/form-data"
+											method="POST">
+											<h:panelGroup layout="block" class="col-md-6 p-y-2">
+												<h:panelGroup layout="block" class="form-group row">
+													<h:outputLabel class="col-md-12 form-control-label"
+														for="fullName">#{msg['Name']}</h:outputLabel>
+													<h:panelGroup layout="block" class="col-md-12">
+														<h:inputText id="fullName" name="fullName"
+															class="form-control"
+															value="#{mySessionBean.loggedUser.fullName}"
+															required="true"
+															requiredMessage="#{msg['NULL_OR_EMPTY_FIELDS']}"
+															validatorMessage="#{msg['NULL_OR_EMPTY_FIELDS']}">
+															<f:validateRegex pattern=".*[\S]+.*" />
+															<f:validateLength minimum="3" maximum="80"/>
+														</h:inputText>
+													</h:panelGroup>
+													<h:message for="fullName" styleClass="error" />
+												</h:panelGroup>
+
+												<h:panelGroup layout="block" class="form-group row">
+													<h:outputLabel class="col-md-12 form-control-label"
+														for="email">#{msg['Email']}</h:outputLabel>
+													<h:panelGroup layout="block" class="col-md-12">
+														<h:outputText id="email" name="email"
+															class="form-control input-off"
+															value="#{mySessionBean.loggedUser.email}" disabled="true"/>
+													</h:panelGroup>
+													<h:message for="email" styleClass="error" />
+												</h:panelGroup>
+
+												<h:panelGroup layout="block" class="form-group row">
+													<h:outputLabel class="col-md-12 form-control-label"
+														for="passw1">#{msg['Password']}</h:outputLabel>
+													<h:panelGroup layout="block" class="col-md-12">
+														<h:inputSecret id="passw1" name="passw1"
+															class="form-control" value="#{mySessionBean.passw}">
+															<f:validateLength minimum="3" maximum="100"/>
+															</h:inputSecret>
+															
+													</h:panelGroup>
+													<h:message for="passw1" styleClass="error" />
+												</h:panelGroup>
+
+												<h:panelGroup layout="block" class="form-group row">
+													<h:outputLabel class="col-md-12 form-control-label"
+														for="passwConfirm1">#{msg['ConfirmPassword']}</h:outputLabel>
+													<h:panelGroup layout="block" class="col-md-12">
+														<h:inputSecret id="passwConfirm1" name="passwConfirm1"
+															class="form-control" value="#{mySessionBean.passwConf}">
+															<f:validateLength minimum="3" maximum="100"/>
+															</h:inputSecret>
+													</h:panelGroup>
+													<h:message for="passwConfirm1" styleClass="error " />
+													<o:validateEqual id="equal"
+														components="passw1 passwConfirm1"
+														message="Passwords are not equal" showMessageFor="passw1" />
+												</h:panelGroup>
+
+
+											</h:panelGroup>
+											<!--/.col-->
+
+											<h:panelGroup layout="block" class="col-md-6  p-y-2">
+
+												<h:panelGroup layout="block" class="form-group row">
+													<h:panelGroup layout="block" class="col-md-12 align-center">
+
+														<o:graphicImage value="#{mySessionBean.loggedUser.photo}"
+															dataURI="true" width="180" height="180"
+															styleClass="img-circle"
+															rendered="#{mySessionBean.loggedUser.photo !=null}" />
+														<p:graphicImage value="resources/images/noPhotoBig.png"
+															width="180" height="180" styleClass="img-circle"
+															rendered="#{empty mySessionBean.loggedUser.photo}" />
+													</h:panelGroup>
+												</h:panelGroup>
+
+												<h:panelGroup layout="block" class="form-group row">
+													<h:panelGroup layout="block" class="col-md-12">
+														<h:outputLabel for="file1">#{msg['ChangePhoto']}</h:outputLabel>
+														<h:panelGroup layout="block" class="col-md-12">
+
+															<h:inputFile id="file1" value="#{mySessionBean.file}"
+																accept="image/*" />
+														</h:panelGroup>
+
+													</h:panelGroup>
+												</h:panelGroup>
+
+
+
+												<h:panelGroup layout="block" class="form-actions row">
+													<h:panelGroup layout="block" class="col-md-12">
+														<h:commandButton styleClass="btn btn-primary"
+															value="#{msg['Update']}"
+															action="#{mySessionBean.updateSelfProfile()}">
+														</h:commandButton>
+													</h:panelGroup>
+												</h:panelGroup>
+												
+												<h:panelGroup layout="block" styleClass="col-sm-12 p-y-1">
+													<h:panelGroup layout="block" styleClass="#{styleResponse.cssClass}">
+														<h:message for="updateUserForm" />
+													</h:panelGroup>
+												</h:panelGroup>
+												
+											</h:panelGroup>
+											<!--/.col-->
+
+											
+
+										</h:form>
+									</h:panelGroup>
+
+
+								</h:panelGroup>
+								<!--/.card-block-->
+
+								<h:panelGroup layout="block" class="row">
+									<h:panelGroup layout="block" class="col-md-6">
+										<small>* #{msg['MandatoryFields']}</small>
+									</h:panelGroup>
+									<h:panelGroup layout="block" class="col-md-6 align-right">
+										<h:panelGroup layout="block" class="col-md-12">
+											<h:form>
+												<h:commandButton styleClass="btn btn-default"
+													value="#{msg['Cancel']}"
+													action="dashboard.xhtml?faces-redirect=true">
+												</h:commandButton>
+											</h:form>
+
+										</h:panelGroup>
+									</h:panelGroup>
+								</h:panelGroup>
+								<!--/.col-->
+
+
+							</h:panelGroup>
+						</h:panelGroup>
+					</h:panelGroup>
+					<!--/.col-->
+				</h:panelGroup>
+				<!--/.row-->
+
+
+
+			</h:panelGroup>
+			<!--/.animated -->
+		</h:panelGroup>
+		<!-- /.container-fluid -->
+
+	</h:panelGroup>
+	<!-- /.main -->
+
+	<!-- Footer -->
+	<ui:insert name="footerLayout">
+		<ui:include src="footer.xhtml" />
+	</ui:insert>
+
+	<!-- JS -->
+	<script src="resources/js/libs/jquery.min.js"></script>
+	<script src="resources/js/libs/bootstrap.min.js"></script>
+	<script src="resources/js/app.js"></script>
+
+	<script type="text/javascript" src="resources/js/js_index.js" />
+
+</h:body>
+</html>

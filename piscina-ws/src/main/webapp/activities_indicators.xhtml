@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui"
+	xmlns:hf="http://highfaces.org">
+
+<ui:composition>
+	<f:view contentType="text/html" locale="#{multilanguage.locale}" />
+	<h:panelGroup layout="block" class="col-md-12 bkg-color1">
+		#{msg['Indicators']}
+	</h:panelGroup>
+
+
+	<h:panelGroup layout="block" class="col-md-12  p-y-2">
+
+		<h:panelGroup layout="block" class="col-md-12  p-y-1">
+			<table id="gradient-style-full">
+				<thead>
+					<tr>
+						<th>#{msg['Project']}</th>
+						<th>#{msg['InitialEstimate']}</th>
+						<th>#{msg['CurrentEstimate']}</th>
+						<th>#{msg['Ratio']}</th>
+						<th>#{msg['ExecutedPercentage']}</th>
+						<th>#{msg['WorkedHours']}</th>
+						<th>#{msg['EstimatedEndTimes']}</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td><h:outputText
+								value="#{listTasksBean.selectedTask.idProject} - #{listTasksBean.selectedTask.projectTitle}" />
+						</td>
+						<td><h:outputText
+								value="#{listTasksBean.selectedTask.durationHoursEstimate}" /></td>
+						<td><h:outputText
+								value="#{listTasksBean.selectedTask.nowDurationHoursEstimate}" /></td>
+						<td><h:panelGroup layout="block"
+								rendered="#{listTasksBean.selectedTask.nowDurationHoursEstimate == 0}">
+												--
+											</h:panelGroup> <h:panelGroup layout="block"
+								rendered="#{listTasksBean.selectedTask.nowDurationHoursEstimate != 0}">
+
+								<h:outputText
+									value="#{(listTasksBean.selectedTask.nowDurationHoursEstimate/listTasksBean.selectedTask.durationHoursEstimate)}"
+									rendered="#{(listTasksBean.selectedTask.nowDurationHoursEstimate/listTasksBean.selectedTask.durationHoursEstimate) gt 1}"
+									style="color:red">
+									<f:convertNumber maxFractionDigits="2" />
+								</h:outputText>
+								<h:outputText
+									value="#{(listTasksBean.selectedTask.nowDurationHoursEstimate/listTasksBean.selectedTask.durationHoursEstimate)}"
+									rendered="#{(listTasksBean.selectedTask.nowDurationHoursEstimate/listTasksBean.selectedTask.durationHoursEstimate) lt 1}"
+									style="color:green">
+									<f:convertNumber maxFractionDigits="2" />
+								</h:outputText>
+								<h:outputText
+									value="#{(listTasksBean.selectedTask.nowDurationHoursEstimate/listTasksBean.selectedTask.durationHoursEstimate)}"
+									rendered="#{(listTasksBean.selectedTask.nowDurationHoursEstimate/listTasksBean.selectedTask.durationHoursEstimate) == 1}"
+									style="color:grey">
+									<f:convertNumber maxFractionDigits="2" />
+								</h:outputText>
+
+							</h:panelGroup></td>
+						<td><h:outputText
+								value="#{listTasksBean.selectedTask.executedPercentageEstimate}%" /></td>
+						<td><h:outputText
+								value="#{listTasksBean.selectedTask.workedHours}" /></td>
+						<td><h:outputText
+								value="#{listTasksBean.selectedTask.nowDurationHoursEstimate-listTasksBean.selectedTask.workedHours}" /></td>
+						<td class="text-sm-center">
+							<div class="box-perc-m">
+								<div class="box-green"
+									style="width: #{(listTasksBean.selectedTask.executedPercentageEstimate*50/100)}px"></div>
+								<div class="box-red"
+									style="width: #{(100-listTasksBean.selectedTask.executedPercentageEstimate)*50/100}px"></div>
+							</div>
+						</td>
+
+					</tr>
+				</tbody>
+			</table>
+		</h:panelGroup>
+
+		<h:panelGroup layout="block" class="row"
+			rendered="#{chartLine.chart.begin gt tabs.hoje}">
+			<h:panelGroup layout="block" styleClass="col-sm-8">
+				<p class="error text-md-center">#{msg['NoDataActivityDidNotStart']}.</p>
+			</h:panelGroup>
+		</h:panelGroup>
+
+		<h:panelGroup layout="block" class="row"
+			rendered="#{chartLine.chart.begin lt tabs.hoje}">
+
+
+			<h:panelGroup layout="block" styleClass="col-sm-9">
+
+				<h:panelGroup layout="block" class="col-md-12  p-y-1">
+					<h:panelGroup layout="block" class="col-sm-12">
+						<h6 class="header-list">#{msg['ChooseChart']}:</h6>
+					</h:panelGroup>
+					<h:panelGroup layout="block" class="col-sm-12">
+						<h:form>
+
+							<h:panelGroup layout="block" class="input-group"
+								rendered="#{(mySessionBean.directorRole or (listTasksBean.selectedTask.managerEmail !=null and listTasksBean.selectedTask.managerEmail eq mySessionBean.loggedUser.email))}">
+								<p:selectOneRadio value="#{chartLine.typeChart}">
+									<p:ajax event="change" update="boxGraficos" />
+									<f:selectItem itemValue="percentChart"
+										itemLabel="#{msg['ActivityExecutedPercentage']}" />
+
+									<f:selectItem itemValue="hourChart"
+										itemLabel="#{msg['HoursWorkedInActivity']}" />
+
+									<f:selectItem itemValue="costChart"
+										itemLabel="#{msg['ActivityCost']}" />
+								</p:selectOneRadio>
+
+							</h:panelGroup>
+
+
+							<h:panelGroup layout="block" class="input-group"
+								rendered="#{!(mySessionBean.directorRole or (listTasksBean.selectedTask.managerEmail !=null and listTasksBean.selectedTask.managerEmail eq mySessionBean.loggedUser.email))}">
+
+								<p:selectOneRadio value="#{chartLine.typeChart}">
+									<p:ajax event="change" update="boxGraficos" />
+									<f:selectItem itemValue="percentChart"
+										itemLabel="#{msg['ActivityExecutedPercentage']}" />
+									<f:selectItem itemValue="hourChart"
+										itemLabel="#{msg['HoursWorkedInActivity']}" />
+								</p:selectOneRadio>
+							</h:panelGroup>
+
+						</h:form>
+					</h:panelGroup>
+
+				</h:panelGroup>
+
+				<h:panelGroup layout="block" class="col-md-12  p-y-1"
+					id="boxGraficos">
+
+					<h:panelGroup layout="block" styleClass="col-sm-12" id="grafico1"
+						rendered="#{chartLine.typeChart eq 'percentChart'}">
+
+						<hf:chart type="line" xaxisLabel="#{msg['Date']}"
+							yaxisLabel="% #{msg['Execution']}"
+							title="#{msg['ActivityExecutedPercentage']}">
+							<hf:chartSerie name="Percentagem" value="#{chartLine.chart.list}"
+								var="perc" point="#{perc.percExec}" tickLabel="#{perc.date}" />
+
+							<hf:chartAxis position="s" title="#{msg['Date']}" type="datetime"
+								tickAngle="-45" style="font-weight: bold;"
+								format="{value:%d.%m.%Y}" />
+
+							<hf:chartAxis position="w" title="#{msg['Execution']}"
+								tickAngle="-45" style="font-weight: bold;" format="{value:.0f}%" />
+
+
+							<hf:chartTooltip backgroundColor="#000000" shared="true">
+								<f:facet name="header">
+									<h:outputText escape="false"
+										value="&lt;table>&lt;tr>&lt;td style='color:white;font-weight:bold;padding-right:5px;'>{point.key}&lt;/td>&lt;td style='border-left:1px solid white;padding-left: 10px;'>" />
+								</f:facet>
+								<f:facet name="body">
+									<h:outputText escape="false"
+										value="&lt;span style='color:white'>{series.name}: &lt;b> {point.y:.0f} %&lt;/b>&lt;/span>&lt;br/>" />
+								</f:facet>
+								<f:facet name="footer">
+									<h:outputText escape="false"
+										value='&lt;/td>&lt;/tr>&lt;/table>' />
+								</f:facet>
+							</hf:chartTooltip>
+						</hf:chart>
+
+					</h:panelGroup>
+
+					<h:panelGroup layout="block" styleClass="col-sm-12" id="grafico2"
+						rendered="#{chartLine.typeChart eq 'hourChart'}">
+
+						<hf:chart type="line" xaxisLabel="#{msg['Date']}"
+							yaxisLabel="#{msg['HoursWorked']}"
+							title="#{msg['HoursWorkedInActivity']}">
+							<hf:chartSerie name="Horas" value="#{chartLine.chart.list}"
+								var="hours" point="#{hours.hoursWorked}"
+								tickLabel="#{hours.date}">
+							</hf:chartSerie>
+
+							<hf:chartAxis position="s" title="#{msg['Date']}" type="datetime"
+								tickAngle="-45" style="font-weight: bold;"
+								format="{value:%d.%m.%Y}" />
+
+							<hf:chartAxis position="w" title="#{msg['HoursWorked']}"
+								tickAngle="-45" style="font-weight: bold;" />
+
+							<hf:chartTooltip backgroundColor="#000000" shared="true">
+								<f:facet name="header">
+									<h:outputText escape="false"
+										value="&lt;table>&lt;tr>&lt;td style='color:white;font-weight:bold;padding-right:5px;'>{point.key}&lt;/td>&lt;td style='border-left:1px solid white;padding-left: 10px;'>" />
+								</f:facet>
+								<f:facet name="body">
+									<h:outputText escape="false"
+										value="&lt;span style='color:white'>{series.name}: &lt;b> {point.y} h&lt;/b>&lt;/span>&lt;br/>" />
+								</f:facet>
+								<f:facet name="footer">
+									<h:outputText escape="false"
+										value='&lt;/td>&lt;/tr>&lt;/table>' />
+								</f:facet>
+							</hf:chartTooltip>
+						</hf:chart>
+					</h:panelGroup>
+
+					<h:panelGroup layout="block" styleClass="col-sm-12" id="grafico3"
+						rendered="#{chartLine.typeChart eq 'costChart'}">
+
+						<hf:chart type="line" xaxisLabel="#{msg['Date']}"
+							yaxisLabel="#{msg['Cost']} €" title="#{msg['ActivityCost']}">
+							<hf:chartSerie name="Custo" value="#{chartLine.chart.list}"
+								var="cost" point="#{cost.cost}" tickLabel="#{cost.date}">
+							</hf:chartSerie>
+
+							<hf:chartAxis position="s" title="#{msg['Date']}" type="datetime"
+								tickAngle="-45" style="font-weight: bold;"
+								format="{value:%d.%m.%Y}" />
+
+							<hf:chartAxis position="w" title="#{msg['Cost']} €$"
+								tickAngle="-45" style="font-weight: bold;" />
+
+							<hf:chartTooltip backgroundColor="#000000" shared="true">
+								<f:facet name="header">
+									<h:outputText escape="false"
+										value="&lt;table>&lt;tr>&lt;td style='color:white;font-weight:bold;padding-right:5px;'>{point.key}&lt;/td>&lt;td style='border-left:1px solid white;padding-left: 10px;'>" />
+								</f:facet>
+								<f:facet name="body">
+									<h:outputText escape="false"
+										value="&lt;span style='color:white'>{series.name}: &lt;b> {point.y} €&lt;/b>&lt;/span>&lt;br/>" />
+								</f:facet>
+								<f:facet name="footer">
+									<h:outputText escape="false"
+										value='&lt;/td>&lt;/tr>&lt;/table>' />
+								</f:facet>
+							</hf:chartTooltip>
+						</hf:chart>
+					</h:panelGroup>
+
+				</h:panelGroup>
+				<!--/.col-->
+
+			</h:panelGroup>
+
+		</h:panelGroup>
+	</h:panelGroup>
+
+
+</ui:composition>
+
+</html>

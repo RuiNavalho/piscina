@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui">
+<h:head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+	<meta name="google-signin-client_id"
+		content="1098661566384-qutbcacnfcp8in0702cs9envseodo6gp.apps.googleusercontent.com" />
+	<title>Blue Roots</title>
+	<f:view locale="#{multilanguage.locale}" />
+
+	<link rel="shortcut icon" type="image/png"
+		href="resources/images/favicon.ico" />
+
+	<link rel="stylesheet" href="resources/scss/bootstrap.min.css" />
+	<link rel="stylesheet" href="resources/scss/bootstrap-extend.min.css" />
+	<link rel="stylesheet" href="resources/scss/site.css" />
+	<link rel="stylesheet" href="resources/scss/register.css" />
+	<link rel="stylesheet" href="resources/scss/google.css" />
+	<link rel="stylesheet" href="resources/css/styleResponse.css" />
+
+	<link rel="stylesheet"
+		href="resources/sfonts/web-icons/web-icons.min.css" />
+	<link rel="stylesheet"
+		href="resources/sfonts/brand-icons/brand-icons.min.css" />
+	<link rel='stylesheet'
+		href='http://fonts.googleapis.com/css?family=Roboto:300,400,500,300italic' />
+
+	<script
+		src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js">
+	</script>
+
+	<script>
+		function start() {
+			gapi.load('auth2', function() {
+				auth2 = gapi.auth2.init({
+					client_id : '1098661566384-qutbcacnfcp8in0702cs9envseodo6gp.apps.googleusercontent.com',
+				// Scopes to request in addition to 'profile' and 'email'
+				//scope: 'additional_scope'
+				});
+			});
+		}
+	</script>
+
+</h:head>
+<h:body styleClass="animsition page-register-v2 layout-full page-dark">
+
+	<!-- Page -->
+	<div class="page" data-animsition-in="fade-in"
+		data-animsition-out="fade-out">
+		<div class="page-content">
+			<div class="page-brand-info">
+				<div class="brand">
+					<img class="brand-img" src="resources/images/logo@2x.png"
+						alt="Blue Roots" />
+					<h2 class="brand-text font-size-40">Blue Roots</h2>
+				</div>
+				<p class="font-size-20">#{msg['Slogan']}</p>
+			</div>
+			<div
+				class="page-register-main animation-slide-left animation-duration-1">
+				<h:panelGroup layout="block" styleClass="page-register-v2">
+					<div class="brand hidden-md-up">
+						<a href="index.xhtml"><img class="brand-img"
+							src="resources/images/logo-blue@2x.png" alt="Blue Roots" /></a>
+						<h3 class="brand-text font-size-40">Blue Roots</h3>
+					</div>
+
+					<h:panelGroup layout="block" class="col-sm-12 text-sm-right">
+						<ui:insert name="languageLayout">
+							<ui:include src="language.xhtml" />
+						</ui:insert>
+					</h:panelGroup>
+
+					<h3 class="font-size-24">#{msg['Register']}</h3>
+					
+					<h:panelGroup layout="block" styleClass="form-group">
+						<div class="g-signin2" data-onsuccess="onSignIn"></div>
+					</h:panelGroup>
+					
+					<h:panelGroup layout="block">
+						<h:form id="googleForm">
+							<h:inputText id="googleTok" value="#{mySessionBean.googleToken}"
+								style="display:none" />
+							<h:commandButton id="googleBtn"
+								action="#{mySessionBean.loginUserWithGoogle()}"
+								style="display:none" />
+							<h:message for="googleForm" style="color:red" />
+						</h:form>
+					</h:panelGroup>
+					<h:panelGroup layout="block" class="col-sm-12 text-sm-center">
+						<span class="other">#{msg['Or']}</span>
+					</h:panelGroup>
+
+					<h:panelGroup layout="block" styleClass="form-group">
+						<h:form enctype="multipart/form-data">
+							<o:outputLabel for="file" value="" />
+							<o:inputFile id="file" value="#{createUserBean.file}"
+								accept="image/*" acceptMessage="#{msg['WrongFile']} {2}"
+								maxsize="#{1024 * 1024}" maxsizeMessage="#{msg['SizeFile']} {2}">
+								<f:ajax listener="#{createUserBean.read()}" render="@form" />
+							</o:inputFile>
+							<h:message id="file_m" for="file" />
+							<o:graphicImage value="#{createUserBean.photo}" id="photoUser"
+								dataURI="true" width="200"
+								rendered="#{not empty createUserBean.photo}" />
+						</h:form>
+					</h:panelGroup>
+
+
+					<h:form id="createUserForm" enctype="multipart/form-data"
+						method="POST">
+
+						<h:panelGroup layout="block" styleClass="form-group">
+							<h:outputLabel class="sr-only" value="#{msg['Name']}" />
+							<h:inputText type="text" class="form-control"
+								a:placeholder="#{msg['Name']} *" a:autocomplete="off"
+								value="#{createUserBean.fullName}" name="fullName" id="fullName"
+								required="true" requiredMessage="#{msg['NULL_OR_EMPTY_FIELDS']}"
+								validatorMessage="#{msg['NULL_OR_EMPTY_FIELDS']}">
+								<f:validateRegex pattern=".*[\S]+.*" />
+							</h:inputText>
+						</h:panelGroup>
+						<h:panelGroup layout="block" class="col-sm-12">
+							<h:message for="fullName" styleClass="error" />
+						</h:panelGroup>
+
+
+						<h:panelGroup layout="block" styleClass="form-group">
+							<h:outputLabel class="sr-only" value="#{msg['E-mail']}" />
+							<h:inputText type="text" class="form-control"
+								a:placeholder="#{msg['E-mail']} *" a:autocomplete="off"
+								required="true" name="newEmail" id="newEmail"
+								value="#{createUserBean.newEmail}"
+								requiredMessage="#{msg['Field']} #{msg['E-mail']} #{msg['is']} #{msg['Required']}!"
+								validatorMessage="#{msg['NULL_OR_EMPTY_FIELDS']}">
+								<f:validateRegex
+									pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+							</h:inputText>
+						</h:panelGroup>
+						<h:panelGroup layout="block" class="col-sm-12">
+							<h:message for="newEmail" styleClass="error" />
+						</h:panelGroup>
+
+
+						<h:panelGroup layout="block" styleClass="form-group">
+							<h:outputLabel class="sr-only" value="#{msg['Password']}" />
+							<h:inputSecret a:autocomplete="off"
+								a:placeholder="#{msg['Password']} *" styleClass="form-control"
+								required="true" name="newPassw" id="newPassw"
+								requiredMessage="#{msg['Field']} #{msg['Password']} #{msg['is']} #{msg['Required']}!"
+								validatorMessage="#{msg['Password']} #{msg['RequiredField']}"
+								value="#{createUserBean.newPassw}">
+								<f:validateRegex pattern="[a-zA-Z0-9]+" />
+							</h:inputSecret>
+						</h:panelGroup>
+						<h:panelGroup layout="block" styleClass="form-group">
+							<h:message for="newPasswConfirm" styleClass="error " />
+							<o:validateEqual id="equal" components="newPassw newPasswConfirm"
+								message="#{msg['PassWordNotEqual']}" showMessageFor="newPassw" />
+						</h:panelGroup>
+						<h:panelGroup layout="block" class="col-sm-12">
+							<h:message for="newPassw" styleClass="error" />
+						</h:panelGroup>
+
+						<h:panelGroup layout="block" styleClass="form-group">
+							<h:outputLabel class="sr-only" value="#{msg['Repeat']}" />
+							<h:inputSecret a:autocomplete="off"
+								a:placeholder="#{msg['Repeat']} #{msg['Password']}"
+								styleClass="form-control" required="true" name="newPasswConfirm"
+								id="newPasswConfirm"
+								requiredMessage="#{msg['Field']} #{msg['ConfirmPassword']} #{msg['is']} #{msg['Required']}!"
+								validatorMessage="#{msg['Password']} #{msg['RequiredField']}"
+								value="#{createUserBean.newPasswConfirm}">
+								<f:validateRegex pattern="[a-zA-Z0-9]+" />
+							</h:inputSecret>
+						</h:panelGroup>
+
+						<h:panelGroup layout="block">
+							<h:message for="createUserForm"
+								styleClass="#{styleResponse.cssClass}" />
+						</h:panelGroup>
+						<h:panelGroup layout="block">
+							<h:outputText value=""
+								rendered="#{facesContext.postback and not facesContext.validationFailed}" />
+						</h:panelGroup>
+
+						<h:panelGroup layout="block" class="row">
+							<h:panelGroup layout="block" class="col-md-12 p-y-1">
+								<p:captcha id="captchaID"
+									requiredMessage="#{msg['CaptchaMessage']}" />
+								<h:message for="captchaID" styleClass="error" />
+
+								<!-- <div class="g-recaptcha" data-sitekey="6LeYgCQUAAAAAGGitPBuFg6k5_TWbxKBtfVux2-u"></div> -->
+							</h:panelGroup>
+						</h:panelGroup>
+
+						<div class="form-group clearfix">
+							<div
+								class="checkbox-custom checkbox-inline checkbox-primary float-left">
+							</div>
+
+						</div>
+						<h:commandButton styleClass="btn btn-primary btn-block"
+							action="#{createUserBean.createUser()}"
+							value="#{msg['CreateAccount']}">
+							<f:ajax execute="@form" render="@form" />
+						</h:commandButton>
+
+					</h:form>
+					<p>
+						#{msg['Msg6']} <a href="index.xhtml">#{msg['SignIn']}</a>
+					</p>
+
+
+
+
+					<footer class="page-copyright">
+						<p>#{msg['Work']} : Catarina Gomes | Rui Navalho</p>
+						<p>Blue Roots © 2017</p>
+					</footer>
+				</h:panelGroup>
+			</div>
+		</div>
+	</div>
+
+	<!-- 	<script src='https://www.google.com/recaptcha/api.js'></script> -->
+	<script>
+	function onSignIn(googleUser) {
+  		var profile = googleUser.getBasicProfile();
+  		var googleToken = googleUser.getAuthResponse().id_token;
+  		document.getElementById("googleForm:googleTok").value=googleToken;
+  		var auth2 = gapi.auth2.getAuthInstance();
+  		auth2.disconnect();
+  		var btn = document.getElementById("googleForm:googleBtn");
+  		btn.click();
+	}
+	</script>
+	<script src="https://apis.google.com/js/platform.js" async="async"
+		defer="defer"></script>
+
+</h:body>
+</html>

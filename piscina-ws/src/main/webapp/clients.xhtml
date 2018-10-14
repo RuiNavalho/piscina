@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+	<title>Blue Roots</title>
+	<f:view contentType="text/html" locale="#{multilanguage.locale}" />
+	<link href="resources/css/jquery.dataTables.css" rel="stylesheet" />
+	<link href="resources/css/responsive.dataTables.css" rel="stylesheet" />
+	<style type="text/css" class="init">
+div.container {
+	max-width: 1200px
+}
+</style>
+
+	<script type="text/javascript" src="//code.jquery.com/jquery-1.12.3.js" />
+	<script type="text/javascript" src="resources/js/jquery.dataTables.js" />
+	<script type="text/javascript"
+		src="resources/js/dataTables.responsive.js" />
+	<script type="text/javascript" class="init">
+
+$(document).ready(function() {
+	$('#clients').DataTable( {
+		"language": {
+            "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Portuguese.json"
+        },
+		
+        lengthMenu: [
+            [10, 25, 50, -1],
+            [10, 25, 50, "All"]
+        ],
+        filter: true,
+        sort: true,
+        info: true,
+        autoWidth: true,
+        order: [
+            [0, "asc"]
+        ],
+		responsive: true,
+		columnDefs: [
+			{ responsivePriority: 1, targets: 0 },
+			{ responsivePriority: 1, targets: -1 }
+		]
+	} );
+		
+} );
+	</script>
+	<link href="resources/css/primefaces.css" rel="stylesheet" />
+	<link href="resources/css/style.css" rel="stylesheet" />
+	<link href="resources/css/custom.css" rel="stylesheet" />
+	<link rel="shortcut icon" type="image/png"
+		href="resources/images/favicon.ico" />
+
+</h:head>
+<h:body class="navbar-fixed sidebar-nav fixed-nav">
+
+	<!-- Header -->
+	<header class="navbar">
+		<h:panelGroup layout="block" class="container-fluid">
+			<ui:insert name="mtopLayout">
+				<ui:include src="mtop.xhtml" />
+			</ui:insert>
+		</h:panelGroup>
+	</header>
+
+	<!-- Sidebar -->
+	<h:panelGroup layout="block" class="sidebar">
+		<nav class="sidebar-nav">
+			<ui:insert name="mleftLayout">
+				<ui:include src="mleft.xhtml" />
+			</ui:insert>
+		</nav>
+	</h:panelGroup>
+
+	<!-- Main content -->
+	<h:panelGroup layout="block" class="main">
+		<!-- Breadcrumb -->
+		<ol class="breadcrumb r-0">
+			<li>#{msg['Home']}</li>
+			<li>#{msg['Companies']}</li>
+		</ol>
+		<h:panelGroup layout="block" class="container-fluid">
+			<h:panelGroup layout="block" class="animated fadeIn">
+
+				<h:panelGroup layout="block" class="row">
+					<h:panelGroup layout="block" class="col-md-12">
+						<h:panelGroup layout="block" class="card">
+							<h:panelGroup layout="block" class="card-block">
+
+								<h:panelGroup layout="block" styleClass="col-sm-10">
+									<h:panelGroup layout="block" styleClass="icons-Text">
+										<i class="fa fa-files-o" aria-hidden="true"></i>
+									</h:panelGroup>
+									<h3 class="card-title clearfix m-b-0">#{msg['Companies']}</h3>
+								</h:panelGroup>
+								<h:panelGroup layout="block" class="col-sm-2 text-sm-right">
+									<h:panelGroup layout="block" class="col-sm-12"
+										rendered="#{mySessionBean.directorRole}">
+										<h:form>
+											<h:commandLink action="clients_new.xhtml?faces-redirect=true"
+												value="+" class="btn btn-primary btnBig">
+												<f:actionListener
+													binding="#{createClientBean.cleanFields()}" />
+											</h:commandLink>
+										</h:form>
+									</h:panelGroup>
+								</h:panelGroup>
+								<h:panelGroup layout="block" class="col-sm-12 p-y-2">
+									<hr class="m-a-0" />
+								</h:panelGroup>
+								<h:panelGroup layout="block" class="row">
+
+									<h:panelGroup layout="block" class="col-md-12">
+
+										<h:panelGroup layout="block" class="col-md-12">
+											<h:panelGroup layout="block" class="col-md-12">
+												<h:form id="clientsListForm">
+												
+													<h:panelGroup layout="block"
+														class="col-md-12 p-y-1 text-md-right">
+														<h:commandLink>
+															<p:graphicImage value="resources/images/pdf.png" />
+															<p:dataExporter type="pdf" target="clientsListX"
+																fileName="clients" pageOnly="false" />
+														</h:commandLink>
+
+														<h:commandLink>
+															<p:graphicImage value="resources/images/csv.png" />
+															<p:dataExporter type="csv" target="clientsListX"
+																fileName="clients" pageOnly="false" />
+														</h:commandLink>
+
+														<h:commandLink>
+															<p:graphicImage value="resources/images/xml.png" />
+															<p:dataExporter type="xml" target="clientsListX"
+																fileName="clients" pageOnly="false" />
+														</h:commandLink>
+													</h:panelGroup>
+
+
+													<p:dataTable id="clientsListX"
+														value="#{listClientsBean.clientsList}"
+														var="clientExp" style="display:none">
+														<p:column>
+															<f:facet name="header">
+																<h:outputText value="#{msg['Name']}" />
+															</f:facet>
+															<h:outputText value="#{clientExp.company}" />
+														</p:column>
+														<p:column>
+															<f:facet name="header">
+																<h:outputText value="#{msg['Address']}" />
+															</f:facet>
+															<h:outputText value="#{clientExp.address}" />
+														</p:column>
+														<p:column>
+															<f:facet name="header">
+																<h:outputText value="#{msg['BusinessArea']}" />
+															</f:facet>
+															<h:outputText value="#{clientExp.businessDto.area}" />
+														</p:column>
+														<p:column>
+															<f:facet name="header">
+																<h:outputText value="#{msg['NameContact']}" />
+															</f:facet>
+															<h:outputText value="#{clientExp.contact}" />
+														</p:column>
+														<p:column>
+															<f:facet name="header">
+																<h:outputText value="#{msg['Phone']}" />
+															</f:facet>
+															<h:outputText value="#{clientExp.phone}" />
+														</p:column>
+														<p:column>
+															<f:facet name="header">
+																<h:outputText value="#{msg['NumberOfProjects']}" />
+															</f:facet>
+															<h:outputText value="#{clientExp.numeroProjetos}" />
+														</p:column>
+														<p:column>
+															<f:facet name="header">
+																<h:outputText value="#{msg['BudgetTotal']}" />
+															</f:facet>
+															<h:outputText value="#{clientExp.budgetTotal}" />
+														</p:column>
+													</p:dataTable>
+
+													<h:panelGroup layout="block" class="container">
+														<section>
+
+															<table id="clients" class="display nowrap"
+																cellspacing="0" width="100%">
+																<thead>
+																	<tr>
+																		<th>#{msg['Name']}</th>
+																		<th>#{msg['Address']}</th>
+																		<th>#{msg['BusinessArea']}</th>
+																		<th>#{msg['NameContact']}</th>
+																		<th>#{msg['Phone']}</th>
+																		<th>#{msg['NumberOfProjects']}</th>
+																		<th>#{msg['BudgetTotal']}</th>
+																		<th></th>
+																	</tr>
+																</thead>
+																<tbody>
+																	<ui:repeat id="clientsList" var="client"
+																		value="#{listClientsBean.clientsList}">
+																		<tr>
+																			<td><h:outputText value="#{client.company}" /></td>
+																			<td><h:outputText value="#{client.address}" /></td>
+																			<td><h:commandLink
+																					action="business_edit.xhtml?faces-redirect=true"
+																					class="label label-pill label-info"
+																					value="#{client.businessDto.area}"
+																					actionListener="#{listBusinessesBean.setSelectedBusiness(client.businessDto)}">
+																					<f:actionListener
+																						binding="#{listBusinessesBean.updateBusinessStatsDto()}" />
+																				</h:commandLink></td>
+																			<td><h:outputText value="#{client.contact}" /></td>
+																			<td><h:outputText value="#{client.phone}" /></td>
+																			<td><h:outputText
+																					value="#{client.numeroProjetos}" /></td>
+																			<td><h:outputText value="#{client.budgetTotal}">
+																					<f:convertNumber locale="#{multilanguage.locale}" />
+																				</h:outputText> €</td>
+																			<td><h:commandLink
+																					class="btn btn-info btn-xs icon-pencil"
+																					action="clients_edit.xhtml?faces-redirect=true"
+																					value=""
+																					actionListener="#{listClientsBean.setSelectedClient(client)}" />
+																			</td>
+																		</tr>
+																	</ui:repeat>
+																</tbody>
+															</table>
+
+														</section>
+													</h:panelGroup>
+
+												</h:form>
+											</h:panelGroup>
+										</h:panelGroup>
+
+
+									</h:panelGroup>
+
+								</h:panelGroup>
+								<!--/.row-->
+
+
+							</h:panelGroup>
+						</h:panelGroup>
+					</h:panelGroup>
+					<!--/.col-->
+				</h:panelGroup>
+				<!--/.row-->
+
+			</h:panelGroup>
+			<!--/.animated -->
+		</h:panelGroup>
+		<!-- /.container-fluid -->
+
+	</h:panelGroup>
+	<!-- /.main -->
+
+	<!-- Footer -->
+	<ui:insert name="footerLayout">
+		<ui:include src="footer.xhtml" />
+	</ui:insert>
+
+	<!-- JS -->
+	<script src="resources/js/libs/bootstrap.min.js"></script>
+	<script src="resources/js/app.js"></script>
+</h:body>
+</html>

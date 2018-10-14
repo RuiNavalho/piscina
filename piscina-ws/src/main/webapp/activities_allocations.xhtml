@@ -1,0 +1,446 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui"
+	xmlns:hf="http://highfaces.org">
+
+<ui:composition>
+	<f:view contentType="text/html" locale="#{multilanguage.locale}" />
+	<link href="resources/css/jquery.dataTables.css" rel="stylesheet" />
+	<link href="resources/css/responsive.dataTables.css" rel="stylesheet" />
+
+	<script type="text/javascript" src="resources/js/jquery.dataTables.js" />
+	<script type="text/javascript"
+		src="resources/js/dataTables.responsive.js" />
+	<script type="text/javascript" class="init">
+
+$(document).ready(function() {
+	$('#alocacoes').DataTable( {
+		"language": {
+            "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Portuguese.json"
+        },
+        filter: false,
+        sort: false,
+        info: true,
+        autoWidth: true,
+        bPaginate: false,
+        order: [
+            [0, "asc"]
+        ],
+		responsive: true,
+		columnDefs: [
+			{ responsivePriority: 1, targets: 0 },
+			{ responsivePriority: 1, targets: -1 },
+			{ responsivePriority: 2, targets: -2 }
+		]
+	} );
+		
+} );
+	</script>
+
+	<h:panelGroup layout="block" class="col-md-12 bkg-color1">
+			#{msg['ManageAllocations']}
+	</h:panelGroup>
+
+
+	<h:panelGroup layout="block" class="col-md-12  p-y-2">
+
+		<h:panelGroup layout="block" class="row">
+
+			<h:panelGroup layout="block" class="col-sm-12">
+
+				<h:panelGroup layout="block" class="col-md-2">
+					<strong>#{msg['ActivityName']}:</strong>
+					<h6 class="no-bold">
+						<h:outputText value="#{listTasksBean.selectedTask.taskName}" />
+					</h6>
+				</h:panelGroup>
+
+				<h:panelGroup layout="block" class="col-md-2 bLeft">
+					<strong>#{msg['ActivityBegin']}:</strong>
+					<br />
+					<p:calendar value="#{listTasksBean.selectedTask.beginDate}"
+						disabled="true" styleClass="" locale="#{multilanguage.locale}">
+					</p:calendar>
+				</h:panelGroup>
+
+				<h:panelGroup layout="block" class="col-md-2 bLeft">
+					<strong>#{msg['ActivityEnd']}:</strong>
+					<br />
+					<p:calendar value="#{listTasksBean.selectedTask.endDate}"
+						disabled="true" styleClass="" locale="#{multilanguage.locale}">
+					</p:calendar>
+				</h:panelGroup>
+
+				<h:panelGroup layout="block" class="col-md-3 bLeft">
+					<strong>#{msg['ExecutedPercentage']}:</strong>
+					<br />
+					<h:outputText
+						value="#{listTasksBean.selectedTask.executedPercentageEstimate}" />%
+				</h:panelGroup>
+
+				<h:panelGroup layout="block" class="col-md-3 bLeft text-md-right">
+					<p:commandButton styleClass="btn btn-primary btn-sm btn-primefaces"
+						update="myFormGraphic" value="#{msg['AllocationsChart']}"
+						actionListener="#{chartAllocations.findTaskAllocationsChart(listTasksBean.selectedTask)}"
+						onclick="$('#myModalGraphic').modal('show')">
+					</p:commandButton>
+				</h:panelGroup>
+
+				<h:panelGroup layout="block" class="col-md-12">
+					<hr />
+				</h:panelGroup>
+
+			</h:panelGroup>
+
+		</h:panelGroup>
+
+
+		<h:panelGroup layout="block" class="row">
+
+			<h:panelGroup layout="block" styleClass="col-md-12 p-y-1"
+				id="usersTable">
+
+
+
+				<h:form id="userListAllocForm">
+
+					<h:panelGroup layout="block" class="col-md-9 p-y-2">
+						<span class="header-list">#{msg['AllocationsInActivity']}:</span> #{listTasksBean.selectedTask.taskName}
+						</h:panelGroup>
+
+					<h:panelGroup layout="block" class="col-md-3 p-y-1 text-md-right">
+						<h:commandLink>
+							<p:graphicImage value="resources/images/pdf.png" />
+							<p:dataExporter type="pdf" target="allocsListX"
+								fileName="alocacoes" pageOnly="false" />
+						</h:commandLink>
+
+						<h:commandLink>
+							<p:graphicImage value="resources/images/csv.png" />
+							<p:dataExporter type="csv" target="allocsListX"
+								fileName="alocacoes" pageOnly="false" />
+						</h:commandLink>
+
+						<h:commandLink>
+							<p:graphicImage value="resources/images/xml.png" />
+							<p:dataExporter type="xml" target="allocsListX"
+								fileName="alocacoes" pageOnly="false" />
+						</h:commandLink>
+					</h:panelGroup>
+
+
+					<p:dataTable id="allocsListX"
+						value="#{listTasksBean.findTaskAllocations()}" var="alocExp"
+						style="display:none">
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="#{msg['ProjectId']}" />
+							</f:facet>
+							<h:outputText value="#{alocExp.projectId}" />
+						</p:column>
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="#{msg['Resource']}" />
+							</f:facet>
+							<h:outputText value="#{alocExp.workerName}" />
+						</p:column>
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="#{msg['AllocationBegin']}" />
+							</f:facet>
+							<h:outputText value="#{alocExp.beginDate}" />
+						</p:column>
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="#{msg['AllocationEnd']}" />
+							</f:facet>
+							<h:outputText value="#{alocExp.endDate}" />
+						</p:column>
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="#{msg['AllocationPercentage']}" />
+							</f:facet>
+							<h:outputText value="#{alocExp.allocPercentage}" />
+						</p:column>
+					</p:dataTable>
+
+					<h:panelGroup layout="block" styleClass="col-md-12 p-y-1">
+						<div class="" id="alocRegists">
+							<section>
+
+								<table id="alocacoes" class="display nowrap" cellspacing="0"
+									width="100%">
+									<thead>
+										<tr>
+											<th>#{msg['ProjectId']}</th>
+											<th>#{msg['Resource']}</th>
+											<th>#{msg['AllocationBegin']}</th>
+											<th>#{msg['AllocationEnd']}</th>
+											<th>#{msg['AllocationPercentage']}</th>
+											<th></th>
+											<th></th>
+										</tr>
+									</thead>
+									<tbody>
+										<ui:repeat id="allocsList" var="alloc"
+											value="#{listTasksBean.findTaskAllocations()}">
+											<tr>
+												<td><h:outputText value="#{alloc.projectId}" /></td>
+												<td><h:outputText value="#{alloc.workerName}" /></td>
+												<td><p:calendar value="#{alloc.beginDate}"
+														disabled="true" styleClass=""
+														locale="#{multilanguage.locale}">
+													</p:calendar></td>
+												<td><p:calendar value="#{alloc.endDate}"
+														disabled="true" styleClass=""
+														locale="#{multilanguage.locale}">
+													</p:calendar></td>
+												<td class="text-md-center"><h:outputText
+														value="#{alloc.allocPercentage}" />%</td>
+												<td><h:panelGroup layout="block"
+														rendered="#{mySessionBean.directorRole || listTasksBean.selectedTask.managerEmail eq mySessionBean.loggedUser.email}">
+														<p:commandButton
+															class="btn btn-info btn-xs icon-trash btn-primefaces"
+															value=""
+															actionListener="#{listTasksBean.setSelectedTaskAllocation(alloc)}"
+															oncomplete="$('#myModal').modal('show')"
+															rendered="#{alloc.beginDate gt tabs.hoje}" />
+													</h:panelGroup></td>
+												<td><h:panelGroup layout="block"
+														rendered="#{mySessionBean.directorRole || listTasksBean.selectedTask.managerEmail eq mySessionBean.loggedUser.email}">
+														<p:commandButton
+															class="btn btn-info btn-xs icon-pencil btn-primefaces"
+															value="" oncomplete="$('#myModalEdit').modal('show')"
+															rendered="#{alloc.endDate gt tabs.hoje}"
+															update="myFormEdit"
+															actionListener="#{listTasksBean.setSelectedTaskAllocation(alloc)}" />
+													</h:panelGroup></td>
+											</tr>
+										</ui:repeat>
+									</tbody>
+								</table>
+
+							</section>
+
+						</div>
+					</h:panelGroup>
+
+					<h:panelGroup layout="block"
+						styleClass="col-md-12 #{styleResponse.cssClass}">
+						<h:message for="userListAllocForm" />
+					</h:panelGroup>
+
+				</h:form>
+
+
+			</h:panelGroup>
+			<h:panelGroup layout="block" class="text-sm-right" id="boxMsg"
+				rendered="#{mySessionBean.directorRole || listTasksBean.selectedTask.managerEmail eq mySessionBean.loggedUser.email}">
+				<h:form>
+					<h:panelGroup layout="block" styleClass="col-md-12">
+						<p:commandButton class="btn btn-info btn-md btn-primefaces"
+							value="#{msg['Add']} #{msg['New']}"
+							action="#{tabs.showPanel('activities_allocations_list')}"
+							update="datesPanel @all">
+							<f:actionListener
+								binding="#{listTasksBean.setShowResources(false)}" />
+							<f:actionListener binding="#{listTasksBean.cleanTasksDates()}" />
+						</p:commandButton>
+					</h:panelGroup>
+					<h:panelGroup layout="block"
+						styleClass="col-md-12 #{styleResponse.cssClass}">
+						<h:message for="myFormRemove:controlForm" />
+					</h:panelGroup>
+				</h:form>
+
+			</h:panelGroup>
+		</h:panelGroup>
+
+
+
+	</h:panelGroup>
+
+	<h:panelGroup layout="block" class="col-md-12" id="datesPanel">
+
+		<ui:insert>
+			<ui:include src="#{tabs.pagina}.xhtml" />
+		</ui:insert>
+
+	</h:panelGroup>
+
+
+	<!-- Modal Remove Alloc -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+		aria-labelledby="myModal" aria-hidden="true" data-keyboard="false"
+		data-backdrop="false" data-closable="true" style="top: 80px">
+		<div class="modal-dialog modal-md">
+			<div class="modal-content">
+				<h:form id="myFormRemove">
+					<div class="modal-header">
+						<h4 class="modal-title">#{msg['RemoveAllocation']}</h4>
+					</div>
+					<div class="">
+
+						<h:panelGroup layout="block" class="col-md-12 p-y-1">
+
+							<h:panelGroup layout="block"
+								class="col-md-12 text-md-center p-y-1">
+								<h:panelGroup layout="block" class="col-md-12 text-md-center">
+									<h6>#{msg['WantToRemoveAllocation']}?</h6>
+								</h:panelGroup>
+							</h:panelGroup>
+							<h:panelGroup layout="block"
+								class="col-md-12 text-md-center p-y-2">
+								<h:form id="controlForm">
+									<h:panelGroup layout="block"
+										styleClass="col-md-6 text-md-right">
+										<p:commandLink value="#{msg['NO']}" immediate="true"
+											class="btn btn-xs btn-info" styleClass="btn btn-default"
+											oncomplete="$('#myModal').modal('hide');" />
+									</h:panelGroup>
+									<h:panelGroup layout="block" styleClass="col-md-6 text-md-left">
+										<h:commandButton class="btn btn-info btn-xs"
+											value="#{msg['YES']}"
+											actionListener="#{listTasksBean.removeWorkerFromTask()}" />
+									</h:panelGroup>
+								</h:form>
+							</h:panelGroup>
+						</h:panelGroup>
+					</div>
+
+					<h:panelGroup layout="block" styleClass="col-md-12">
+						<h:message for="myFormRemove" />
+					</h:panelGroup>
+
+					<h:panelGroup layout="block" styleClass="modal-footer">
+
+					</h:panelGroup>
+
+				</h:form>
+			</div>
+		</div>
+	</div>
+
+
+	<!-- Modal Alloc Update Dates -->
+	<div class="modal fade" id="myModalEdit" tabindex="-1" role="dialog"
+		aria-labelledby="myModalEdit" aria-hidden="true" data-keyboard="false"
+		data-backdrop="false" data-closable="true" style="top: 80px">
+		<div class="modal-dialog modal-md">
+			<div class="modal-content">
+				<h:form id="myFormEdit">
+					<div class="modal-header">
+						<h4 class="modal-title">#{msg['AllocationDates']}</h4>
+					</div>
+					<div class="">
+
+						<h:panelGroup layout="block" class="col-md-12 p-y-1">
+
+							<h:panelGroup layout="block" class="col-md-12">
+								<h:panelGroup layout="block" class="col-md-12"
+									rendered="#{listTasksBean.selectedTaskAllocation.beginDate gt tabs.hoje}">
+									<p class="error">#{msg['ChangeBeginAllocationDate']}.</p>
+								</h:panelGroup>
+
+								<h:panelGroup layout="block" class="col-md-12"
+									rendered="#{listTasksBean.selectedTaskAllocation.beginDate le tabs.hoje}">
+									<p class="error">#{msg['CannotChangeBeginAllocationDate']}.</p>
+								</h:panelGroup>
+
+								<h:panelGroup layout="block" class="form-group col-sm-6">
+									<h:outputLabel for="beginDate1" value="Início Alocação" />
+									<p:calendar id="beginDate1" styleClass="form-control input-off"
+										value="#{listTasksBean.selectedTaskAllocation.beginDate}"
+										locale="#{multilanguage.locale}" disabled="true">
+									</p:calendar>
+									<h:message for="beginDate1" styleClass="error" />
+								</h:panelGroup>
+
+								<h:panelGroup layout="block" class="form-group col-sm-6">
+									<h:outputLabel for="endDate1" value="Fim Alocação" />
+									<p:calendar id="endDate1" styleClass="form-control"
+										value="#{listTasksBean.selectedTaskAllocation.endDate}"
+										maxdate="#{listTasksBean.selectedTask.endDate}"
+										mindate="#{listTasksBean.selectedTaskAllocation.beginDate}"
+										disabledWeekends="true" required="true"
+										locale="#{multilanguage.locale}"
+										requiredMessage="#{msg['NULL_OR_EMPTY_FIELDS']}">
+									</p:calendar>
+									<h:message for="endDate1" styleClass="error" />
+								</h:panelGroup>
+							</h:panelGroup>
+							<h:panelGroup layout="block" class="col-md-12">
+								<h:panelGroup layout="block" styleClass="col-md-6">
+									<h:commandButton class="btn btn-info btn-xs btn-primefaces"
+										value="#{msg['Update']}"
+										actionListener="#{listTasksBean.updateAllocationDates()}" />
+								</h:panelGroup>
+							</h:panelGroup>
+
+						</h:panelGroup>
+					</div>
+
+					<h:panelGroup layout="block" styleClass="modal-footer">
+						<p:commandLink value="#{msg['Close']}" immediate="true"
+							class="btn btn-xs btn-primary" styleClass="btn btn-default"
+							oncomplete="$('#myModalEdit').modal('hide');" />
+					</h:panelGroup>
+
+				</h:form>
+			</div>
+		</div>
+	</div>
+
+	<!-- Modal Graph -->
+	<div class="modal fade" id="myModalGraphic" tabindex="-1" role="dialog"
+		aria-labelledby="myModalGraphic" aria-hidden="true"
+		data-keyboard="false" data-backdrop="false" data-closable="true"
+		style="top: 80px">
+		<div class="modal-dialog modal-md">
+			<div class="modal-content">
+				<h:form id="myFormGraphic">
+					<div class="modal-header">
+						<h4 class="modal-title">#{msg['AllocationsChart']}</h4>
+					</div>
+					<div class="">
+
+						<h:panelGroup layout="block" class="col-md-12 p-y-1">
+
+							<h:panelGroup layout="block" class="col-md-12">
+
+								<p:timeline id="allocTaskGant" value="#{chartAllocations.model}"
+									groupMinHeight="20" min="#{chartAllocations.start}"
+									max="#{chartAllocations.endPlusOne}" editable="false"
+									zoomMin="86400000" moveable="false" eventMargin="10"
+									eventMarginAxis="0" responsive="true"
+									start="#{chartAllocations.start}" end="#{chartAllocations.end}"
+									showNavigation="true" showButtonNew="false" axisOnTop="false"
+									stackEvents="true" locale="#{languages.locale}" />
+							</h:panelGroup>
+						</h:panelGroup>
+					</div>
+
+					<h:panelGroup layout="block" styleClass="col-md-12">
+						<h:message for="myFormGraphic" />
+					</h:panelGroup>
+
+					<h:panelGroup layout="block" styleClass="modal-footer">
+						<p:commandLink value="#{msg['Close']}" immediate="true"
+							class="btn btn-xs btn-primary" styleClass="btn btn-default"
+							oncomplete="$('#myModalGraphic').modal('hide');" />
+					</h:panelGroup>
+
+				</h:form>
+			</div>
+		</div>
+	</div>
+
+</ui:composition>
+
+</html>

@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" xmlns:hf="http://highfaces.org">
+
+<ui:composition>
+	<f:view contentType="text/html" locale="#{multilanguage.locale}" />
+	<link href="resources/css/jquery.dataTables.css" rel="stylesheet" />
+	<link href="resources/css/responsive.dataTables.css" rel="stylesheet" />
+
+	<script type="text/javascript" src="resources/js/jquery.dataTables.js" />
+	<script type="text/javascript"
+		src="resources/js/dataTables.responsive.js" />
+	<script type="text/javascript" class="init">
+		$(document).ready(function() {
+			$('#usersPITable').DataTable( {
+				"language": {
+			        "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Portuguese.json"
+			    },
+				
+			    lengthMenu: [
+			        [10, 25, 50, -1],
+			        [10, 25, 50, "All"]
+			    ],
+			    filter: true,
+			    sort: true,
+			    info: true,
+			    autoWidth: true,
+			    order: [
+			        [0, "asc"]
+			    ],
+				responsive: true,
+				columnDefs: [
+					{ responsivePriority: 1, targets: 0 },
+					{ responsivePriority: 1, targets: -1 }
+				]
+			} );
+		
+		} );
+	</script>
+
+
+
+	<h:panelGroup layout="block" class="col-sm-12" id="relatorio2">
+
+
+		<h:panelGroup layout="block" class="col-sm-12 p-y-2" id="controlPanel"
+			rendered="#{empty listAllocationsBean.workList}">
+			<p class="error">#{msg['NoInformationAvailable']}.</p>
+		</h:panelGroup>
+
+
+		<h:panelGroup layout="block" class="col-md-12 p-y-2"
+			rendered="#{not empty listAllocationsBean.workList}">
+			<h:panelGroup layout="block" class="row">
+				<h:panelGroup layout="block" class="col-sm-9">
+					<h6 class="header-list">
+						#{msg['UserProductivityReport']}:
+						<h:outputText value="#{mySessionBean.loggedUser.email}" />
+					</h6>
+				</h:panelGroup>
+
+				<h:panelGroup layout="block" class="col-sm-3 text-md-right">
+					<p:commandButton styleClass="btn btn-primary btn-sm btn-primefaces"
+						value="#{msg['WhatIs']} UPI?"
+						onclick="$('#myModalUPI').modal('show')">
+					</p:commandButton>
+				</h:panelGroup>
+			</h:panelGroup>
+
+
+		</h:panelGroup>
+
+		<h:panelGroup layout="block" class="col-md-12 p-y-2"
+			rendered="#{not empty listAllocationsBean.workList}">
+
+
+			<hf:chart type="line" xaxisLabel="#{msg['Date']}"
+				yaxisLabel="Performance Index"
+				title="#{msg['User']} #{msg['PerformanceIndex']}">
+				<hf:chartSerie name="Performance Index"
+					value="#{listAllocationsBean.workList}" var="pi"
+					point="#{pi.prodIndex}" tickLabel="#{pi.date}" />
+
+				<hf:chartAxis position="s" title="#{msg['Date']}" type="datetime"
+					tickAngle="-45" style="font-weight: bold;"
+					format="{value:%d.%m.%Y}" />
+
+				<hf:chartAxis position="w" title="#{msg['PerformanceIndex']}"
+					tickAngle="-45" style="font-weight: bold;" format="{value:.2f}" />
+
+
+				<hf:chartTooltip backgroundColor="#000000" shared="true">
+					<f:facet name="header">
+						<h:outputText escape="false"
+							value="&lt;table>&lt;tr>&lt;td style='color:white;font-weight:bold;padding-right:5px;'>{point.key}&lt;/td>&lt;td style='border-left:1px solid white;padding-left: 10px;'>" />
+					</f:facet>
+					<f:facet name="body">
+						<h:outputText escape="false"
+							value="&lt;span style='color:white'>{series.name}: &lt;b> {point.y:.2f}&lt;/b>&lt;/span>&lt;br/>" />
+					</f:facet>
+					<f:facet name="footer">
+						<h:outputText escape="false" value='&lt;/td>&lt;/tr>&lt;/table>' />
+					</f:facet>
+				</hf:chartTooltip>
+			</hf:chart>
+
+		</h:panelGroup>
+
+		<h:panelGroup layout="block" class="col-md-12 p-y-2"
+			id="reportSearchResultsPI"
+			rendered="#{not empty listAllocationsBean.workList}">
+
+
+				<h:form id="usersPIForm">
+
+					<h:panelGroup layout="block" class="col-md-9 p-y-2">
+						<h6 class="header-list">
+							#{msg['UserProductivityTable']}:
+							<h:outputText value="#{mySessionBean.loggedUser.email}" />
+						</h6>
+					</h:panelGroup>
+
+					<h:panelGroup layout="block" class="col-md-3 p-y-1 text-md-right">
+						<h:commandLink>
+							<p:graphicImage value="resources/images/pdf.png" />
+							<p:dataExporter type="pdf" target="usersPIListX"
+								fileName="usercpispi" pageOnly="false" />
+						</h:commandLink>
+
+						<h:commandLink>
+							<p:graphicImage value="resources/images/csv.png" />
+							<p:dataExporter type="csv" target="usersPIListX"
+								fileName="usercpispi" pageOnly="false" />
+						</h:commandLink>
+
+						<h:commandLink>
+							<p:graphicImage value="resources/images/xml.png" />
+							<p:dataExporter type="xml" target="usersPIListX"
+								fileName="usercpispi" pageOnly="false" />
+						</h:commandLink>
+					</h:panelGroup>
+
+
+					<p:dataTable id="usersPIListX"
+						value="#{listAllocationsBean.workList}" var="workExp"
+						style="display:none">
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="#{msg['WorkedHours']}" />
+							</f:facet>
+							<h:outputText value="#{workExp.hoursWorked}" />
+						</p:column>
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="#{msg['ProducedHours']}" />
+							</f:facet>
+							<h:outputText value="#{workExp.hoursProduced}" />
+						</p:column>
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="#{msg['ProductivityIndex']}" />
+							</f:facet>
+							<h:outputText value="#{workExp.prodIndex}" />
+						</p:column>
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="#{msg['Date']}" />
+							</f:facet>
+							<h:outputText value="#{workExp.date}" />
+						</p:column>
+					</p:dataTable>
+
+					<h:panelGroup layout="block" class="col-sm-12">
+						<section>
+							<table id="usersPITable" class="display nowrap" cellspacing="0"
+								width="100%">
+								<thead>
+									<tr>
+										<th>#{msg['WorkedHours']}</th>
+										<th>#{msg['ProducedHours']}</th>
+										<th>#{msg['ProductivityIndex']}</th>
+										<th>#{msg['Date']}</th>
+									</tr>
+								</thead>
+								<tbody>
+									<ui:repeat id="usersPIList" var="work"
+										value="#{listAllocationsBean.workList}">
+										<tr>
+											<td><h:outputText value="#{work.hoursWorked}" /></td>
+											<td><h:outputText value="#{work.hoursProduced}" /></td>
+											<td class="text-md-center"><h:outputText
+													value="#{work.prodIndex}" rendered="#{work.prodIndex == 1}"
+													style="color:grey; font-weight: bold;" /> <h:outputText
+													value="#{work.prodIndex}" rendered="#{work.prodIndex gt 1}"
+													style="color:green; font-weight: bold;" /> <h:outputText
+													value="#{work.prodIndex}" rendered="#{work.prodIndex lt 0}"
+													style="color:red; font-weight: bold;" /> <h:outputText
+													value="#{work.prodIndex}"
+													rendered="#{work.prodIndex lt 1 and work.prodIndex ge 0}"
+													style="color:orange; font-weight: bold;" /></td>
+											<td><h:outputText value="#{work.date}">
+													<f:convertDateTime type="date" pattern="dd-MM-yyyy" />
+												</h:outputText></td>
+										</tr>
+									</ui:repeat>
+								</tbody>
+							</table>
+
+						</section>
+					</h:panelGroup>
+				</h:form>
+
+
+		</h:panelGroup>
+
+	</h:panelGroup>
+
+
+	<!-- Modal Graph -->
+	<div class="modal fade" id="myModalUPI" tabindex="-1" role="dialog"
+		aria-labelledby="myModalUPI" aria-hidden="true" data-keyboard="false"
+		data-backdrop="false" data-closable="true" style="top: 80px">
+		<div class="modal-dialog modal-md">
+			<div class="modal-content">
+				<h:form id="upiForm">
+					<div class="modal-header">
+						<h4 class="modal-title">UPI</h4>
+					</div>
+					<div class="">
+
+						<h:panelGroup layout="block" class="col-md-12 p-y-1">
+
+							<h:panelGroup layout="block" class="col-md-12">
+
+								<h6>#{msg['WhatIs']} UPI?</h6>
+								<p>#{msg['UPI']}</p>
+
+							</h:panelGroup>
+						</h:panelGroup>
+					</div>
+
+
+					<h:panelGroup layout="block" styleClass="modal-footer">
+						<p:commandLink value="#{msg['Close']}" immediate="true"
+							class="btn btn-xs btn-primary" styleClass="btn btn-default"
+							oncomplete="$('#myModalUPI').modal('hide');" />
+					</h:panelGroup>
+
+				</h:form>
+			</div>
+		</div>
+	</div>
+
+
+</ui:composition>
+
+</html>

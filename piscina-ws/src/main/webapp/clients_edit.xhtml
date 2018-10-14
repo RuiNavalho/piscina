@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui">
+<h:head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+	<title>Blue Roots</title>
+	<f:view contentType="text/html" locale="#{multilanguage.locale}" />
+	<link href="resources/css/bootstrap.min.css" rel="stylesheet" />
+	<link href="resources/css/primefaces.css" rel="stylesheet" />
+	<link href="resources/css/style.css" rel="stylesheet" />
+	<link href="resources/css/custom.css" rel="stylesheet" />
+	<link href="resources/css/fixeb.css" rel="stylesheet" />
+
+	<link rel="shortcut icon" type="image/png"
+		href="resources/images/favicon.ico" />
+
+</h:head>
+<h:body class="navbar-fixed sidebar-nav fixed-nav">
+
+	<!-- Header -->
+	<header class="navbar">
+		<div class="container-fluid">
+			<ui:insert name="mtopLayout">
+				<ui:include src="mtop.xhtml" />
+			</ui:insert>
+		</div>
+	</header>
+
+	<!-- Sidebar -->
+	<div class="sidebar">
+		<nav class="sidebar-nav">
+			<ui:insert name="mleftLayout">
+				<ui:include src="mleft.xhtml" />
+			</ui:insert>
+		</nav>
+	</div>
+
+	<!-- Main content -->
+	<div class="main">
+		<!-- Breadcrumb -->
+		<ol class="breadcrumb r-0">
+			<li>Home</li>
+			<li>#{msg['Company']}</li>
+			<li>#{msg['New']} #{msg['Company']}</li>
+		</ol>
+		<div class="container-fluid">
+			<div class="animated fadeIn">
+
+				<div class="row">
+					<div class="col-md-12">
+						<div class="card">
+							<div class="card-block">
+								<h:panelGroup layout="block" styleClass="">
+									<h:panelGroup layout="block" styleClass="icons-Text">
+										<i class="fa fa-files-o" aria-hidden="true"></i>
+									</h:panelGroup>
+									<h3 class="card-title clearfix m-b-0">#{msg['Company']}</h3>
+								</h:panelGroup>
+								<hr class="m-a-0" />
+								<div class="row">
+									<div class="col-md-12">
+										<h:form id="updateClientDetailForm">
+											<div class="col-md-6 p-y-2">
+
+												<div class="form-group row">
+													<label class="col-md-12 form-control-label"
+														for="text-input">#{msg['Name']}</label>
+													<div class="col-md-12">
+														<h:outputText a:placeholder="Nome" a:autocomplete="off"
+															id="name" name="name" class="form-control input-off"
+															value="#{listClientsBean.selectedClient.company}" />
+													</div>
+												</div>
+
+											</div>
+											<!--/.col-->
+
+											<div class="col-md-6  p-y-2">
+
+												<div class="form-group row">
+
+													<label class="col-md-12 form-control-label"
+														for="text-input">#{msg['BusinessArea']}</label>
+													<div class="col-md-12">
+														<h:outputText id="text-input"
+															class="form-control input-off"
+															value="#{listClientsBean.selectedClient.businessDto.area}" />
+													</div>
+
+												</div>
+
+
+
+											</div>
+											<!--/.col-->
+
+
+
+										</h:form>
+
+									</div>
+
+
+
+									<div class="col-md-12 p-y-1">
+
+
+										<div class="col-md-12 text-md-right">
+											<h:form>
+												<!-- Nav tabs -->
+												<ul class="nav nav-tabs text-md-right" role="tablist">
+													<li class=" #{tabs.activeTab1}"><p:commandLink
+															actionListener="#{tabs.showClient('details',1)}"
+															value="#{msg['Details']}" update="clientPanels @form"
+															process="@form" /></li>
+													<li class=" #{tabs.activeTab2}"><p:commandLink
+															action="#{tabs.showClient('projects',2)}"
+															value="#{msg['CompanyProjects']}" update="clientPanels @form"
+															process="@form" /></li>
+													<li class=" #{tabs.activeTab3}"><p:commandLink
+															action="#{tabs.showClient('graphics',3)}"
+															actionListener="#{chartLine.findClientChartCountAndBudgetDto(listClientsBean.selectedClient)}"
+															value="#{msg['Chart']}" update="clientPanels @form"
+															process="@form">
+															<f:actionListener binding="#{chartLine.setTypeChart('budgetProj')}"/>
+														</p:commandLink></li>
+												</ul>
+											</h:form>
+										</div>
+
+
+
+										<h:panelGroup id="clientPanels">
+											<!-- Tab panes -->
+											<div class="tab-content">
+
+												<div role="tabpanel" class="tab-pane fade in active"
+													id="detalhes">
+
+													<ui:insert>
+														<ui:include src="#{tabs.clientTab}.xhtml" />
+													</ui:insert>
+
+
+												</div>
+												<!--/ end tab2 -->
+
+
+											</div>
+										</h:panelGroup>
+
+										<div class="col-md-12 align-right p-y-1">
+											<h:form>
+												<h:commandButton styleClass="btn btn-default"
+													value="#{msg['Cancel']}"
+													action="clients.xhtml?faces-redirect=true" actionListener="#{tabs.showClient('details',1)}">
+													<f:actionListener binding="#{listClientsBean.findAllClients()}"/>
+												</h:commandButton>
+											</h:form>
+										</div>
+
+
+									</div>
+
+
+
+								</div>
+								<!--/.card-block-->
+
+
+
+							</div>
+						</div>
+					</div>
+					<!--/.col-->
+				</div>
+				<!--/.row-->
+
+
+
+			</div>
+			<!--/.animated -->
+		</div>
+		<!-- /.container-fluid -->
+
+	</div>
+	<!-- /.main -->
+
+
+	<!-- Footer -->
+	<ui:insert name="footerLayout">
+		<ui:include src="footer.xhtml" />
+	</ui:insert>
+
+	<!-- JS -->
+	<script src="resources/js/bootstrap.js"></script>
+	<script src="resources/js/app.js"></script>
+</h:body>
+</html>

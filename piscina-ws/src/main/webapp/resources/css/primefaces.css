@@ -1,0 +1,52 @@
+
+
+
+/* PRIMEFACES */
+
+.ui-datatable thead th {
+    text-align: left !important;
+}
+
+.ui-datatable thead th {
+	border-width: 0px !important;
+	border-style: none !important;
+}
+.ui-state-default {
+    -moz-box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+}
+.ui-state-default {
+	border: none !important;
+	background: none !important;
+}
+
+.ui-datatable tbody td {
+    border-width: 0 !important;
+    border-style: none !important;
+}
+
+.btn-primefaces {
+	background: #62a8ea !important;
+}
+
+.ui-inputfield {
+	color: #55595c !important;
+	opacity:1;
+}
+
+.ui-datepicker {
+    width: 20em !important;
+}
+
+.ui-state-default .ui-icon {
+	border: 1px solid #62a8ea !important;
+}
+
+.ui-radiobutton-icon {
+	border: 1px solid grey !important;
+}
+
+.ui-selectoneradio label {
+    margin-left: 5px !important;
+}

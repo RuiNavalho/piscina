@@ -1,0 +1,49 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<ui:composition>
+
+
+	<h:form method="POST" id="loginWrapper">
+
+		<h:panelGrid columns="7" id="idioms">
+			<p:commandButton id="pt" value="Portuguese" update="menus"
+				style="border:0px; background:url(resources/images/pt_PT.png) no-repeat center; text-indent: -9999px">
+				<p:ajax listener="#{languages.localeChanged('pt_PT')}"
+					update="menus" />
+			</p:commandButton>
+			<p:commandButton id="en" value="English" update="menus"
+				style="border:0px; background:url(resources/images/en.png) no-repeat center; text-indent: -9999px">
+				<p:ajax listener="#{languages.localeChanged('en')}" update="menus" />
+			</p:commandButton>
+
+		</h:panelGrid>
+	</h:form>
+
+	<h:panelGroup id="menus">
+		<h:form>
+			<h:panelGroup id="login">
+				<p:outputLabel value="#{msg['Utilizador']}: " />
+				<p:inputText maxlength="10" id="userName"
+					value="#{mySessionBean.email}">
+					<p:ajax />
+				</p:inputText>
+				<p:outputLabel value="#{msg['Senha']}: " />
+				<p:password maxlength="30" id="userPass"
+					value="#{mySessionBean.passw}">
+					<p:ajax />
+				</p:password>
+				<p:commandButton actionListener="#{mySessionBean.loginUser()}"
+					update="body" value="#{msg['Entrar']}" />
+				<p:outputLabel id="msgLogin" rendered="#{mySessionBean.error}" value="#{msg['Erro']}" styleClass="error"/>
+			</h:panelGroup>
+		</h:form>
+	</h:panelGroup>
+
+
+
+</ui:composition>
+</html>
+

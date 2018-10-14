@@ -1,0 +1,295 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<ui:composition>
+	<link
+		href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+		rel="stylesheet" />
+	<!-- *** Menu Left *** -->
+
+	<ul class="nav">
+		<h:form>
+			<li class="nav-title"><span class="white">.</span></li>
+
+			<h:panelGroup layout="block">
+				<li class="nav-item"><h:commandLink styleClass="nav-link"
+						action="#{tabs.goToPage('dashboard')}">
+						<f:actionListener binding="#{tabs.showProject('details',1)}" />
+						<f:actionListener binding="#{tabs.showActivities('details',1)}" />
+						<f:actionListener binding="#{tabs.showClient('details',1)}" />
+						<f:actionListener binding="#{tabs.showBusiness('details',1)}" />
+						<f:actionListener binding="#{tabs.showRegistoHoras('details',1)}" />
+						<i class="icon-speedometer"></i> #{msg['Dashboard']}</h:commandLink></li>
+			</h:panelGroup>
+
+			<h:panelGroup layout="block"
+				rendered="#{mySessionBean.directorRole or mySessionBean.userRole}">
+				<li class="nav-item nav-dropdown"><a
+					class="nav-link nav-dropdown-toggle" href="#"><i
+						class="icon-layers"></i> #{msg['Projects']} </a>
+					<ul class="nav-dropdown-items">
+						<h:panelGroup
+							rendered="#{mySessionBean.directorRole or mySessionBean.userRole}">
+							<li class="nav-item submenu"><h:commandLink
+									styleClass="nav-link" action="#{tabs.goToPage('projects')}">
+									<f:actionListener binding="#{tabs.showProject('details',1)}" />
+									<f:actionListener binding="#{tabs.showActivities('details',1)}" />
+									<f:actionListener binding="#{tabs.showClient('details',1)}" />
+									<f:actionListener binding="#{tabs.showBusiness('details',1)}" />
+									<f:actionListener
+										binding="#{tabs.showRegistoHoras('details',1)}" />
+									<f:actionListener
+										binding="#{tabs.setProjectInclude('projects_search')}" />
+									<f:actionListener
+										binding="#{tabs.setProjectSearchInclude('none')}" />
+									<f:actionListener binding="#{listProjectsBean.cleanFields()}" />
+									 #{msg['SearchProjects']}</h:commandLink></li>
+						</h:panelGroup>
+
+						<h:panelGroup rendered="#{mySessionBean.directorRole}">
+							<li class="nav-item submenu"><h:commandLink
+									styleClass="nav-link" action="#{tabs.goToPage('projects_new')}">
+									<f:actionListener binding="#{tabs.showProject('details',1)}" />
+									<f:actionListener binding="#{tabs.showActivities('details',1)}" />
+									<f:actionListener binding="#{tabs.showClient('details',1)}" />
+									<f:actionListener binding="#{tabs.showBusiness('details',1)}" />
+									<f:actionListener
+										binding="#{tabs.showRegistoHoras('details',1)}" />
+									<f:actionListener binding="#{createProjectBean.resetFields()}" />
+									<f:actionListener binding="#{listClientsBean.findAllClients()}" />
+									 #{msg['AddNew']}</h:commandLink></li>
+						</h:panelGroup>
+
+						<li class="nav-item submenu"><h:commandLink
+								styleClass="nav-link"
+								action="#{tabs.goToPage('myworking_projects')}">
+								<f:actionListener binding="#{tabs.showProject('details',1)}" />
+								<f:actionListener binding="#{tabs.showActivities('details',1)}" />
+								<f:actionListener binding="#{tabs.showClient('details',1)}" />
+								<f:actionListener binding="#{tabs.showBusiness('details',1)}" />
+								<f:actionListener
+									binding="#{tabs.showRegistoHoras('details',1)}" />
+								 #{msg['MyProjects']}
+								</h:commandLink></li>
+
+						<li class="nav-item submenu"><h:commandLink
+								styleClass="nav-link"
+								action="#{tabs.goToPage('mymanaged_projects')}">
+								<f:actionListener binding="#{tabs.showProject('details',1)}" />
+								<f:actionListener binding="#{tabs.showActivities('details',1)}" />
+								<f:actionListener binding="#{tabs.showClient('details',1)}" />
+								<f:actionListener binding="#{tabs.showBusiness('details',1)}" />
+								<f:actionListener
+									binding="#{tabs.showRegistoHoras('details',1)}" />
+								 #{msg['MyManagedProjects']}
+								</h:commandLink></li>
+
+					</ul></li>
+			</h:panelGroup>
+
+			<h:panelGroup layout="block"
+				rendered="#{mySessionBean.directorRole or mySessionBean.userRole}">
+				<li class="nav-item nav-dropdown"><a
+					class="nav-link nav-dropdown-toggle" href="#"><i
+						class="fa fa-tasks"></i> #{msg['Activities']}</a>
+					<ul class="nav-dropdown-items">
+						<h:panelGroup rendered="#{mySessionBean.directorRole}">
+							<li class="nav-item submenu"><h:commandLink
+									styleClass="nav-link" action="#{tabs.goToPage('activities')}">
+									<f:actionListener binding="#{tabs.showProject('details',1)}" />
+									<f:actionListener binding="#{tabs.showActivities('details',1)}" />
+									<f:actionListener binding="#{tabs.showClient('details',1)}" />
+									<f:actionListener binding="#{tabs.showBusiness('details',1)}" />
+									<f:actionListener
+										binding="#{tabs.showRegistoHoras('details',1)}" />
+									<f:actionListener binding="#{createTaskBean.resetFields()}" />
+									 #{msg['ActivitiesList']}</h:commandLink></li>
+						</h:panelGroup>
+						<h:panelGroup rendered="#{mySessionBean.directorRole}">
+							<li class="nav-item submenu"><h:commandLink
+									styleClass="nav-link"
+									action="#{tabs.goToPage('activities_new')}">
+									<f:actionListener binding="#{tabs.showProject('details',1)}" />
+									<f:actionListener binding="#{tabs.showActivities('details',1)}" />
+									<f:actionListener binding="#{tabs.showClient('details',1)}" />
+									<f:actionListener binding="#{tabs.showBusiness('details',1)}" />
+									<f:actionListener
+										binding="#{tabs.showRegistoHoras('details',1)}" />
+									<f:actionListener binding="#{createTaskBean.resetFields()}" />
+									<f:actionListener
+										binding="#{listProjectsBean.findProjectsForNewTask()}" />
+									<f:actionListener
+										binding="#{createTaskBean.setNewTaskFromProject(false)}" />
+									 #{msg['AddNewa']}
+									</h:commandLink></li>
+
+						</h:panelGroup>
+						<li class="nav-item submenu"><h:commandLink
+								styleClass="nav-link" action="#{tabs.goToPage('myactivities')}">
+								<f:actionListener binding="#{tabs.showProject('details',1)}" />
+								<f:actionListener binding="#{tabs.showActivities('details',1)}" />
+								<f:actionListener binding="#{tabs.showClient('details',1)}" />
+								<f:actionListener binding="#{tabs.showBusiness('details',1)}" />
+								<f:actionListener
+									binding="#{tabs.showRegistoHoras('details',1)}" />
+								 #{msg['MyActivities']}</h:commandLink></li>
+
+					</ul></li>
+			</h:panelGroup>
+
+
+
+			<h:panelGroup layout="block"
+				rendered="#{mySessionBean.directorRole || mySessionBean.userRole}">
+				<li class="nav-item"><h:commandLink styleClass="nav-link"
+						action="#{tabs.goToPage('register')}">
+						<f:actionListener binding="#{tabs.showProject('details',1)}" />
+						<f:actionListener binding="#{tabs.showActivities('details',1)}" />
+						<f:actionListener binding="#{tabs.showClient('details',1)}" />
+						<f:actionListener binding="#{tabs.showBusiness('details',1)}" />
+						<f:actionListener
+							binding="#{workRegisterBean.findWorkRegisterList()}" />
+						<f:actionListener binding="#{tabs.showRegister('details')}" />
+						<f:actionListener binding="#{tabs.showRegistoHoras('details',1)}" />
+						<f:actionListener binding="#{workRegisterBean.cleanFields()}" />
+						<i class="icon-clock"></i> #{msg['RegistrationHours']}
+								</h:commandLink></li>
+			</h:panelGroup>
+
+			<h:panelGroup layout="block" rendered="#{mySessionBean.directorRole}">
+				<li class="nav-item nav-dropdown"><a
+					class="nav-link nav-dropdown-toggle" href="#"><i
+						class="fa fa-files-o"></i> #{msg['Companies']}</a>
+					<ul class="nav-dropdown-items">
+
+						<li class="nav-item submenu"><h:commandLink
+								styleClass="nav-link" action="#{tabs.goToPage('clients')}">
+								<f:actionListener binding="#{tabs.showProject('details',1)}" />
+								<f:actionListener binding="#{tabs.showActivities('details',1)}" />
+								<f:actionListener binding="#{tabs.showClient('details',1)}" />
+								<f:actionListener binding="#{tabs.showBusiness('details',1)}" />
+								<f:actionListener binding="#{listClientsBean.findAllClients()}" />
+								<f:actionListener
+									binding="#{tabs.showRegistoHoras('details',1)}" />
+								#{msg['ClientsList']}</h:commandLink></li>
+
+						<li class="nav-item submenu"><h:commandLink
+								styleClass="nav-link" action="#{tabs.goToPage('clients_new')}">
+								<f:actionListener binding="#{tabs.showProject('details',1)}" />
+								<f:actionListener binding="#{tabs.showActivities('details',1)}" />
+								<f:actionListener binding="#{tabs.showClient('details',1)}" />
+								<f:actionListener binding="#{tabs.showBusiness('details',1)}" />
+								<f:actionListener
+									binding="#{tabs.showRegistoHoras('details',1)}" />
+								<f:actionListener binding="#{createClientBean.cleanFields()}" />
+								 #{msg['AddNew']}</h:commandLink></li>
+
+					</ul></li>
+			</h:panelGroup>
+
+			<h:panelGroup layout="block" rendered="#{mySessionBean.directorRole}">
+				<li class="nav-item nav-dropdown"><a
+					class="nav-link nav-dropdown-toggle" href="#"><i
+						class="icon-book-open"></i> #{msg['Businesses']}</a>
+					<ul class="nav-dropdown-items">
+						<li class="nav-item submenu"><h:commandLink
+								styleClass="nav-link" action="#{tabs.goToPage('business')}">
+								<f:actionListener binding="#{tabs.showProject('details',1)}" />
+								<f:actionListener binding="#{tabs.showActivities('details',1)}" />
+								<f:actionListener binding="#{tabs.showClient('details',1)}" />
+								<f:actionListener binding="#{tabs.showBusiness('details',1)}" />
+								<f:actionListener
+									binding="#{tabs.showRegistoHoras('details',1)}" />
+								 #{msg['BusinessList']}</h:commandLink></li>
+						<li class="nav-item submenu"><h:commandLink
+								styleClass="nav-link" action="#{tabs.goToPage('business_new')}">
+								<f:actionListener binding="#{tabs.showProject('details',1)}" />
+								<f:actionListener binding="#{tabs.showActivities('details',1)}" />
+								<f:actionListener binding="#{tabs.showClient('details',1)}" />
+								<f:actionListener binding="#{tabs.showBusiness('details',1)}" />
+								<f:actionListener
+									binding="#{tabs.showRegistoHoras('details',1)}" />
+								<f:actionListener binding="#{listBusinessesBean.resetFields()}" />
+								 #{msg['AddNew']}</h:commandLink></li>
+					</ul></li>
+			</h:panelGroup>
+
+			<h:panelGroup layout="block"
+				rendered="#{mySessionBean.directorRole || mySessionBean.administratorRole}">
+				<li class="nav-item"><h:commandLink styleClass="nav-link"
+						action="#{tabs.goToPage('users')}">
+						<f:actionListener binding="#{tabs.showProject('details',1)}" />
+						<f:actionListener binding="#{tabs.showActivities('details',1)}" />
+						<f:actionListener binding="#{tabs.showClient('details',1)}" />
+						<f:actionListener binding="#{tabs.showBusiness('details',1)}" />
+						<f:actionListener binding="#{tabs.showRegistoHoras('details',1)}" />
+						<f:actionListener binding="#{tabs.setUserInclude('users_search')}" />
+						<f:actionListener binding="#{listUsersBean.cleanFields()}" />
+						<f:actionListener binding="#{tabs.setUserSearchInclude('none')}" />
+						<i class="icon-people"></i> #{msg['Users']}</h:commandLink></li>
+			</h:panelGroup>
+
+			<h:panelGroup layout="block" rendered="#{mySessionBean.directorRole}">
+				<li class="nav-item"><h:commandLink styleClass="nav-link"
+						action="#{tabs.goToPage('report')}">
+						<f:actionListener binding="#{tabs.showProject('details',1)}" />
+						<f:actionListener binding="#{tabs.showActivities('details',1)}" />
+						<f:actionListener binding="#{tabs.showClient('details',1)}" />
+						<f:actionListener binding="#{tabs.showBusiness('details',1)}" />
+						<f:actionListener binding="#{tabs.showRegistoHoras('details',1)}" />
+						<f:actionListener binding="#{tabs.showReport('users',1)}" />
+						<f:actionListener binding="#{tabs.setReportSearchInclude('none')}" />
+						<f:actionListener binding="#{listAllocationsBean.cleanFields()}" />
+						<f:actionListener binding="#{tabs.setTypeLink('none')}" />
+						<f:actionListener binding="#{chartLine.cleanFields()}" />
+						<i class="icon-chart"></i> #{msg['Reports']}</h:commandLink></li>
+			</h:panelGroup>
+
+
+			<h:panelGroup layout="block"
+				rendered="#{mySessionBean.administratorRole}">
+				<li class="nav-item nav-dropdown"><a
+					class="nav-link nav-dropdown-toggle" href="#"><i
+						class="fa fa-cog"></i> #{msg['Configurations']}</a>
+					<ul class="nav-dropdown-items">
+						<li class="nav-item submenu"><h:commandLink
+								styleClass="nav-link" action="#{tabs.goToPage('skills')}">
+								<f:actionListener binding="#{tabs.showProject('details',1)}" />
+								<f:actionListener binding="#{tabs.showActivities('details',1)}" />
+								<f:actionListener binding="#{tabs.showClient('details',1)}" />
+								<f:actionListener binding="#{tabs.showBusiness('details',1)}" />
+								<f:actionListener
+									binding="#{tabs.showRegistoHoras('details',1)}" />
+								<f:actionListener binding="#{listSkillsBean.cleanFields()}" />
+								 #{msg['Skills']}</h:commandLink></li>
+						<li class="nav-item submenu"><h:commandLink
+								styleClass="nav-link"
+								action="#{tabs.goToPage('config_holidays')}">
+								<f:actionListener binding="#{tabs.showProject('details',1)}" />
+								<f:actionListener binding="#{tabs.showActivities('details',1)}" />
+								<f:actionListener binding="#{tabs.showClient('details',1)}" />
+								<f:actionListener binding="#{tabs.showBusiness('details',1)}" />
+								<f:actionListener
+									binding="#{tabs.showRegistoHoras('details',1)}" />
+								<f:actionListener binding="#{listHolidayBean.cleanFields()}"/>
+								 #{msg['Holidays']}</h:commandLink></li>
+
+
+
+					</ul></li>
+				<li class="nav-item"><h:commandLink styleClass="nav-link"
+						action="#{tabs.goToPage('help')}">
+						<i class="fa fa-question-circle-o"></i> #{msg['Help']}</h:commandLink></li>
+			</h:panelGroup>
+
+		</h:form>
+	</ul>
+
+	<!-- *** Menu Left END *** -->
+</ui:composition>
+</html>

@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+	<title>Blue Roots</title>
+<f:view contentType="text/html" locale="#{multilanguage.locale}" />
+	<link href="resources/css/primefaces.css" rel="stylesheet" />
+	<link href="resources/css/style.css" rel="stylesheet" />
+	<link href="resources/css/custom.css" rel="stylesheet" />
+	<link rel="shortcut icon" type="image/png"
+		href="resources/images/favicon.ico" />
+
+</h:head>
+<h:body class="navbar-fixed sidebar-nav fixed-nav">
+
+	<!-- Header -->
+	<header class="navbar">
+		<div class="container-fluid">
+			<ui:insert name="mtopLayout">
+				<ui:include src="mtop.xhtml" />
+			</ui:insert>
+		</div>
+	</header>
+
+	<!-- Sidebar -->
+	<div class="sidebar">
+		<nav class="sidebar-nav">
+			<ui:insert name="mleftLayout">
+				<ui:include src="mleft.xhtml" />
+			</ui:insert>
+		</nav>
+	</div>
+
+	<!-- Main content -->
+	<div class="main">
+		<!-- Breadcrumb -->
+		<ol class="breadcrumb r-0">
+			<li>Home</li>
+			<li>#{msg['Skills']}</li>
+			<li>#{msg['Update']} #{msg['Skill']}</li>
+		</ol>
+		<div class="container-fluid">
+			<div class="animated fadeIn">
+
+				<div class="row">
+					<div class="col-md-12">
+						<div class="card">
+							<div class="card-block">
+								<h:panelGroup layout="block" styleClass="">
+									<h:panelGroup layout="block" styleClass="icons-Text">
+										<i class="fa fa-cog" aria-hidden="true"></i>
+									</h:panelGroup>
+									<h3 class="card-title clearfix m-b-0">#{msg['Skill']}</h3>
+								</h:panelGroup>
+								<hr class="m-a-0" />
+								<div class="row">
+
+									<div class="col-md-12 p-y-2">
+
+										<div class="col-md-12">
+											<div class="row">
+												<div class="col-md-8">
+
+													<div class="col-sm-6">
+
+														<div class="row">
+															<h:form id="updateSkillsForm">
+
+																<div class="row">
+																	<h:panelGroup layout="block" class="col-sm-12  p-y-1">
+
+																		<p:outputPanel layout="block" class="form-group">
+																			<p:outputLabel for="skill"
+																				value="#{msg['Skill']}" />
+																			<h:inputText id="skill" name="skill"
+																				class="form-control"
+																				value="#{listSkillsBean.selectedSkill.skill}"
+																				required="true"
+																				requiredMessage="#{msg['NULL_OR_EMPTY_FIELDS']}"
+																				validatorMessage="#{msg['NULL_OR_EMPTY_FIELDS']}">
+																				<f:validateRegex pattern=".*[\S]+.*" />
+																				<f:validateLength minimum="3" maximum="100"/>
+																			</h:inputText>
+																			<h:message for="skill" styleClass="error" />
+																		</p:outputPanel>
+
+																		
+																		<h:panelGroup layout="block" class="form-group">
+																			<h:outputLabel value="" />
+																			<h:panelGroup layout="block" class="input-group">
+																				<h:commandButton styleClass="btn btn-primary"
+																					value="#{msg['Update']}"
+																					action="#{listSkillsBean.updateSkills()}">
+																				</h:commandButton>
+																			</h:panelGroup>
+
+																		</h:panelGroup>
+
+																	</h:panelGroup>
+
+																	<p:outputPanel layout="block" styleClass="col-sm-12 #{styleResponse.cssClass}">
+																		<h:message for="updateSkillsForm" />
+																	</p:outputPanel>
+
+																</div>
+															</h:form>
+														</div>
+													</div>
+
+												</div>
+
+											</div>
+										</div>
+									</div>
+									
+									<h:panelGroup layout="block" class="row">
+											<h:panelGroup layout="block" class="col-md-12">
+												<h:panelGroup layout="block" class="col-md-6">
+													<small>* #{msg['RequiredFields']}</small>
+												</h:panelGroup>
+
+												<h:panelGroup layout="block" class="col-md-6 align-right">
+													<h:form>
+														<h:commandButton styleClass="btn btn-default"
+															value="#{msg['Cancel']}"
+															action="skills.xhtml?faces-redirect=true">
+														</h:commandButton>
+													</h:form>
+												</h:panelGroup>
+											</h:panelGroup>
+										</h:panelGroup>
+										
+									
+								</div>
+								<!--/.row-->
+
+
+
+
+							</div>
+						</div>
+					</div>
+					<!--/.col-->
+				</div>
+				<!--/.row-->
+
+			</div>
+			<!--/.animated -->
+		</div>
+		<!-- /.container-fluid -->
+
+	</div>
+	<!-- /.main -->
+
+	<!-- Footer -->
+	<ui:insert name="footerLayout">
+		<ui:include src="footer.xhtml" />
+	</ui:insert>
+
+	<!-- JS -->
+	<script src="resources/js/libs/bootstrap.min.js"></script>
+	<script src="resources/js/app.js"></script>
+</h:body>
+</html>

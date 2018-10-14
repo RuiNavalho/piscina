@@ -1,0 +1,423 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui">
+<h:head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+	<title>Blue Roots</title>
+	<f:view contentType="text/html" locale="#{multilanguage.locale}" />
+	<link href="resources/css/bootstrap.min.css" rel="stylesheet" />
+	<link href="resources/css/primefaces.css" rel="stylesheet" />
+	<link href="resources/css/style.css" rel="stylesheet" />
+	<link href="resources/css/custom.css" rel="stylesheet" />
+	<link href="resources/css/gantt.css" rel="stylesheet" />
+	<link href="resources/css/fixeb.css" rel="stylesheet" />
+
+	<link rel="stylesheet"
+		href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
+
+	<script src="resources/js/calendarLocales.js" />
+	<link rel="shortcut icon" type="image/png"
+		href="resources/images/favicon.ico" />
+
+</h:head>
+<h:body class="navbar-fixed sidebar-nav fixed-nav">
+
+	<!-- Header -->
+	<header class="navbar">
+		<h:panelGroup layout="block" class="container-fluid">
+			<ui:insert name="mtopLayout">
+				<ui:include src="mtop.xhtml" />
+			</ui:insert>
+		</h:panelGroup>
+	</header>
+
+	<!-- Sidebar -->
+	<h:panelGroup layout="block" class="sidebar">
+		<nav class="sidebar-nav">
+			<ui:insert name="mleftLayout">
+				<ui:include src="mleft.xhtml" />
+			</ui:insert>
+		</nav>
+	</h:panelGroup>
+
+	<!-- Main content -->
+	<h:panelGroup layout="block" class="main">
+		<!-- Breadcrumb -->
+		<ol class="breadcrumb r-0">
+			<li>Home</li>
+			<li>#{msg['Projects']}</li>
+			<li>#{msg['Update']} #{msg['Project']}</li>
+		</ol>
+		<h:panelGroup layout="block" class="container-fluid">
+			<h:panelGroup layout="block" class="animated fadeIn">
+
+				<h:panelGroup layout="block" class="row">
+					<h:panelGroup layout="block" class="col-md-12">
+						<h:panelGroup layout="block" class="card">
+							<h:panelGroup layout="block" class="card-block">
+								<h:panelGroup layout="block" class="row">
+									<h:form>
+										<h:panelGroup layout="block" class="col-md-5">
+											<h:panelGroup layout="block" styleClass="">
+												<h:panelGroup layout="block" styleClass="icons-Text">
+													<i class="icon-layers" aria-hidden="true"></i>
+												</h:panelGroup>
+												<h3 class="card-title clearfix m-b-0">#{msg['Project']}</h3>
+											</h:panelGroup>
+										</h:panelGroup>
+
+										<h:panelGroup layout="block" class="col-md-1 bLeftLight">
+											<h:panelGroup layout="block" class="box1">
+												<h:panelGroup layout="block"
+													rendered="#{listProjectsBean.selectedProject.costPerformanceIndicator eq 1.0}">
+													<p:commandLink action="#{tabs.showProject('indicators',4)}"
+														actionListener="#{chartLine.findProjectHourPercCostDtoList(listProjectsBean.selectedProject)}"
+														styleClass="btn btn-sm fa fa-usd colorGrey"
+														update="projectPanels @form navForm" process="@form" />
+												</h:panelGroup>
+												<h:panelGroup layout="block"
+													rendered="#{listProjectsBean.selectedProject.costPerformanceIndicator gt 1.0}">
+													<p:commandLink action="#{tabs.showProject('indicators',4)}"
+														actionListener="#{chartLine.findProjectHourPercCostDtoList(listProjectsBean.selectedProject)}"
+														styleClass="btn btn-sm fa fa-usd colorGreen"
+														update="projectPanels @form navForm" process="@form" />
+												</h:panelGroup>
+												<h:panelGroup layout="block"
+													rendered="#{listProjectsBean.selectedProject.costPerformanceIndicator lt 1.0}">
+													<p:commandLink action="#{tabs.showProject('indicators',4)}"
+														actionListener="#{chartLine.findProjectHourPercCostDtoList(listProjectsBean.selectedProject)}"
+														styleClass="btn btn-sm fa fa-usd colorRed"
+														update="projectPanels @form navForm" process="@form" />
+												</h:panelGroup>
+											</h:panelGroup>
+										</h:panelGroup>
+
+										<h:panelGroup layout="block" class="col-md-1 bLeftLight">
+
+											<h:panelGroup layout="block" class="box1">
+												<h:panelGroup layout="block"
+													rendered="#{listProjectsBean.selectedProject.timePerformanceIndicator == 1.0}">
+													<p:commandLink action="#{tabs.showProject('indicators',4)}"
+														actionListener="#{chartLine.findProjectHourPercCostDtoList(listProjectsBean.selectedProject)}"
+														styleClass="btn btn-sm icon-clock colorGrey"
+														update="projectPanels @form navForm" process="@form" />
+												</h:panelGroup>
+												<h:panelGroup layout="block"
+													rendered="#{listProjectsBean.selectedProject.timePerformanceIndicator gt 1.0}">
+													<p:commandLink action="#{tabs.showProject('indicators',4)}"
+														actionListener="#{chartLine.findProjectHourPercCostDtoList(listProjectsBean.selectedProject)}"
+														styleClass="btn btn-sm icon-clock colorGreen"
+														update="projectPanels @form navForm" process="@form" />
+												</h:panelGroup>
+												<h:panelGroup layout="block"
+													rendered="#{listProjectsBean.selectedProject.timePerformanceIndicator lt 1.0}">
+													<p:commandLink action="#{tabs.showProject('indicators',4)}"
+														actionListener="#{chartLine.findProjectHourPercCostDtoList(listProjectsBean.selectedProject)}"
+														styleClass="btn btn-sm icon-clock colorRed"
+														update="projectPanels @form navForm" process="@form" />
+												</h:panelGroup>
+											</h:panelGroup>
+										</h:panelGroup>
+
+										<h:panelGroup layout="block"
+											class="col-sm-2 box1 bLeftLight bRightLight text-md-center">
+											<p:commandLink styleClass="btn btn-sm fa fa-bar-chart"
+												update="ganttChartProject"
+												actionListener="#{chartAllocations.findProjectGanttChart(listProjectsBean.selectedProject)}"
+												onclick="$('#myModalGraphicGanttProject').modal('show')">
+												<span class="btn-fontAwesome">#{msg['Chart']}</span>
+											</p:commandLink>
+										</h:panelGroup>
+
+										<h:panelGroup layout="block" class="col-md-3">
+											<h:panelGroup layout="block" class="box1">
+												<span class="txtLabel">#{msg['Progress']}
+													#{listProjectsBean.selectedProject.percentageExecuted}%</span>
+											</h:panelGroup>
+
+											<h:panelGroup layout="block" class="box1">
+												<div class="box-perc">
+													<div class="box-green"
+														style="width: #{(listProjectsBean.selectedProject.percentageExecuted*75/100)}px"></div>
+													<div class="box-red"
+														style="width: #{(100-listProjectsBean.selectedProject.percentageExecuted)*75/100}px"></div>
+												</div>
+											</h:panelGroup>
+										</h:panelGroup>
+
+
+									</h:form>
+								</h:panelGroup>
+								<h:panelGroup layout="block" class="">
+									<hr class="m-a-0" />
+								</h:panelGroup>
+								<h:panelGroup layout="block" class="row">
+									<h:panelGroup layout="block" class="col-md-12">
+
+										<h:form>
+
+											<h:panelGroup layout="block" class="col-md-6 p-y-2">
+
+												<h:panelGroup layout="block" class="form-group col-sm-12">
+													<h:panelGroup layout="block" class="form-group row">
+														<h:outputLabel class="col-md-12 form-control-label"
+															for="idProject">#{msg['Code']}</h:outputLabel>
+														<h:panelGroup layout="block" class="col-md-12">
+															<h:outputText id="idProject" name="idProject"
+																class="form-control input-off"
+																value="#{listProjectsBean.selectedProject.idProject}" />
+														</h:panelGroup>
+													</h:panelGroup>
+												</h:panelGroup>
+
+												<h:panelGroup layout="block" class="form-group col-sm-12">
+													<h:panelGroup layout="block" class="form-group row">
+														<h:outputLabel class="col-md-12 form-control-label"
+															for="client_id">#{msg['Company']}</h:outputLabel>
+														<h:panelGroup layout="block" class="col-md-12">
+															<h:outputText id="client_id" name="client_id"
+																class="form-control input-off"
+																value="#{listProjectsBean.selectedProject.clientLightDto.company}" />
+														</h:panelGroup>
+													</h:panelGroup>
+												</h:panelGroup>
+
+											</h:panelGroup>
+											<!--/.col-->
+
+											<h:panelGroup layout="block" class="col-md-6  p-y-2">
+
+												<h:panelGroup layout="block" class="form-group col-sm-12">
+													<h:panelGroup layout="block" class="form-group row">
+														<h:outputLabel class="col-md-12 form-control-label"
+															for="titleProj">#{msg['Name']}</h:outputLabel>
+														<h:panelGroup layout="block" class="col-md-12">
+															<h:outputText id="titleProj" name="titleProj"
+																class="form-control input-off"
+																value="#{listProjectsBean.selectedProject.title}" />
+														</h:panelGroup>
+													</h:panelGroup>
+												</h:panelGroup>
+
+												<h:panelGroup layout="block" class="form-group col-sm-12">
+													<h:panelGroup layout="block" class="form-group row">
+														<h:outputLabel class="col-md-12 form-control-label"
+															for="business_id">#{msg['BusinessArea']}</h:outputLabel>
+														<h:panelGroup layout="block" class="col-md-12">
+															<h:outputText id="business_id" name="business_id"
+																class="form-control input-off"
+																value="#{listProjectsBean.selectedProject.clientLightDto.businessDto.area}" />
+														</h:panelGroup>
+													</h:panelGroup>
+												</h:panelGroup>
+
+
+
+											</h:panelGroup>
+											<!--/.col-->
+
+										</h:form>
+
+									</h:panelGroup>
+
+
+
+								</h:panelGroup>
+								<!--/.card-block-->
+
+
+
+								<h:panelGroup layout="block" class="row">
+									<h:panelGroup layout="block" class="col-md-12">
+
+										<div class="col-md-12">
+
+											<div class="col-md-12 text-md-right">
+												<h:form id="navForm">
+													<!-- Nav tabs -->
+													<ul class="nav nav-tabs text-md-right" role="tablist">
+														<li class=" #{tabs.activeTab1}"><p:commandLink
+																actionListener="#{tabs.showProject('details',1)}"
+																value="#{msg['Details']}" update="projectPanels @form"
+																process="@form" /></li>
+
+														<li class=" #{tabs.activeTab2}"><p:commandLink
+																action="#{tabs.showProject('activities',2)}"
+																value="#{msg['Activities']}"
+																actionListener="#{listProjectsBean.updateListTasksBean()}"
+																update="projectPanels @form" process="@form" /></li>
+
+														<li class=" #{tabs.activeTab3}"><p:commandLink
+																action="#{tabs.showProject('allocations',3)}"
+																value="#{msg['Allocations']}"
+																update="projectPanels @form" process="@form" /></li>
+
+														<h:panelGroup layout="block"
+															rendered="#{mySessionBean.directorRole}">
+															<li class=" #{tabs.activeTab6}"><p:commandLink
+																	action="#{tabs.showProject('workhours',6)}"
+																	value="#{msg['WorkedHours']}"
+																	update="projectPanels @form" process="@form" /></li>
+														</h:panelGroup>
+														<li class=" #{tabs.activeTab7}"><p:commandLink
+																action="#{tabs.showProject('myworkhours',7)}"
+																value="#{msg['MyWorkedHours']}"
+																update="projectPanels @form" process="@form" /></li>
+
+														<li class=" #{tabs.activeTab4}"><p:commandLink
+																action="#{tabs.showProject('indicators',4)}"
+																actionListener="#{chartLine.findProjectHourPercCostDtoList(listProjectsBean.selectedProject)}"
+																value="#{msg['Indicators']}"
+																update="projectPanels @form" process="@form">
+																<f:actionListener binding="#{chartLine.setTypeChart('percentChart')}"/>
+																</p:commandLink>
+																</li>
+														
+													</ul>
+												</h:form>
+											</div>
+
+											<h:panelGroup id="projectPanels">
+												<!-- Tab panes -->
+												<div class="tab-content">
+
+
+													<div role="tabpanel" class="tab-pane fade in active"
+														id="detalhes">
+
+														<ui:insert>
+															<ui:include src="#{tabs.projectTab}.xhtml" />
+														</ui:insert>
+
+
+													</div>
+													<!--/ end tab2 -->
+
+
+												</div>
+
+											</h:panelGroup>
+
+
+										</div>
+									</h:panelGroup>
+
+								</h:panelGroup>
+
+								<h:panelGroup layout="block" class="row">
+									<h:panelGroup layout="block" class="col-md-12">
+
+
+
+										<h:panelGroup layout="block" class="col-md-12 align-right">
+											<h:form>
+												<h:commandButton styleClass="btn btn-default"
+													value="#{msg['Back']}"
+													action="#{tabs.goToPage('projects')}">
+													<f:actionListener
+														binding="#{tabs.showProject('details',1)}" />
+													<f:actionListener
+														binding="#{tabs.showActivities('details',1)}" />
+													<f:actionListener binding="#{tabs.showClient('details',1)}" />
+													<f:actionListener
+														binding="#{tabs.showBusiness('details',1)}" />
+													<f:actionListener
+														binding="#{tabs.showRegistoHoras('details',1)}" />
+													<f:actionListener
+														binding="#{tabs.setProjectInclude('projects_search')}" />
+													<f:actionListener
+														binding="#{tabs.setProjectSearchInclude('none')}" />
+													<f:actionListener
+														binding="#{listProjectsBean.cleanFields()}" />
+												</h:commandButton>
+											</h:form>
+										</h:panelGroup>
+									</h:panelGroup>
+								</h:panelGroup>
+
+							</h:panelGroup>
+						</h:panelGroup>
+					</h:panelGroup>
+					<!--/.col-->
+				</h:panelGroup>
+				<!--/.row-->
+
+
+
+			</h:panelGroup>
+			<!--/.animated -->
+		</h:panelGroup>
+		<!-- /.container-fluid -->
+
+	</h:panelGroup>
+	<!-- /.main -->
+
+
+	<!-- Modal Graph Gantt -->
+	<div class="modal fade" id="myModalGraphicGanttProject" tabindex="-1"
+		role="dialog" aria-labelledby="myModalGraphicGanttProject"
+		aria-hidden="true" data-keyboard="false" data-backdrop="false"
+		data-closable="true" style="top: 80px">
+		<div class="modal-dialog modal-md">
+			<div class="modal-content">
+				<h:form id="ganttChartProject">
+					<div class="modal-header">
+						<h4 class="modal-title">#{msg['GanttChart']}</h4>
+					</div>
+					<div class="">
+
+						<h:panelGroup layout="block" class="col-md-12 p-y-1">
+
+							<h:panelGroup layout="block" class="col-md-12"
+								style="overflow: auto; min-height: 400px; height: 400px; width: 600px; font-size:11px">
+
+								<p:timeline id="allocationsProjectGant"
+									value="#{chartAllocations.model}" groupMinHeight="20"
+									min="#{chartAllocations.start}"
+									max="#{chartAllocations.endPlusOne}"
+									start="#{chartAllocations.start}" end="#{chartAllocations.end}"
+									showNavigation="true" zoomMin="86400000" editable="false"
+									eventMargin="10" eventMarginAxis="0" responsive="true"
+									selectable="false" showButtonNew="false" axisOnTop="false"
+									stackEvents="false" locale="#{languages.locale}" />
+
+							</h:panelGroup>
+						</h:panelGroup>
+					</div>
+
+					<h:panelGroup layout="block" styleClass="col-md-12">
+						<h:message for="ganttChartProject" />
+					</h:panelGroup>
+
+					<h:panelGroup layout="block" styleClass="modal-footer">
+						<p:commandLink value="#{msg['Close']}" immediate="true"
+							class="btn btn-xs btn-primary" styleClass="btn btn-default"
+							oncomplete="$('#myModalGraphicGanttProject').modal('hide');" />
+					</h:panelGroup>
+
+				</h:form>
+			</div>
+		</div>
+	</div>
+
+	<!-- Footer -->
+	<ui:insert name="footerLayout">
+		<ui:include src="footer.xhtml" />
+	</ui:insert>
+
+
+	<!-- JS -->
+	<script src="resources/js/libs/bootstrap.min.js"></script>
+	<script src="resources/js/app.js"></script>
+
+</h:body>
+</html>

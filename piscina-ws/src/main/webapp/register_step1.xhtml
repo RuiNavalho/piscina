@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui">
+
+<ui:composition>
+	<f:view contentType="text/html" locale="#{multilanguage.locale}" />
+	<link href="resources/css/jquery.dataTables.css" rel="stylesheet" />
+	<link href="resources/css/responsive.dataTables.css" rel="stylesheet" />
+	<style type="text/css" class="init">
+div.container {
+	max-width: 1200px
+}
+</style>
+
+
+	<script type="text/javascript" src="resources/js/jquery.dataTables.js" />
+	<script type="text/javascript"
+		src="resources/js/dataTables.responsive.js" />
+	<script type="text/javascript" class="init">
+
+$(document).ready(function() {
+	$('#registo').DataTable( {
+		"language": {
+            "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Portuguese.json"
+        },
+		
+        lengthMenu: [
+            [10, 25, 50, -1],
+            [10, 25, 50, "All"]
+        ],
+        filter: false,
+        sort: true,
+        info: true,
+        autoWidth: true,
+        order: [
+            [0, "asc"]
+        ],
+		responsive: true,
+		columnDefs: [
+			{ responsivePriority: 1, targets: 0 },
+			{ responsivePriority: 1, targets: -1 }
+		]
+	} );
+		
+} );
+	</script>
+
+	<h:panelGroup layout="block" class="col-sm-12">
+
+		<h:panelGroup layout="block" class="col-md-12 bkg-color1">
+			#{msg['RegisterHoursStep1']}
+		</h:panelGroup>
+
+		<h:form id="registerForm">
+
+			<p:outputPanel layout="block" class="col-md-12  p-y-1">
+
+				<h:panelGroup layout="block" class="col-md-9 p-y-2">
+					<h6 class="header-list">#{msg['ActivitiesToRegisterHours']}:</h6>
+				</h:panelGroup>
+
+				<h:panelGroup layout="block" class="col-md-3 p-y-1 text-md-right">
+					<h:commandLink>
+						<p:graphicImage value="resources/images/pdf.png" />
+						<p:dataExporter type="pdf" target="registerHoursListX"
+							fileName="registerHours" pageOnly="false" />
+					</h:commandLink>
+
+					<h:commandLink>
+						<p:graphicImage value="resources/images/csv.png" />
+						<p:dataExporter type="csv" target="registerHoursListX"
+							fileName="registerHours" pageOnly="false" />
+					</h:commandLink>
+
+					<h:commandLink>
+						<p:graphicImage value="resources/images/xml.png" />
+						<p:dataExporter type="xml" target="registerHoursListX"
+							fileName="registerHours" pageOnly="false" />
+					</h:commandLink>
+				</h:panelGroup>
+
+
+				<p:dataTable id="registerHoursListX"
+					value="#{workRegisterBean.workRegisterList}" var="regExp"
+					style="display:none">
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="#{msg['Project']}" />
+						</f:facet>
+						<h:outputText value="#{regExp.title}" />
+					</p:column>
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="#{msg['Activity']}" />
+						</f:facet>
+						<h:outputText value="#{regExp.taskName}" />
+					</p:column>
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="#{msg['AllocationBegin']}" />
+						</f:facet>
+						<h:outputText value="#{regExp.allocationBeginDate}" />
+					</p:column>
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="#{msg['AllocationEnd']}" />
+						</f:facet>
+						<h:outputText value="#{regExp.allocationEndDate}" />
+					</p:column>
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="% #{msg['Executed']}" />
+						</f:facet>
+						<h:outputText value="#{regExp.taskPercentageExecuted}" />
+					</p:column>
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="#{msg['HoursEstimate']}" />
+						</f:facet>
+						<h:outputText value="#{regExp.hoursToFinish}" />
+					</p:column>
+				</p:dataTable>
+
+
+				<h:panelGroup layout="block" styleClass="col-md-12 p-y-1">
+					<div class="">
+						<section>
+
+							<table id="registo" class="display nowrap" cellspacing="0"
+								width="100%">
+								<thead>
+									<tr>
+										<th>#{msg['Project']}</th>
+										<th>#{msg['Activity']}</th>
+										<th>#{msg['AllocationBegin']}</th>
+										<th>#{msg['AllocationEnd']}</th>
+										<th>% #{msg['Executed']}</th>
+										<th>#{msg['HoursEstimate']}</th>
+										<th></th>
+									</tr>
+								</thead>
+								<tbody>
+									<ui:repeat id="registerHoursList" var="reg"
+										value="#{workRegisterBean.workRegisterList}">
+										<tr>
+											<td><h:outputText value="#{reg.idProject} #{reg.title}" /></td>
+											<td><h:outputText value="#{reg.taskName}" /></td>
+											<td><p:calendar value="#{reg.allocationBeginDate}"
+													disabled="true" locale="#{multilanguage.locale}" /></td>
+											<td><p:calendar value="#{reg.allocationEndDate}"
+													disabled="true" locale="#{multilanguage.locale}" /></td>
+											<td><h:outputText value="#{reg.taskPercentageExecuted}" /></td>
+											<td><h:outputText value="#{reg.hoursToFinish}" /></td>
+
+											<td><p:commandLink value="#{msg['Register']}"
+													styleClass="btn btn-primary"
+													action="#{tabs.moveStep('register_step2')}"
+													actionListener="#{workRegisterBean.setSelectedWorkRegister(reg)}"
+													update="registoHorasPanels" /></td>
+										</tr>
+									</ui:repeat>
+								</tbody>
+							</table>
+
+						</section>
+					</div>
+				</h:panelGroup>
+			</p:outputPanel>
+
+
+		</h:form>
+
+	</h:panelGroup>
+</ui:composition>
+
+</html>

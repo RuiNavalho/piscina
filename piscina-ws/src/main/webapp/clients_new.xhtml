@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui">
+<h:head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+	<title>Blue Roots</title>
+	<f:view contentType="text/html" locale="#{multilanguage.locale}" />
+	<link href="resources/css/bootstrap.min.css" rel="stylesheet" />
+	<link href="resources/css/primefaces.css" rel="stylesheet" />
+	<link href="resources/css/style.css" rel="stylesheet" />
+	<link href="resources/css/custom.css" rel="stylesheet" />
+	<link href="resources/css/fixeb.css" rel="stylesheet" />
+	
+	<link rel="shortcut icon" type="image/png"
+		href="resources/images/favicon.ico" />
+
+</h:head>
+<h:body class="navbar-fixed sidebar-nav fixed-nav">
+
+	<!-- Header -->
+	<header class="navbar">
+		<h:panelGroup layout="block" class="container-fluid">
+			<ui:insert name="mtopLayout">
+				<ui:include src="mtop.xhtml" />
+			</ui:insert>
+		</h:panelGroup>
+	</header>
+
+	<!-- Sidebar -->
+	<h:panelGroup layout="block" class="sidebar">
+		<nav class="sidebar-nav">
+			<ui:insert name="mleftLayout">
+				<ui:include src="mleft.xhtml" />
+			</ui:insert>
+		</nav>
+	</h:panelGroup>
+
+	<!-- Main content -->
+	<h:panelGroup layout="block" class="main">
+		<!-- Breadcrumb -->
+		<ol class="breadcrumb r-0">
+			<li>Home</li>
+			<li>#{msg['Companies']}</li>
+			<li>#{msg['New']} #{msg['Company']}</li>
+		</ol>
+		<h:panelGroup layout="block" class="container-fluid">
+			<h:panelGroup layout="block" class="animated fadeIn">
+
+				<h:panelGroup layout="block" class="row">
+					<h:panelGroup layout="block" class="col-md-12">
+						<h:panelGroup layout="block" class="card">
+							<h:panelGroup layout="block" class="card-block">
+								<h:panelGroup layout="block" styleClass="">
+									<h:panelGroup layout="block" styleClass="icons-Text">
+										<i class="fa fa-files-o" aria-hidden="true"></i>
+									</h:panelGroup>
+									<h3 class="card-title clearfix m-b-0">#{msg['Newa']} #{msg['Company']}</h3>
+								</h:panelGroup>
+								<hr class="m-a-0" />
+								<h:panelGroup layout="block" class="row">
+									<h:panelGroup layout="block" class="col-md-12">
+										<h:form id="createClientForm">
+
+
+											<h:panelGroup layout="block" class="col-md-6 p-y-2">
+
+
+												<h:panelGroup layout="block" class="form-group row">
+													<label class="col-md-12 form-control-label"
+														for="text-input">#{msg['Name']} *</label>
+													<h:panelGroup layout="block" class="col-md-12">
+														<h:inputText a:placeholder="Nome" a:autocomplete="off"
+															id="name" name="name" class="form-control"
+															value="#{createClientBean.company}" required="true"
+															requiredMessage="#{msg['NULL_OR_EMPTY_FIELDS']}"
+															validatorMessage="#{msg['NULL_OR_EMPTY_FIELDS']}">
+															<f:validateRegex pattern=".*[\S]+.*" />
+															<f:validateLength minimum="3" maximum="100"/>
+														</h:inputText>
+													</h:panelGroup>
+													<h:panelGroup layout="block" styleClass="col-sm-12">
+														<h:message for="name" styleClass="error" />
+													</h:panelGroup>
+												</h:panelGroup>
+
+												<h:panelGroup layout="block" class="form-group row">
+													<label class="col-md-12 form-control-label"
+														for="text-input">#{msg['Contact']} *</label>
+													<h:panelGroup layout="block" class="col-md-12">
+														<h:inputText a:placeholder="Contato" a:autocomplete="off"
+															id="contato" name="contato" class="form-control"
+															value="#{createClientBean.contact}" required="true"
+															requiredMessage="#{msg['NULL_OR_EMPTY_FIELDS']}"
+															validatorMessage="#{msg['NULL_OR_EMPTY_FIELDS']}">
+															<f:validateRegex pattern=".*[\S]+.*" />
+															<f:validateLength minimum="3" maximum="80"/>
+														</h:inputText>
+													</h:panelGroup>
+													<h:panelGroup layout="block" styleClass="col-sm-12">
+														<h:message for="contato" styleClass="error" />
+													</h:panelGroup>
+												</h:panelGroup>
+
+												<h:panelGroup layout="block" class="form-group row">
+
+													<label class="col-md-12 form-control-label"
+														for="text-input">#{msg['BusinessArea']} *</label>
+													<h:panelGroup layout="block" class="col-md-12 controls">
+														<h:selectOneMenu value="#{createClientBean.business}"
+															styleClass="form-control" required="true" id="business"
+															name="business"
+															requiredMessage="#{msg['NULL_OR_EMPTY_FIELDS']}">
+															<f:selectItems var="business"
+																value="#{util.businessList}"
+																itemLabel="#{business.area}"
+																itemValue="#{business.area}" />
+														</h:selectOneMenu>
+													</h:panelGroup>
+													<h:panelGroup layout="block" styleClass="col-sm-12 text-md-right padTop10">
+													<a href="business_new.xhtml?faces-redirect=true">+
+														#{msg['BusinessArea']}</a>
+													</h:panelGroup>
+													<h:panelGroup layout="block" styleClass="col-sm-12">
+														<h:message for="business" styleClass="error" />
+													</h:panelGroup>
+
+												</h:panelGroup>
+
+											</h:panelGroup>
+											<!--/.col-->
+
+											<h:panelGroup layout="block" class="col-md-6  p-y-2">
+												<h:panelGroup layout="block" class="form-group row">
+													<label class="col-md-12 form-control-label"
+														for="text-input">#{msg['Address']} *</label>
+													<h:panelGroup layout="block" class="col-md-12">
+														<h:inputTextarea a:placeholder="Morada"
+															a:autocomplete="off" id="morada" name="morada"
+															class="form-control" value="#{createClientBean.address}"
+															required="true"
+															requiredMessage="#{msg['NULL_OR_EMPTY_FIELDS']}"
+															validatorMessage="#{msg['NULL_OR_EMPTY_FIELDS']}">
+															<f:validateRegex pattern=".*[\S]+.*" />
+															<f:validateLength minimum="3" maximum="100"/>
+														</h:inputTextarea>
+													</h:panelGroup>
+													<h:panelGroup layout="block" styleClass="col-sm-12">
+														<h:message for="morada" styleClass="error" />
+													</h:panelGroup>
+												</h:panelGroup>
+												<h:panelGroup layout="block" class="form-group row">
+													<label class="col-md-12 form-control-label"
+														for="text-input">#{msg['Phone']} *</label>
+													<h:panelGroup layout="block" class="col-md-12">
+														<h:inputText a:placeholder="Telefone" a:autocomplete="off"
+															id="telefone" name="telefone" class="form-control"
+															value="#{createClientBean.phone}" required="true"
+															validatorMessage="#{msg['NULL_OR_EMPTY_FIELDS']}"
+															requiredMessage="#{msg['NULL_OR_EMPTY_FIELDS']}">
+															<f:validateRegex pattern=".*[\S]+.*" />
+															<f:validateLength minimum="9" maximum="12"/>
+														</h:inputText>
+													</h:panelGroup>
+													<h:panelGroup layout="block" styleClass="col-sm-12">
+														<h:message for="telefone" styleClass="error" />
+													</h:panelGroup>
+												</h:panelGroup>
+
+
+												<h:panelGroup layout="block" class="form-actions">
+													<h:panelGroup layout="block" class="row">
+														<h:panelGroup layout="block" class="col-md-2 margR10">
+															<h:commandButton styleClass="btn btn-primary"
+																value="#{msg['Add']}"
+																actionListener="#{createClientBean.createNewClient()}">
+															</h:commandButton>
+														</h:panelGroup>
+
+													</h:panelGroup>
+												</h:panelGroup>
+
+												<h:panelGroup layout="block" styleClass="col-sm-12 p-y-1">
+													<h:panelGroup layout="block" styleClass="row #{styleResponse.cssClass}">
+														<h:message for="createClientForm" />
+													</h:panelGroup>
+												</h:panelGroup>
+											</h:panelGroup>
+											<!--/.col-->
+
+
+
+										</h:form>
+										<h:panelGroup layout="block" class="row">
+											<h:panelGroup layout="block" class="col-md-12 align-right">
+												<h:form>
+													<h:commandButton styleClass="btn btn-default"
+														value="#{msg['Cancel']}"
+														action="clients.xhtml?faces-redirect=true" actionListener="#{listClientsBean.findAllClients()}">
+													</h:commandButton>
+												</h:form>
+											</h:panelGroup>
+										</h:panelGroup>
+									</h:panelGroup>
+
+								</h:panelGroup>
+								<!--/.card-block-->
+
+								<h:panelGroup layout="block" class="row">
+									<h:panelGroup layout="block" class="col-md-6">
+										<small>* #{msg['RequiredFields']}</small>
+									</h:panelGroup>
+									<h:panelGroup layout="block" class="col-md-6 align-right"></h:panelGroup>
+								</h:panelGroup>
+								<!--/.col-->
+
+
+							</h:panelGroup>
+						</h:panelGroup>
+					</h:panelGroup>
+					<!--/.col-->
+				</h:panelGroup>
+				<!--/.row-->
+
+
+
+			</h:panelGroup>
+			<!--/.animated -->
+		</h:panelGroup>
+		<!-- /.container-fluid -->
+
+	</h:panelGroup>
+	<!-- /.main -->
+
+	<!-- Footer -->
+	<ui:insert name="footerLayout">
+		<ui:include src="footer.xhtml" />
+	</ui:insert>
+
+	<!-- JS -->
+	<script src="resources/js/libs/jquery.min.js"></script>
+	<script src="resources/js/libs/bootstrap.min.js"></script>
+	<script src="resources/js/app.js"></script>
+</h:body>
+</html>

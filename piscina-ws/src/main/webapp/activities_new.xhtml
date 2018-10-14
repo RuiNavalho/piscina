@@ -1,0 +1,401 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui">
+<h:head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+	<title>Blue Roots</title>
+	<f:view contentType="text/html" locale="#{multilanguage.locale}" />
+	<link href="resources/css/bootstrap.min.css" rel="stylesheet" />
+	<link href="resources/css/primefaces.css" rel="stylesheet" />
+	<link href="resources/css/style.css" rel="stylesheet" />
+	<link href="resources/css/custom.css" rel="stylesheet" />
+	<link href="resources/css/fixeb.css" rel="stylesheet" />
+
+	<script src="resources/js/calendarLocales.js" />
+	<link rel="shortcut icon" type="image/png"
+		href="resources/images/favicon.ico" />
+
+	<link rel="stylesheet"
+		href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
+
+</h:head>
+<h:body class="navbar-fixed sidebar-nav fixed-nav">
+
+	<!-- Header -->
+	<header class="navbar">
+		<h:panelGroup layout="block" class="container-fluid">
+			<ui:insert name="mtopLayout">
+				<ui:include src="mtop.xhtml" />
+			</ui:insert>
+		</h:panelGroup>
+	</header>
+
+	<!-- Sidebar -->
+	<h:panelGroup layout="block" class="sidebar">
+		<nav class="sidebar-nav">
+			<ui:insert name="mleftLayout">
+				<ui:include src="mleft.xhtml" />
+			</ui:insert>
+		</nav>
+	</h:panelGroup>
+
+	<!-- Main content -->
+	<h:panelGroup layout="block" class="main">
+		<!-- Breadcrumb -->
+		<ol class="breadcrumb r-0">
+			<li>Home</li>
+			<li>#{msg['Activities']}</li>
+			<li>#{msg['Newa']} #{msg['Activity']}</li>
+
+		</ol>
+		<h:panelGroup layout="block" class="container-fluid">
+			<h:panelGroup layout="block" class="animated fadeIn">
+
+				<h:panelGroup layout="block" class="row">
+					<h:panelGroup layout="block" class="col-md-12">
+
+						<h:panelGroup layout="block" class="card">
+							<h:panelGroup layout="block" class="card-block">
+								<h:panelGroup layout="block" styleClass="">
+									<h:panelGroup layout="block" styleClass="icons-Text">
+										<i class="fa fa-tasks" aria-hidden="true"></i>
+									</h:panelGroup>
+									<h3 class="card-title clearfix m-b-0">#{msg['Newa']} #{msg['Activity']}</h3>
+								</h:panelGroup>
+								<hr class="m-a-0" />
+
+								<h:panelGroup layout="block" class="row">
+									<h:panelGroup layout="block" class="col-md-12">
+
+										<h:form id="createTaskForm">
+
+											<h:panelGroup layout="block" class="col-md-6 p-y-2">
+
+
+												<!-- From Project -->
+												<h:panelGroup layout="block" class="form-group row"
+													rendered="#{createTaskBean.taskToProject}">
+													<h:outputLabel class="col-md-12 form-control-label"
+														for="idProject1">#{msg['Project']}</h:outputLabel>
+													<h:panelGroup layout="block" class="col-md-12">
+														<h:outputText id="idProject1" name="idProject1"
+															class="form-control input-off"
+															value="#{createTaskBean.idProject} - #{createTaskBean.titleProject}" />
+													</h:panelGroup>
+												</h:panelGroup>
+
+												<!-- New Activity -->
+												<h:panelGroup layout="block" class="form-group row"
+													rendered="#{not createTaskBean.taskToProject}">
+													<h:outputLabel class="col-md-12 form-control-label"
+														for="idProject">#{msg['Project']} *</h:outputLabel>
+													<h:panelGroup layout="block" class="col-md-12 controls">
+													
+														<h:selectOneMenu value="#{createTaskBean.idProject}"
+															name="idProject" id="idProject" styleClass="form-control"
+															requiredMessage="#{msg['NULL_OR_EMPTY_FIELDS']}">
+															<p:ajax event="change" update="beginDate1p endDate1p createTaskForm"/>
+															<f:selectItems value="#{listProjectsBean.projList}"
+																var="proj" itemValue="#{proj.idProject}"
+																itemLabel="#{proj.idProject} - #{proj.title}" />
+														</h:selectOneMenu>
+														
+													</h:panelGroup>
+													<h:panelGroup layout="block" styleClass="col-sm-12">
+														<h:message for="idProject" styleClass="error" />
+													</h:panelGroup>
+
+												</h:panelGroup>
+
+												<h:panelGroup layout="block" class="form-group row">
+													<h:outputLabel class="col-md-12 form-control-label"
+														for="taskName">#{msg['Name']} *</h:outputLabel>
+													<h:panelGroup layout="block" class="col-md-12">
+														<h:inputText a:placeholder="Nome" a:autocomplete="off"
+															id="taskName" name="taskName" class="form-control"
+															value="#{createTaskBean.taskName}" required="true"
+															requiredMessage="#{msg['NULL_OR_EMPTY_FIELDS']}"
+															validatorMessage="#{msg['NULL_OR_EMPTY_FIELDS']}">
+															<f:validateRegex pattern=".*[\S]+.*" />
+															<f:validateLength minimum="3" maximum="100"/>
+														</h:inputText>
+													</h:panelGroup>
+													<h:panelGroup layout="block" styleClass="col-sm-12">
+														<h:message for="taskName" styleClass="error" />
+													</h:panelGroup>
+												</h:panelGroup>
+
+
+												<h:panelGroup layout="block" class="form-group row">
+													<h:outputLabel class="col-md-12 form-control-label"
+														for="description">#{msg['Description']} *</h:outputLabel>
+													<h:panelGroup layout="block" class="col-md-12">
+														<h:inputTextarea a:placeholder="Descrição"
+															a:autocomplete="off" id="description" name="description"
+															class="form-control"
+															value="#{createTaskBean.description}" required="true"
+															requiredMessage="#{msg['NULL_OR_EMPTY_FIELDS']}"
+															validatorMessage="#{msg['NULL_OR_EMPTY_FIELDS']}">
+															<f:validateRegex pattern=".*[\S]+.*" />
+															<f:validateLength minimum="3" maximum="200" />
+														</h:inputTextarea>
+													</h:panelGroup>
+													<h:panelGroup layout="block" styleClass="col-sm-12">
+														<h:message for="description" styleClass="error" />
+													</h:panelGroup>
+												</h:panelGroup>
+
+												<h:panelGroup layout="block" class="form-group">
+													<h:outputLabel class="form-control-label row" for="skill">#{msg['Skill']}
+														*</h:outputLabel>
+													<h:panelGroup layout="block" class="row">
+
+														<div class="changeTb">
+															<h:selectOneRadio id="skill" name="skill"
+																value="#{createTaskBean.skill}"
+																requiredMessage="#{msg['NULL_OR_EMPTY_FIELDS']}">
+																<f:selectItem itemValue="Nenhum" itemLabel="#{msg['None']}" />
+																<f:selectItems value="#{util.skillsList}" var="skill"
+																	itemValue="#{skill.skill}" itemLabel="#{skill.skill}" />
+															</h:selectOneRadio>
+														</div>
+
+													</h:panelGroup>
+													<h:panelGroup layout="block" styleClass="col-sm-12">
+														<h:message for="skill" styleClass="error" />
+													</h:panelGroup>
+												</h:panelGroup>
+
+
+
+											</h:panelGroup>
+											<!--/.col-->
+
+											<h:panelGroup layout="block" class="col-md-6  p-y-2">
+
+												<!-- From Project -->
+												<p:outputPanel layout="block" class="form-group col-sm-6"
+													rendered="#{createTaskBean.taskToProject}">
+													<h:outputLabel for="beginDate">#{msg['BeginDate']} *</h:outputLabel>
+													<p:calendar id="beginDate" name="beginDate"
+														value="#{createTaskBean.beginDate}"
+														styleClass="form-control" required="true"
+														mindate="#{tabs.tomorrowOrLaterDate(createTaskBean.minBeginDate)}"
+														maxdate="#{createTaskBean.maxEndDate}"
+														locale="#{multilanguage.locale}" disabledWeekends="true"
+														requiredMessage="#{msg['NULL_OR_EMPTY_FIELDS']}">
+													</p:calendar>
+													<h:message for="beginDate" styleClass="error" />
+												</p:outputPanel>
+
+												<!-- New Activity -->
+												<p:outputPanel layout="block" class="form-group col-sm-6"
+													rendered="#{not createTaskBean.taskToProject}" id="beginDate1p">
+													<h:outputLabel for="beginDate1">#{msg['BeginDate']} *</h:outputLabel>
+													<p:calendar id="beginDate1" name="beginDate"
+														value="#{createTaskBean.beginDate}"
+														styleClass="form-control" required="true"
+														mindate="#{tabs.amanha}"
+														maxdate="#{createTaskBean.maxEndDate}"
+														locale="#{multilanguage.locale}" disabledWeekends="true"
+														requiredMessage="#{msg['NULL_OR_EMPTY_FIELDS']}">
+													</p:calendar>
+													<h:message for="beginDate1" styleClass="error" />
+												</p:outputPanel>
+
+
+
+												<!-- From Project -->
+												<p:outputPanel layout="block" class="form-group col-sm-6"
+													rendered="#{createTaskBean.taskToProject}">
+													<h:outputLabel for="endDate">#{msg['EndDate']} *</h:outputLabel>
+													<p:calendar id="endDate" name="endDate"
+														value="#{createTaskBean.endDate}"
+														styleClass="form-control" required="true"
+														mindate="#{tabs.amanha}"
+														maxdate="#{createTaskBean.maxEndDate}"
+														locale="#{multilanguage.locale}" disabledWeekends="true"
+														requiredMessage="#{msg['NULL_OR_EMPTY_FIELDS']}">
+													</p:calendar>
+													<h:message for="endDate" styleClass="error" />
+												</p:outputPanel>
+
+
+												<!-- New Activity -->
+												<p:outputPanel layout="block" class="form-group col-sm-6"
+													rendered="#{not createTaskBean.taskToProject}" id="endDate1p">
+													<h:outputLabel for="endDate1">#{msg['EndDate']} *</h:outputLabel>
+													<p:calendar id="endDate1" name="endDate1"
+														value="#{createTaskBean.endDate}"
+														styleClass="form-control" required="true"
+														mindate="#{tabs.amanha}"
+														maxdate="#{createTaskBean.maxEndDate}"
+														locale="#{multilanguage.locale}" disabledWeekends="true"
+														requiredMessage="#{msg['NULL_OR_EMPTY_FIELDS']}">
+													</p:calendar>
+													<h:message for="endDate1" styleClass="error" />
+												</p:outputPanel>
+
+
+
+
+												<h:panelGroup layout="block" class="form-group col-sm-6">
+													<h:outputLabel for="durationhoursestimate">#{msg['EstimatedDuration']} *</h:outputLabel>
+													<div class="input-group">
+														<h:inputText a:placeholder="0" a:autocomplete="off"
+															id="durationhoursestimate" name="durationhoursestimate"
+															class="form-control"
+															value="#{createTaskBean.durationHoursEstimate}"
+															required="true"
+															converterMessage="#{msg['ValidateNumber']}"
+															requiredMessage="#{msg['NULL_OR_EMPTY_FIELDS']}"
+															validatorMessage="#{msg['ValidatePositiveInteger']}">
+															<f:validateLongRange minimum="0" maximum="999999" />
+														</h:inputText>
+														<span class="input-group-addon">h</span>
+													</div>
+													<h:panelGroup layout="block" styleClass="col-sm-12">
+														<h:message for="durationhoursestimate" styleClass="error" />
+													</h:panelGroup>
+												</h:panelGroup>
+
+												<h:panelGroup layout="block" class="form-group col-sm-6">
+													<h:outputLabel for="hourCost">#{msg['HourCost']} *</h:outputLabel>
+													<div class="input-group">
+														<h:inputText a:placeholder="0" a:autocomplete="off"
+															id="hourCost" name="hourCost" class="form-control"
+															value="#{createTaskBean.hourCost}" required="true"
+															converterMessage="#{msg['ValidateNumber']}"
+															requiredMessage="#{msg['NULL_OR_EMPTY_FIELDS']}"
+															validatorMessage="#{msg['ValidateNumber']}">
+
+															<f:validateDoubleRange minimum="0.0" maximum="999999.9" />
+														</h:inputText>
+														<span class="input-group-addon">€</span>
+													</div>
+													<h:panelGroup layout="block" styleClass="col-sm-12">
+														<h:message for="hourCost" styleClass="error" />
+													</h:panelGroup>
+												</h:panelGroup>
+
+
+												<h:panelGroup layout="block" class="form-group col-sm-6">
+													<h:outputLabel class="form-control-label" for="taskType">#{msg['Type']}
+														*</h:outputLabel>
+
+													<h:selectOneMenu value="#{createTaskBean.tasktype}"
+														id="taskType" name="taskType" styleClass="form-control"
+														required="true"
+														requiredMessage="#{msg['NULL_OR_EMPTY_FIELDS']}">
+														<f:selectItems value="#{util.tasktypesList}" var="type"
+															itemValue="#{type.taskType}" itemLabel="#{type.taskType}" />
+													</h:selectOneMenu>
+													<h:panelGroup layout="block" styleClass="col-sm-12">
+														<h:message for="taskType" styleClass="error" />
+													</h:panelGroup>
+												</h:panelGroup>
+
+												<h:panelGroup layout="block" class="form-group col-sm-6">
+													<h:outputLabel for="taskStage" class="form-control-label">#{msg['Stage']} *</h:outputLabel>
+
+													<h:selectOneMenu value="#{createTaskBean.taskstage}"
+														name="taskStage" id="taskStage" styleClass="form-control"
+														required="true"
+														requiredMessage="#{msg['NULL_OR_EMPTY_FIELDS']}">
+														<f:selectItems value="#{util.taskstagesList}" var="stage"
+															itemValue="#{stage.taskStage}"
+															itemLabel="#{stage.taskStage}" />
+													</h:selectOneMenu>
+													<h:panelGroup layout="block" styleClass="col-sm-12">
+														<h:message for="taskStage" styleClass="error" />
+													</h:panelGroup>
+												</h:panelGroup>
+
+
+												<h:panelGroup layout="block" class="form-actions">
+													<h:panelGroup layout="block" class="form-group">
+														<h:panelGroup layout="block" class="col-md-12 margR10">
+															<h:commandButton styleClass="btn btn-primary"
+																value="#{msg['Newa']} #{msg['Activity']}"
+																action="#{createTaskBean.createNewTask()}">
+															</h:commandButton>
+														</h:panelGroup>
+													</h:panelGroup>
+												</h:panelGroup>
+											</h:panelGroup>
+											<!--/.col-->
+
+											<h:panelGroup layout="block"
+												styleClass="#{styleResponse.cssClass}">
+												<h:message for="createTaskForm" />
+											</h:panelGroup>
+
+										</h:form>
+										<h:panelGroup layout="block" class="row">
+											<h:panelGroup layout="block" class="col-md-12">
+												<h:panelGroup layout="block" class="col-md-6">
+													<small>* #{msg['RequiredFields']}</small>
+												</h:panelGroup>
+
+												<h:panelGroup layout="block" class="col-md-6 align-right">
+													<h:form>
+														<h:commandButton styleClass="btn btn-default"
+															value="#{msg['Cancel']}"
+															action="activities.xhtml?faces-redirect=true">
+														</h:commandButton>
+													</h:form>
+												</h:panelGroup>
+											</h:panelGroup>
+										</h:panelGroup>
+
+
+
+
+
+									</h:panelGroup>
+
+								</h:panelGroup>
+								<!--/.card-block-->
+
+
+							</h:panelGroup>
+						</h:panelGroup>
+					</h:panelGroup>
+					<!--/.col-->
+
+
+				</h:panelGroup>
+				<!--/.row-->
+
+
+
+			</h:panelGroup>
+			<!--/.animated -->
+		</h:panelGroup>
+		<!-- /.container-fluid -->
+
+	</h:panelGroup>
+	<!-- /.main -->
+
+	<!-- Footer -->
+	<ui:insert name="footerLayout">
+		<ui:include src="footer.xhtml" />
+	</ui:insert>
+
+
+
+	<!-- JS -->
+	<script src="resources/js/libs/bootstrap.min.js"></script>
+	<script src="resources/js/app.js"></script>
+	<script type="text/javascript" src="resources/js/js_index.js" />
+</h:body>
+</html>

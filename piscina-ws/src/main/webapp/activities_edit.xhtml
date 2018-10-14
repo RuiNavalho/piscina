@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui">
+<h:head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+	<title>Blue Roots</title>
+	<f:view contentType="text/html" locale="#{multilanguage.locale}" />
+	<link href="resources/css/bootstrap.min.css" rel="stylesheet" />
+	<link href="resources/css/primefaces.css" rel="stylesheet" />
+	<link href="resources/css/style.css" rel="stylesheet" />
+	<link href="resources/css/custom.css" rel="stylesheet" />
+	<link href="resources/css/gantt.css" rel="stylesheet" />
+	<link href="resources/css/fixeb.css" rel="stylesheet" />
+
+	<link rel="stylesheet"
+		href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
+
+	<script src="resources/js/calendarLocales.js" />
+	<link rel="shortcut icon" type="image/png"
+		href="resources/images/favicon.ico" />
+
+</h:head>
+<h:body class="navbar-fixed sidebar-nav fixed-nav">
+
+	<!-- Header -->
+	<header class="navbar">
+		<h:panelGroup layout="block" class="container-fluid">
+			<ui:insert name="mtopLayout">
+				<ui:include src="mtop.xhtml" />
+			</ui:insert>
+		</h:panelGroup>
+	</header>
+
+	<!-- Sidebar -->
+	<h:panelGroup layout="block" class="sidebar">
+		<nav class="sidebar-nav">
+			<ui:insert name="mleftLayout">
+				<ui:include src="mleft.xhtml" />
+			</ui:insert>
+		</nav>
+	</h:panelGroup>
+
+	<!-- Main content -->
+	<h:panelGroup layout="block" class="main">
+		<!-- Breadcrumb -->
+		<ol class="breadcrumb r-0">
+			<li>Home</li>
+			<li>#{msg['Activities']}</li>
+			<li>#{msg['Update']} #{msg['Activity']}</li>
+
+		</ol>
+		<h:panelGroup layout="block" class="container-fluid">
+			<h:panelGroup layout="block" class="animated fadeIn">
+
+				<h:panelGroup layout="block" class="row">
+					<h:panelGroup layout="block" class="col-md-12">
+						<h:panelGroup layout="block" class="card">
+							<h:panelGroup layout="block" class="card-block">
+								<h:panelGroup layout="block" styleClass="">
+									<h:panelGroup layout="block" styleClass="icons-Text">
+										<i class="fa fa-tasks" aria-hidden="true"></i>
+									</h:panelGroup>
+									<h3 class="card-title clearfix m-b-0">#{msg['Activity']}</h3>
+								</h:panelGroup>
+								<hr class="m-a-0" />
+								<h:panelGroup layout="block" class="row">
+									<h:panelGroup layout="block" class="col-md-12">
+
+										<h:panelGroup layout="block"
+											class="col-md-12 p-y-1 align-right">
+											<h:panelGroup layout="block" class="col-md-12">
+												<p:commandButton
+													styleClass="btn btn-primary btn-sm btn-primefaces"
+													update="myFormGraphic1" value="#{msg['AllocationsChart']}"
+													actionListener="#{chartAllocations.findTaskAllocationsChart(listTasksBean.selectedTask)}"
+													onclick="$('#myModalGraphic1').modal('show')">
+												</p:commandButton>
+											</h:panelGroup>
+
+
+										</h:panelGroup>
+
+										<h:form>
+
+											<h:panelGroup layout="block" class="col-md-6 p-y-2">
+
+
+
+												<h:panelGroup layout="block" class="form-group col-sm-12">
+
+													<h:panelGroup layout="block" class="form-group row">
+														<h:outputLabel class="col-md-12 form-control-label">#{msg['Name']}</h:outputLabel>
+														<h:panelGroup layout="block" class="col-md-12">
+															<h:outputText class="form-control input-off"
+																value="#{listTasksBean.selectedTask.taskName}" />
+														</h:panelGroup>
+													</h:panelGroup>
+												</h:panelGroup>
+
+											</h:panelGroup>
+											<!--/.col-->
+
+											<h:panelGroup layout="block" class="col-md-6  p-y-2">
+
+												<h:panelGroup layout="block" class="form-group col-sm-12">
+													<h:panelGroup layout="block" class="form-group row">
+														<h:outputLabel class="col-md-12 form-control-label"
+															for="idProject">#{msg['Project']}</h:outputLabel>
+														<h:panelGroup layout="block" class="col-md-12">
+															<h:outputText id="idProject" name="idProject"
+																class="form-control input-off"
+																value="#{listTasksBean.selectedTask.idProject} - #{listTasksBean.selectedTask.projectTitle}" />
+														</h:panelGroup>
+													</h:panelGroup>
+												</h:panelGroup>
+
+
+											</h:panelGroup>
+											<!--/.col-->
+
+										</h:form>
+
+									</h:panelGroup>
+
+
+
+								</h:panelGroup>
+								<!--/.card-block-->
+
+
+
+								<h:panelGroup layout="block" class="row">
+									<h:panelGroup layout="block" class="col-md-12">
+
+
+										<div class="col-md-12 text-md-right">
+											<h:form id="navForm">
+												<!-- Nav tabs -->
+												<ul class="nav nav-tabs text-md-right" role="tablist">
+													<li class=" #{tabs.activeTab1}"><p:commandLink
+															action="#{tabs.showActivities('details',1)}"
+															value="#{msg['Details']}" update="activitiesPanels @form"
+															process="@form" /></li>
+
+
+													<li class=" #{tabs.activeTab2}"><p:commandLink
+															action="#{tabs.showActivities('allocations',2)}"
+															value="#{msg['Allocations']}"
+															update="activitiesPanels @form" process="@form">
+															<f:actionListener
+																binding="#{listTasksBean.cleanTasksDates()}" />
+															<f:actionListener
+																binding="#{listTasksBean.setShowResources(false)}" />
+															<f:actionListener binding="#{tabs.showPanel('none')}" />
+														</p:commandLink></li>
+
+													<li class=" #{tabs.activeTab3}"><p:commandLink
+															action="#{tabs.showActivities('precedents',3)}"
+															value="#{msg['Precedences']}"
+															update="activitiesPanels @form"
+															actionListener="#{listTasksBean.findPrecendentTasksList()}"
+															process="@form" /></li>
+
+													<h:panelGroup layout="block"
+														rendered="#{mySessionBean.directorRole || listTasksBean.selectedTask.managerEmail eq mySessionBean.loggedUser.email}">
+														<li class=" #{tabs.activeTab5}"><p:commandLink
+																action="#{tabs.showActivities('workhours',5)}"
+																value="#{msg['HoursHistory']}"
+																update="activitiesPanels @form" process="@form" /></li>
+													</h:panelGroup>
+
+													<li class=" #{tabs.activeTab6}"><p:commandLink
+															action="#{tabs.showActivities('myworkhours',6)}"
+															value="#{msg['MyHoursHistory']}"
+															update="activitiesPanels @form" process="@form" /></li>
+													<li class=" #{tabs.activeTab7}"><p:commandLink
+															action="#{tabs.showActivities('indicators',7)}"
+															actionListener="#{chartLine.findTaskHourPercCostDtoList(listTasksBean.selectedTask)}"
+															value="#{msg['Indicators']}"
+															update="activitiesPanels @form" process="@form">
+															<f:actionListener
+																binding="#{chartLine.setTypeChart('percentChart')}" />
+														</p:commandLink></li>
+												</ul>
+											</h:form>
+										</div>
+
+
+										<h:panelGroup id="activitiesPanels">
+											<!-- Tab panes -->
+											<div class="tab-content">
+
+												<div role="tabpanel" class="tab-pane fade in active"
+													id="detalhes">
+
+													<ui:insert>
+														<ui:include src="#{tabs.activitiesTab}.xhtml" />
+													</ui:insert>
+
+
+												</div>
+												<!--/ end tab2 -->
+
+											</div>
+										</h:panelGroup>
+
+
+
+									</h:panelGroup>
+
+								</h:panelGroup>
+
+								<h:panelGroup layout="block" class="row">
+									<h:panelGroup layout="block" class="col-sm-12">
+
+										<h:panelGroup layout="block" class="col-sm-6">
+											<small>* #{msg['RequiredFields']}</small>
+										</h:panelGroup>
+
+										<h:panelGroup layout="block" class="col-sm-6 text-sm-right">
+											<h:form id="backDirector">
+												<h:commandButton styleClass="btn btn-default"
+													value="#{msg['Back']}"
+													action="activities.xhtml?faces-redirect=true"
+													actionListener="#{tabs.showActivities('details',1)}"
+													rendered="#{mySessionBean.directorRole}">
+												</h:commandButton>
+											</h:form>
+											<h:form id="back">
+												<h:commandButton styleClass="btn btn-default"
+													value="#{msg['Back']}"
+													action="myactivities.xhtml?faces-redirect=true"
+													actionListener="#{tabs.showActivities('details',1)}"
+													rendered="#{!mySessionBean.directorRole}">
+												</h:commandButton>
+											</h:form>
+										</h:panelGroup>
+
+									</h:panelGroup>
+								</h:panelGroup>
+
+							</h:panelGroup>
+						</h:panelGroup>
+					</h:panelGroup>
+					<!--/.col-->
+				</h:panelGroup>
+				<!--/.row-->
+
+
+
+			</h:panelGroup>
+			<!--/.animated -->
+		</h:panelGroup>
+		<!-- /.container-fluid -->
+
+	</h:panelGroup>
+	<!-- /.main -->
+
+
+	<!-- Modal Graph -->
+	<div class="modal fade" id="myModalGraphic1" tabindex="-1" role="dialog"
+		aria-labelledby="myModalGraphic1" aria-hidden="true"
+		data-keyboard="false" data-backdrop="false" data-closable="true"
+		style="top: 80px">
+		<div class="modal-dialog modal-md">
+			<div class="modal-content">
+				<h:form id="myFormGraphic1">
+					<div class="modal-header">
+						<h4 class="modal-title">#{msg['AllocationsChart']}</h4>
+					</div>
+					<div class="">
+
+						<h:panelGroup layout="block" class="col-md-12 p-y-1">
+
+							<h:panelGroup layout="block" class="col-md-12">
+
+								<p:timeline id="allocTaskGant1" value="#{chartAllocations.model}"
+									groupMinHeight="20" min="#{chartAllocations.start}"
+									max="#{chartAllocations.endPlusOne}" editable="false"
+									zoomMin="86400000" moveable="false" eventMargin="10"
+									eventMarginAxis="0" responsive="true"
+									start="#{chartAllocations.start}" end="#{chartAllocations.end}"
+									showNavigation="true" showButtonNew="false" axisOnTop="false"
+									stackEvents="true" locale="#{languages.locale}" />
+							</h:panelGroup>
+						</h:panelGroup>
+					</div>
+
+					<h:panelGroup layout="block" styleClass="col-md-12">
+						<h:message for="myFormGraphic1" />
+					</h:panelGroup>
+
+					<h:panelGroup layout="block" styleClass="modal-footer">
+						<p:commandLink value="#{msg['Close']}" immediate="true"
+							class="btn btn-xs btn-primary" styleClass="btn btn-default"
+							oncomplete="$('#myModalGraphic1').modal('hide');" />
+					</h:panelGroup>
+
+				</h:form>
+			</div>
+		</div>
+	</div>
+
+	<!-- Footer -->
+	<ui:insert name="footerLayout">
+		<ui:include src="footer.xhtml" />
+	</ui:insert>
+
+
+	<!-- JS -->
+	<script src="resources/js/libs/bootstrap.min.js"></script>
+	<script src="resources/js/app.js"></script>
+	<script type="text/javascript" src="resources/js/js_index.js" />
+
+</h:body>
+</html>

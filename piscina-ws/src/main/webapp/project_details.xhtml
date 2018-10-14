@@ -1,0 +1,374 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui">
+
+<ui:composition>
+<f:view contentType="text/html" locale="#{multilanguage.locale}" />
+	<h:panelGroup layout="block" class="col-md-12 bkg-color1">
+		#{msg['Details']}
+	</h:panelGroup>
+
+	<h:form id="updateProjectForm">
+
+		<p:outputPanel layout="block" class="col-md-6  p-y-1">
+
+			<!-- Diretor / Gestor -->
+			<h:panelGroup layout="block" class="form-group row"
+				rendered="#{(mySessionBean.directorRole or (listProjectsBean.selectedProject.managerEmail !=null and listProjectsBean.selectedProject.managerEmail eq mySessionBean.loggedUser.email))}">
+				<h:outputLabel class="col-md-12 form-control-label" for="title">#{msg['Name']} *</h:outputLabel>
+				<h:panelGroup layout="block" class="col-md-12">
+					<h:inputText a:placeholder="Nome" a:autocomplete="off" id="title"
+						name="title" class="form-control"
+						value="#{listProjectsBean.selectedProject.title}" required="true"
+						validatorMessage="#{msg['NULL_OR_EMPTY_FIELDS']}"
+						requiredMessage="#{msg['NULL_OR_EMPTY_FIELDS']}">
+						<f:validateRegex pattern=".*[\S]+.*" />
+						<f:validateLength minimum="3" maximum="100"/>
+					</h:inputText>
+				</h:panelGroup>
+				<h:panelGroup layout="block" styleClass="col-sm-12">
+					<h:message for="title" styleClass="error" />
+				</h:panelGroup>
+			</h:panelGroup>
+
+
+			<!-- Not Diretor / Gestor -->
+			<h:panelGroup layout="block" class="form-group row"
+				rendered="#{(!mySessionBean.directorRole and (listProjectsBean.selectedProject.managerEmail !=null and listProjectsBean.selectedProject.managerEmail ne mySessionBean.loggedUser.email))}">
+				<h:outputLabel class="col-md-12 form-control-label">#{msg['Name']}</h:outputLabel>
+				<h:panelGroup layout="block" class="col-md-12">
+					<h:outputText class="form-control input-off"
+						value="#{listProjectsBean.selectedProject.title}" />
+				</h:panelGroup>
+			</h:panelGroup>
+
+			<!-- Diretor / Gestor -->
+			<h:panelGroup layout="block" class="form-group row"
+				rendered="#{(mySessionBean.directorRole or (listProjectsBean.selectedProject.managerEmail !=null and listProjectsBean.selectedProject.managerEmail eq mySessionBean.loggedUser.email))}">
+				<h:outputLabel class="col-md-12 form-control-label"
+					for="description">#{msg['Description']} *</h:outputLabel>
+				<h:panelGroup layout="block" class="col-md-12">
+					<h:inputTextarea a:placeholder="Descrição" a:autocomplete="off"
+						id="description" name="description" class="form-control"
+						value="#{listProjectsBean.selectedProject.description}"
+						required="true" requiredMessage="#{msg['NULL_OR_EMPTY_FIELDS']}"
+						validatorMessage="#{msg['NULL_OR_EMPTY_FIELDS']}">
+						<f:validateRegex pattern=".*[\S]+.*" />
+						<f:validateLength minimum="3" maximum="200"/>
+					</h:inputTextarea>
+				</h:panelGroup>
+				<h:panelGroup layout="block" styleClass="col-sm-12">
+					<h:message for="description" styleClass="error" />
+				</h:panelGroup>
+			</h:panelGroup>
+
+
+			<!-- Not Diretor / Gestor -->
+			<h:panelGroup layout="block" class="form-group row"
+				rendered="#{(!mySessionBean.directorRole and (listProjectsBean.selectedProject.managerEmail !=null and listProjectsBean.selectedProject.managerEmail ne mySessionBean.loggedUser.email))}">
+				<h:outputLabel class="col-md-12 form-control-label">#{msg['Description']}</h:outputLabel>
+				<h:panelGroup layout="block" class="col-md-12">
+					<h:inputTextarea class="form-control input-off"
+						value="#{listProjectsBean.selectedProject.description}"
+						disabled="true" />
+				</h:panelGroup>
+			</h:panelGroup>
+
+
+		</p:outputPanel>
+
+		<p:outputPanel layout="block" class="col-md-6  p-y-1">
+
+			<!-- Diretor / Gestor -->
+			<p:outputPanel layout="block" class="form-group col-sm-6"
+				rendered="#{(mySessionBean.directorRole or (listProjectsBean.selectedProject.managerEmail !=null and listProjectsBean.selectedProject.managerEmail eq mySessionBean.loggedUser.email))}">
+				<h:outputLabel for="beginDate" value="#{msg['BeginDate']}" /> *
+				<p:calendar id="beginDate"
+					value="#{listProjectsBean.selectedProject.beginDate}"
+					styleClass="form-control" required="true"
+					locale="#{multilanguage.locale}" disabledWeekends="true"
+					requiredMessage="#{msg['NULL_OR_EMPTY_FIELDS']}">
+				</p:calendar>
+				<h:message for="beginDate" styleClass="error" />
+			</p:outputPanel>
+
+
+			<!-- Not Diretor / Gestor -->
+			<p:outputPanel layout="block" class="form-group col-sm-6"
+				rendered="#{(!mySessionBean.directorRole and (listProjectsBean.selectedProject.managerEmail !=null and listProjectsBean.selectedProject.managerEmail ne mySessionBean.loggedUser.email))}">
+				<h:outputLabel value="#{msg['BeginDate']}" />
+				<p:calendar value="#{listProjectsBean.selectedProject.beginDate}"
+					styleClass="form-control input-off"
+					locale="#{multilanguage.locale}" disabled="true">
+				</p:calendar>
+			</p:outputPanel>
+
+
+			<!-- Diretor / Gestor -->
+			<p:outputPanel layout="block" class="form-group col-sm-6"
+				rendered="#{(mySessionBean.directorRole or (listProjectsBean.selectedProject.managerEmail !=null and listProjectsBean.selectedProject.managerEmail eq mySessionBean.loggedUser.email))}">
+				<h:outputLabel for="endDate" value="#{msg['EndDate']}" /> *
+				<p:calendar id="endDate"
+					value="#{listProjectsBean.selectedProject.endDate}"
+					styleClass="form-control" required="true"
+					mindate="#{listProjectsBean.selectedProject.beginDate}"
+					locale="#{multilanguage.locale}" disabledWeekends="true"
+					requiredMessage="#{msg['NULL_OR_EMPTY_FIELDS']}">
+				</p:calendar>
+				<h:message for="endDate" styleClass="error" />
+			</p:outputPanel>
+
+			<!-- Not Diretor / Gestor -->
+			<p:outputPanel layout="block" class="form-group col-sm-6"
+				rendered="#{(!mySessionBean.directorRole and (listProjectsBean.selectedProject.managerEmail !=null and listProjectsBean.selectedProject.managerEmail ne mySessionBean.loggedUser.email))}">
+				<h:outputLabel value="#{msg['EndDate']}" />
+				<p:calendar value="#{listProjectsBean.selectedProject.endDate}"
+					styleClass="form-control input-off "
+					locale="#{multilanguage.locale}" disabled="true"
+					style="color:#55595c; opacity:1 !important;">
+				</p:calendar>
+			</p:outputPanel>
+
+			<!-- Diretor / Gestor -->
+			<h:panelGroup layout="block" class="form-group col-sm-12"
+				rendered="#{mySessionBean.directorRole}">
+				<h:outputLabel for="gestor">#{msg['Manager']} *</h:outputLabel>
+				<h:selectOneMenu
+					value="#{listProjectsBean.selectedProject.managerEmail}"
+					id="gestor" styleClass="form-control"
+					requiredMessage="#{msg['NULL_OR_EMPTY_FIELDS']}">
+					<f:selectItems value="#{listUsersBean.findManagersList()}"
+						var="user" itemValue="#{user.email}" itemLabel="#{user.fullName}" />
+				</h:selectOneMenu>
+				<h:panelGroup layout="block" styleClass="col-sm-12">
+					<h:message for="gestor" styleClass="error" />
+				</h:panelGroup>
+			</h:panelGroup>
+
+
+			<!-- Diretor / Gestor -->
+			<h:panelGroup layout="block" class="form-group col-sm-12"
+				rendered="#{!mySessionBean.directorRole and (listProjectsBean.selectedProject.managerEmail eq mySessionBean.loggedUser.email)}">
+				<h:outputLabel>#{msg['Manager']}</h:outputLabel>
+				<h:outputText class="form-control input-off"
+					value="#{listProjectsBean.selectedProject.managerEmail}" />
+			</h:panelGroup>
+
+
+
+
+			<!-- Not empty -->
+			<h:panelGroup layout="block" class="form-group col-sm-6"
+				rendered="#{not empty listProjectsBean.selectedProject.percentageExecuted}">
+				<h:outputLabel for="percentagem">#{msg['Percentage']}</h:outputLabel>
+				<div class="input-group col-sm-6">
+					<h:outputText a:placeholder="0" a:autocomplete="off"
+						id="percentagem" name="percentagem"
+						class="form-control col-sm-4 input-off"
+						value="#{listProjectsBean.selectedProject.percentageExecuted}" />
+					<span class="input-group-addon">%</span>
+				</div>
+			</h:panelGroup>
+
+
+			<!-- Diretor / Gestor -->
+			<h:panelGroup layout="block" class="form-group col-sm-6"
+				rendered="#{(mySessionBean.directorRole or (listProjectsBean.selectedProject.managerEmail !=null and listProjectsBean.selectedProject.managerEmail eq mySessionBean.loggedUser.email))}">
+				<h:outputLabel for="stage">#{msg['Stage']} *</h:outputLabel>
+				<h:selectOneMenu value="#{listProjectsBean.selectedProject.stage}"
+					id="stage" styleClass="form-control"
+					requiredMessage="#{msg['NULL_OR_EMPTY_FIELDS']}">
+					<f:selectItems value="#{listStagesBean.stagesList}" var="stage"
+						itemValue="#{stage.stage}" itemLabel="#{stage.stage}" />
+				</h:selectOneMenu>
+				<h:panelGroup layout="block" styleClass="col-sm-12">
+					<h:message for="stage" styleClass="error" />
+				</h:panelGroup>
+			</h:panelGroup>
+
+			<!-- Not Diretor / Gestor -->
+			<h:panelGroup layout="block" class="form-group col-sm-6"
+				rendered="#{(!mySessionBean.directorRole and (listProjectsBean.selectedProject.managerEmail !=null and listProjectsBean.selectedProject.managerEmail ne mySessionBean.loggedUser.email))}">
+				<h:outputLabel>#{msg['Stage']}</h:outputLabel>
+				<h:outputText class="form-control input-off"
+					value="#{listProjectsBean.selectedProject.stage}" />
+			</h:panelGroup>
+
+
+			<!-- Diretor / Gestor -->
+			<h:panelGroup layout="block" class="form-group col-sm-6"
+				rendered="#{(mySessionBean.directorRole or (listProjectsBean.selectedProject.managerEmail !=null and listProjectsBean.selectedProject.managerEmail eq mySessionBean.loggedUser.email))}">
+				<h:outputLabel for="budget">#{msg['Budget']} *</h:outputLabel>
+				<div class="input-group">
+					<h:inputText id="budget" name="budget" class="form-control"
+						value="#{listProjectsBean.selectedProject.budget}" required="true"
+						converterMessage="#{msg['ValidateNumber']}"
+						requiredMessage="#{msg['NULL_OR_EMPTY_FIELDS']}"
+						validatorMessage="#{msg['ValidateNumber']}">
+						<f:validateDoubleRange minimum="0.1" maximum="999999.9" />
+					</h:inputText>
+					<span class="input-group-addon">€</span>
+				</div>
+				<h:panelGroup layout="block" styleClass="col-sm-12">
+					<h:message for="budget" styleClass="error" />
+				</h:panelGroup>
+			</h:panelGroup>
+
+
+
+			<!-- Diretor / Gestor -->
+			<h:panelGroup layout="block" class="form-group col-sm-6"
+				rendered="#{(mySessionBean.directorRole or (listProjectsBean.selectedProject.managerEmail !=null and listProjectsBean.selectedProject.managerEmail eq mySessionBean.loggedUser.email))}">
+				<h:outputLabel class="form-control-label row" for="tipologia">#{msg['Typology']}
+														*</h:outputLabel>
+				<h:panelGroup layout="block" class="">
+					<h:selectOneMenu
+						value="#{listProjectsBean.selectedProject.typology}"
+						id="tipologia" styleClass="form-control"
+						requiredMessage="#{msg['NULL_OR_EMPTY_FIELDS']}">
+						<f:selectItems value="#{listTypologiesBean.typologiesList}"
+							var="typo" itemValue="#{typo.typology}"
+							itemLabel="#{typo.typology}" />
+					</h:selectOneMenu>
+				</h:panelGroup>
+				<h:panelGroup layout="block" styleClass="col-sm-12">
+					<h:message for="tipologia" styleClass="error" />
+				</h:panelGroup>
+			</h:panelGroup>
+
+			<!-- Not Diretor / Gestor -->
+			<h:panelGroup layout="block" class="form-group col-sm-6"
+				rendered="#{(!mySessionBean.directorRole and (listProjectsBean.selectedProject.managerEmail !=null and listProjectsBean.selectedProject.managerEmail ne mySessionBean.loggedUser.email))}">
+				<h:outputLabel class="form-control-label row">#{msg['Typology']}</h:outputLabel>
+				<h:panelGroup layout="block" class="">
+					<h:outputText class="form-control input-off"
+						value="#{listProjectsBean.selectedProject.typology}" />
+				</h:panelGroup>
+				<h:panelGroup layout="block" styleClass="col-sm-12">
+					<h:message for="tipologia" styleClass="error" />
+				</h:panelGroup>
+			</h:panelGroup>
+
+
+
+
+			<!-- Diretor / Gestor -->
+			<h:panelGroup layout="block" class="form-actions"
+				rendered="#{(mySessionBean.directorRole or (listProjectsBean.selectedProject.managerEmail !=null and listProjectsBean.selectedProject.managerEmail eq mySessionBean.loggedUser.email))}">
+
+				<h:panelGroup layout="block" class="col-sm-6">
+
+
+					<p:commandButton styleClass="btn btn-primary btn-primefaces"
+						value="#{msg['Update']}" action="#{listProjectsBean.updateProject1()}"
+						oncomplete="updateProjectConfirmation()"
+						update="updateProjectForm msgH popup">
+
+					</p:commandButton>
+
+
+				</h:panelGroup>
+
+			</h:panelGroup>
+
+
+			<h:panelGroup layout="block" class="col-sm-12 p-y-1" id="msgH">
+				<h:panelGroup layout="block" styleClass="#{styleResponse.cssClass}">
+					<h:message for="updateProjectForm" />
+
+				</h:panelGroup>
+			</h:panelGroup>
+
+		</p:outputPanel>
+		<!--/.col-->
+
+		<p:outputPanel layout="block" class="col-sm-6  p-y-1">
+			<h:panelGroup layout="block" class="col-sm-12">
+				<small>* #{msg['RequiredFields']}</small>
+			</h:panelGroup>
+		</p:outputPanel>
+
+
+	</h:form>
+
+	<!-- Modal Graph -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+		aria-labelledby="myModal" aria-hidden="true" data-keyboard="false"
+		data-backdrop="false" data-closable="true" style="top: 80px">
+		<div class="modal-dialog modal-md">
+			<div class="modal-content">
+				<h:form id="myModalForm">
+					<div class="modal-header">
+						<h4 class="modal-title">#{msg['ProjectConclusion']}</h4>
+					</div>
+					<div class="">
+
+						<h:panelGroup layout="block" class="col-md-12 p-y-1">
+
+							<h:panelGroup layout="block" class="col-md-12 text-md-center">
+								<h:panelGroup layout="block" styleClass="col-md-12"
+									rendered="#{listProjectsBean.selectedProject.percentageExecuted ge 100}">
+									<p class="error">#{msg['Msg3']}</p>
+									<p>#{msg['DoYouContinue']}</p>
+								</h:panelGroup>
+								<h:panelGroup layout="block" styleClass="col-md-12">
+									<p class="error">#{msg['Msg4']}</p>
+									<p>#{msg['DoYouContinue']}</p>
+								</h:panelGroup>
+
+								<h:panelGroup layout="block" styleClass="col-md-6 text-md-right">
+									<p:commandButton class="btn btn-info btn-xs btn-primefaces"
+										value="#{msg['NO']}"
+										actionListener="#{listProjectsBean.refreshSelectedProject()}"
+										oncomplete="$('#myModal').modal('hide');"
+										update="updateProjectForm" />
+								</h:panelGroup>
+								<h:panelGroup layout="block" styleClass="col-md-6 text-md-left">
+									<p:commandButton class="btn btn-info btn-xs btn-primefaces"
+										value="#{msg['YES']}"
+										actionListener="#{listProjectsBean.updateProject()}"
+										oncomplete="$('#myModal').modal('hide');"
+										update="updateProjectForm" />
+								</h:panelGroup>
+
+							</h:panelGroup>
+						</h:panelGroup>
+					</div>
+
+					<h:panelGroup layout="block" styleClass="col-md-12">
+						<h:message for="myModalForm" />
+					</h:panelGroup>
+
+					<h:panelGroup layout="block" styleClass="modal-footer">
+						<p:commandLink value="#{msg['Close']}" immediate="true"
+							class="btn btn-xs btn-primary" styleClass="btn btn-default"
+							oncomplete="$('#myModal').modal('hide');" />
+					</h:panelGroup>
+
+				</h:form>
+			</div>
+		</div>
+	</div>
+
+	<h:panelGroup layout="block" id="popup" style="display:none;">
+		<h:outputText id="popup1" value="#{listProjectsBean.showPopup}" />
+	</h:panelGroup>
+
+	<script>
+	function updateProjectConfirmation() {
+	var decision = document.getElementById("popup1").innerHTML;
+		if(decision==1){
+			$('#myModal').modal('show');
+			}
+	}
+	</script>
+
+</ui:composition>
+
+</html>

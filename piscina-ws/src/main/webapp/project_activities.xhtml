@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui">
+
+<ui:composition>
+	<f:view contentType="text/html" locale="#{multilanguage.locale}" />
+	<link href="resources/css/jquery.dataTables.css" rel="stylesheet" />
+	<link href="resources/css/responsive.dataTables.css" rel="stylesheet" />
+	<style type="text/css" class="init">
+div.container {
+	max-width: 1000px
+}
+</style>
+	<script type="text/javascript" src="resources/js/jquery.dataTables.js" />
+	<script type="text/javascript"
+		src="resources/js/dataTables.responsive.js" />
+	<script type="text/javascript" class="init">
+
+$(document).ready(function() {
+	$('#tasksProjectTable').DataTable( {
+		"language": {
+            "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Portuguese.json"
+        },
+		
+        lengthMenu: [
+            [10, 25, 50, -1],
+            [10, 25, 50, "All"]
+        ],
+        filter: true,
+        sort: true,
+        info: true,
+        autoWidth: true,
+        order: [
+            [0, "asc"]
+        ],
+		responsive: true,
+		columnDefs: [
+			{ responsivePriority: 1, targets: 0 },
+			{ responsivePriority: 1, targets: -1 },
+			{ responsivePriority: 2, targets: -2 }
+		]
+	} );
+		
+} );
+	</script>
+
+
+	<h:panelGroup layout="block" class="col-md-12 bkg-color1">
+		#{msg['Manage']} #{msg['Activities']}
+	</h:panelGroup>
+
+	<h:panelGroup layout="block" class="col-md-12  p-y-1">
+
+		<h:panelGroup layout="block" styleClass="row">
+			<h:panelGroup layout="block" class="col-md-12"
+				rendered="#{(mySessionBean.directorRole or (listProjectsBean.selectedProject.managerEmail !=null and listProjectsBean.selectedProject.managerEmail eq mySessionBean.loggedUser.email))}">
+				<h:form>
+					<h:commandButton
+						action="#{listProjectsBean.createNewTaskToProject()}"
+						value="#{msg['CreateActivityProject']}" class="btn btn-primary">
+						<f:actionListener binding="#{tabs.showActivities('details',1)}" />
+						<f:actionListener
+							binding="#{createTaskBean.setNewTaskFromProject(true)}" />
+					</h:commandButton>
+				</h:form>
+			</h:panelGroup>
+		</h:panelGroup>
+
+		<h:panelGroup layout="block" class="row">
+
+			<h:panelGroup layout="block" class="col-sm-12">
+				<h:panelGroup layout="block" class="col-sm-12">
+					<hr />
+				</h:panelGroup>
+
+				<h:panelGroup layout="block" class="col-sm-2">
+					<strong>#{msg['ProjectName']}:</strong>
+					<h6 class="no-bold">
+						<h:outputText value="#{listProjectsBean.selectedProject.title}" />
+					</h6>
+				</h:panelGroup>
+
+				<h:panelGroup layout="block" class="col-sm-2 bLeft">
+					<strong>#{msg['ProjectBegin']}:</strong>
+					<br />
+					<p:calendar value="#{listProjectsBean.selectedProject.beginDate}"
+						disabled="true" styleClass="" locale="#{multilanguage.locale}">
+					</p:calendar>
+				</h:panelGroup>
+
+				<h:panelGroup layout="block" class="col-sm-2 bLeft">
+					<strong>#{msg['ProjectEnd']}:</strong>
+					<br />
+					<p:calendar value="#{listProjectsBean.selectedProject.endDate}"
+						disabled="true" styleClass="" locale="#{multilanguage.locale}">
+					</p:calendar>
+				</h:panelGroup>
+
+				<h:panelGroup layout="block" class="col-sm-3 bLeft">
+					<strong>#{msg['ExecutedPercentage']}:</strong>
+					<br />
+					<h:outputText
+						value="#{listProjectsBean.selectedProject.percentageExecuted}" />%
+				</h:panelGroup>
+
+
+
+				<h:panelGroup layout="block" class="col-sm-12">
+					<hr />
+				</h:panelGroup>
+
+			</h:panelGroup>
+
+		</h:panelGroup>
+
+
+		<h:panelGroup layout="block" class="row">
+
+			<h:panelGroup layout="block" class="col-sm-12">
+					<h:form id="tasksProjectForm">
+
+						<h:panelGroup layout="block" class="col-md-9 p-y-2">
+							<span class="header-list">#{msg['ProjectActivities']}:</span> #{listProjectsBean.selectedProject.title}
+						</h:panelGroup>
+
+						<h:panelGroup layout="block" class="col-md-3 p-y-1 text-md-right">
+							<h:commandLink>
+								<p:graphicImage value="resources/images/pdf.png" />
+								<p:dataExporter type="pdf" target="tasksProjectListX"
+									fileName="atividades" pageOnly="false" />
+							</h:commandLink>
+
+							<h:commandLink>
+								<p:graphicImage value="resources/images/csv.png" />
+								<p:dataExporter type="csv" target="tasksProjectListX"
+									fileName="atividades" pageOnly="false" />
+							</h:commandLink>
+
+							<h:commandLink>
+								<p:graphicImage value="resources/images/xml.png" />
+								<p:dataExporter type="xml" target="tasksProjectListX"
+									fileName="atividades" pageOnly="false" />
+							</h:commandLink>
+						</h:panelGroup>
+
+						<p:dataTable id="tasksProjectListX"
+							value="#{listTasksBean.tasksList}" var="taskExp"
+							style="display:none">
+							<p:column>
+								<f:facet name="header">
+									<h:outputText value="Id da Atividade" />
+								</f:facet>
+								<h:outputText value="#{taskExp.taskId}" />
+							</p:column>
+							<p:column>
+								<f:facet name="header">
+									<h:outputText value="#{msg['ActivityName']}" />
+								</f:facet>
+								<h:outputText value="#{taskExp.taskName}" />
+							</p:column>
+							<p:column>
+								<f:facet name="header">
+									<h:outputText value="#{msg['Resource']}" />
+								</f:facet>
+								<h:outputText value="#{taskExp.allocatedUserName}" />
+							</p:column>
+							<p:column>
+								<f:facet name="header">
+									<h:outputText value="#{msg['ActivityBegin']}" />
+								</f:facet>
+								<h:outputText value="#{taskExp.beginDate}" />
+							</p:column>
+							<p:column>
+								<f:facet name="header">
+									<h:outputText value="#{msg['ActivityEnd']}" />
+								</f:facet>
+								<h:outputText value="#{taskExp.endDate}" />
+							</p:column>
+							<p:column>
+								<f:facet name="header">
+									<h:outputText value="#{msg['EstimatedDuration']}" />
+								</f:facet>
+								<h:outputText value="#{taskExp.durationHoursEstimate}" />
+							</p:column>
+							<p:column>
+								<f:facet name="header">
+									<h:outputText value="#{msg['ExecutedPercentage']}" />
+								</f:facet>
+								<h:outputText value="#{taskExp.executedPercentageEstimate}" />
+							</p:column>
+						</p:dataTable>
+
+						<h:panelGroup layout="block" styleClass="col-md-12 p-y-1">
+							<div class="">
+								<section>
+									<table id="tasksProjectTable" class="display nowrap"
+										cellspacing="0" width="100%">
+										<thead>
+											<tr>
+												<th>#{msg['ActivityName']}</th>
+												<th>#{msg['Resource']}</th>
+												<th>#{msg['ActivityBegin']}</th>
+												<th>#{msg['ActivityEnd']}</th>
+												<th>#{msg['EstimatedDuration']}</th>
+												<th>#{msg['ExecutedPercentage']}</th>
+												<th></th>
+											</tr>
+										</thead>
+										<tbody>
+											<ui:repeat id="tasksProjectList" var="task"
+												value="#{listTasksBean.tasksList}">
+												<tr>
+													<td><h:outputText value="#{task.taskName}" /></td>
+													<td><h:outputText value="#{task.allocatedUserName}"
+															styleClass="label label-pill label-info" /></td>
+													<td><p:calendar value="#{task.beginDate}"
+															disabled="true" locale="#{multilanguage.locale}">
+														</p:calendar></td>
+													<td><p:calendar value="#{task.endDate}"
+															disabled="true" locale="#{multilanguage.locale}">
+														</p:calendar></td>
+													<td class="text-md-center"><h:outputText
+															value="#{task.durationHoursEstimate}" />h</td>
+													<td class="text-md-center"><h:outputText
+															value="#{task.executedPercentageEstimate}" />%</td>
+
+													<td><h:commandLink
+															class="btn btn-info btn-xs icon-pencil"
+															action="#{listTasksBean.updateSelectedTask(task)}"
+															value="">
+															<f:actionListener
+																binding="#{tabs.showActivities('details',1)}" />
+														</h:commandLink></td>
+
+
+												</tr>
+											</ui:repeat>
+										</tbody>
+									</table>
+
+								</section>
+							</div>
+							
+							</h:panelGroup>
+					</h:form>
+			</h:panelGroup>
+			<!--/.col-->
+
+
+
+		</h:panelGroup>
+	</h:panelGroup>
+
+
+
+</ui:composition>
+
+</html>

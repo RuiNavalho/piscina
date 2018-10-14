@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" xmlns:hf="http://highfaces.org">
+
+<ui:composition>
+<f:view contentType="text/html" locale="#{multilanguage.locale}" />
+	<link href="resources/css/jquery.dataTables.css" rel="stylesheet" />
+	<link href="resources/css/responsive.dataTables.css" rel="stylesheet" />
+
+	<script type="text/javascript" src="resources/js/jquery.dataTables.js" />
+	<script type="text/javascript"
+		src="resources/js/dataTables.responsive.js" />
+	<script type="text/javascript" class="init">
+
+$(document).ready(function() {
+	$('#usersTable').DataTable( {
+		"language": {
+            "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Portuguese.json"
+        },
+		
+        lengthMenu: [
+            [10, 25, 50, -1],
+            [10, 25, 50, "All"]
+        ],
+        filter: false,
+        sort: true,
+        info: true,
+        autoWidth: true,
+        order: [
+            [0, "asc"]
+        ],
+		responsive: true,
+		columnDefs: [
+			{ responsivePriority: 1, targets: 0 },
+			{ responsivePriority: 1, targets: -1 }
+		]
+	} );
+		
+} );
+	</script>
+
+	<h:panelGroup layout="block" class="col-sm-12">
+
+		<h:panelGroup layout="block" class="col-md-12 bkg-color1">
+			#{msg['ProjectsReports']}
+		</h:panelGroup>
+
+
+		<h:panelGroup layout="block"
+			class="col-sm-12 p-y-1 bkg-color2 borderBottom"
+			id="searchAdvancedBox">
+
+			<h:form id="projectReportForm">
+
+				<h:panelGroup layout="block" class="col-sm-12" id="reportAdvanced">
+
+					<h:panelGroup layout="block" class="form-group col-sm-12">
+
+						<h:panelGroup layout="block" class="col-sm-4">
+							<h:outputLabel for="idProject" value="#{msg['Project']}" />
+							<h:panelGroup layout="block" class="controls">
+								<h:selectOneMenu value="#{chartLine.projectId}" name="idProject"
+									id="idProject" styleClass="form-control"
+									requiredMessage="#{msg['NULL_OR_EMPTY_FIELDS']}">
+									<f:selectItems value="#{listProjectsBean.projList}" var="proj"
+										itemValue="#{proj.idProject}"
+										itemLabel="#{proj.idProject} - #{proj.title}" />
+								</h:selectOneMenu>
+							</h:panelGroup>
+							<h:panelGroup layout="block" styleClass="col-sm-12">
+								<h:message for="idProject" styleClass="error" />
+							</h:panelGroup>
+						</h:panelGroup>
+
+
+						<h:panelGroup layout="block" class="col-sm-2 padTop25">
+							<h:outputLabel value="" />
+							<p:commandButton styleClass="btn btn-info btn-xs btn-primefaces"
+								actionListener="#{chartLine.findProjectCpiSpiTimeChart()}"
+								update="projectReportForm projectResultsPanel radioSearch"
+								value="#{msg['Search']}">
+								<f:actionListener binding="#{tabs.setTypeLink('cpi')}" />
+								<f:actionListener
+									binding="#{chartLine.setShowHidePanel('true')}" />
+							</p:commandButton>
+						</h:panelGroup>
+
+						<h:panelGroup layout="block" class="col-sm-12">
+							<p:outputPanel layout="block"
+								styleClass="#{styleResponse.cssClass}">
+								<h:message for="projectReportForm" />
+							</p:outputPanel>
+						</h:panelGroup>
+					</h:panelGroup>
+
+				</h:panelGroup>
+
+			</h:form>
+		</h:panelGroup>
+
+
+
+		<h:panelGroup layout="block" class="col-sm-12 p-y-2" id="radioSearch">
+			<h:panelGroup layout="block" class="col-sm-12"
+				rendered="#{chartLine.showHidePanel}">
+				<h:form>
+					<h:panelGroup layout="block" class="input-group">
+
+						<p:selectOneRadio id="typeLink" value="#{tabs.typeLink}">
+							<p:ajax event="change" update="projectResultsPanel" />
+							<f:selectItem itemValue="cpi" itemLabel="CPI/ SPI" />
+							<f:selectItem itemValue="gantt" itemLabel="GANTT" />
+						</p:selectOneRadio>
+
+					</h:panelGroup>
+				</h:form>
+			</h:panelGroup>
+		</h:panelGroup>
+
+		<h:panelGroup layout="block" class="col-sm-12">
+
+
+		</h:panelGroup>
+
+		<h:panelGroup layout="block" class="col-sm-12"
+			id="projectResultsPanel">
+
+			<ui:insert>
+				<ui:include src="report_projects_results_#{tabs.typeLink}.xhtml" />
+			</ui:insert>
+
+		</h:panelGroup>
+
+
+	</h:panelGroup>
+
+</ui:composition>
+
+</html>

@@ -1,0 +1,471 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.2.0" icons="true" always-add-relationships="false" generalizations="false" 
+  realizations="false" associations="true" dependencies="false" nesting-relationships="false" router="FAN">  
+  <class id="1" language="java" name="pt.uc.dei.ds.endpoints.TaskEndPoint" project="aclgomes-rnavalho-project-ds" 
+    file="/aclgomes-rnavalho-project-ds/src/main/java/pt/uc/dei/ds/endpoints/TaskEndPoint.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="53" width="102" x="407" y="223"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="false"/>    
+    </display>  
+  </class>  
+  <class id="2" language="java" name="pt.uc.dei.ds.endpoints.TasktypeEndPoint" project="aclgomes-rnavalho-project-ds" 
+    file="/aclgomes-rnavalho-project-ds/src/main/java/pt/uc/dei/ds/endpoints/TasktypeEndPoint.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="53" width="125" x="1436" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="false"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="pt.uc.dei.ds.endpoints.BusinessEndPoint" project="aclgomes-rnavalho-project-ds" 
+    file="/aclgomes-rnavalho-project-ds/src/main/java/pt/uc/dei/ds/endpoints/BusinessEndPoint.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="53" width="127" x="204" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="false"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" name="pt.uc.dei.ds.endpoints.AllocationEndPoint" project="aclgomes-rnavalho-project-ds" 
+    file="/aclgomes-rnavalho-project-ds/src/main/java/pt/uc/dei/ds/endpoints/AllocationEndPoint.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="53" width="130" x="1124" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="false"/>    
+    </display>  
+  </class>  
+  <class id="5" language="java" name="pt.uc.dei.ds.endpoints.UserEndPoint" project="aclgomes-rnavalho-project-ds" 
+    file="/aclgomes-rnavalho-project-ds/src/main/java/pt/uc/dei/ds/endpoints/UserEndPoint.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="53" width="102" x="438" y="316"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="false"/>    
+    </display>  
+  </class>  
+  <class id="6" language="java" name="pt.uc.dei.ds.endpoints.ProjectEndPoint" project="aclgomes-rnavalho-project-ds" 
+    file="/aclgomes-rnavalho-project-ds/src/main/java/pt/uc/dei/ds/endpoints/ProjectEndPoint.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="53" width="115" x="357" y="130"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="false"/>    
+    </display>  
+  </class>  
+  <class id="7" language="java" name="pt.uc.dei.ds.endpoints.RoleEndPoint" project="aclgomes-rnavalho-project-ds" 
+    file="/aclgomes-rnavalho-project-ds/src/main/java/pt/uc/dei/ds/endpoints/RoleEndPoint.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="53" width="102" x="1601" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="false"/>    
+    </display>  
+  </class>  
+  <class id="8" language="java" name="pt.uc.dei.ds.endpoints.SkillEndPoint" project="aclgomes-rnavalho-project-ds" 
+    file="/aclgomes-rnavalho-project-ds/src/main/java/pt/uc/dei/ds/endpoints/SkillEndPoint.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="53" width="102" x="1294" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="false"/>    
+    </display>  
+  </class>  
+  <class id="9" language="java" name="pt.uc.dei.ds.endpoints.ChartEndPoint" project="aclgomes-rnavalho-project-ds" 
+    file="/aclgomes-rnavalho-project-ds/src/main/java/pt/uc/dei/ds/endpoints/ChartEndPoint.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="53" width="105" x="678" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="false"/>    
+    </display>  
+  </class>  
+  <class id="10" language="java" name="pt.uc.dei.ds.endpoints.HolidayEndPoint" project="aclgomes-rnavalho-project-ds" 
+    file="/aclgomes-rnavalho-project-ds/src/main/java/pt/uc/dei/ds/endpoints/HolidayEndPoint.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="53" width="115" x="969" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="false"/>    
+    </display>  
+  </class>  
+  <class id="11" language="java" name="pt.uc.dei.ds.endpoints.TaskstageEndPoint" project="aclgomes-rnavalho-project-ds" 
+    file="/aclgomes-rnavalho-project-ds/src/main/java/pt/uc/dei/ds/endpoints/TaskstageEndPoint.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="53" width="133" x="505" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="false"/>    
+    </display>  
+  </class>  
+  <class id="12" language="java" name="pt.uc.dei.ds.endpoints.TaskworkEndPoint" project="aclgomes-rnavalho-project-ds" 
+    file="/aclgomes-rnavalho-project-ds/src/main/java/pt/uc/dei/ds/endpoints/TaskworkEndPoint.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="53" width="130" x="718" y="223"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="false"/>    
+    </display>  
+  </class>  
+  <class id="13" language="java" name="pt.uc.dei.ds.endpoints.StageEndPoint" project="aclgomes-rnavalho-project-ds" 
+    file="/aclgomes-rnavalho-project-ds/src/main/java/pt/uc/dei/ds/endpoints/StageEndPoint.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="53" width="107" x="1743" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="false"/>    
+    </display>  
+  </class>  
+  <class id="14" language="java" name="pt.uc.dei.ds.endpoints.ClientEndPoint" project="aclgomes-rnavalho-project-ds" 
+    file="/aclgomes-rnavalho-project-ds/src/main/java/pt/uc/dei/ds/endpoints/ClientEndPoint.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="53" width="106" x="823" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="false"/>    
+    </display>  
+  </class>  
+  <class id="15" language="java" name="pt.uc.dei.ds.endpoints.TypologyEndPoint" project="aclgomes-rnavalho-project-ds" 
+    file="/aclgomes-rnavalho-project-ds/src/main/java/pt/uc/dei/ds/endpoints/TypologyEndPoint.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="53" width="123" x="41" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="false"/>    
+    </display>  
+  </class>  
+  <class id="16" language="java" name="pt.uc.dei.ds.services.TaskService" project="aclgomes-rnavalho-project-ds" 
+    file="/aclgomes-rnavalho-project-ds/src/main/java/pt/uc/dei/ds/services/TaskService.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="53" width="98" x="580" y="316"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="false"/>    
+    </display>  
+  </class>  
+  <class id="17" language="java" name="pt.uc.dei.ds.services.UserService" project="aclgomes-rnavalho-project-ds" 
+    file="/aclgomes-rnavalho-project-ds/src/main/java/pt/uc/dei/ds/services/UserService.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="53" width="98" x="580" y="409"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="false"/>    
+    </display>  
+  </class>  
+  <class id="18" language="java" name="pt.uc.dei.ds.services.StageService" project="aclgomes-rnavalho-project-ds" 
+    file="/aclgomes-rnavalho-project-ds/src/main/java/pt/uc/dei/ds/services/StageService.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="53" width="100" x="1743" y="130"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="false"/>    
+    </display>  
+  </class>  
+  <class id="19" language="java" name="pt.uc.dei.ds.services.TasktypeService" project="aclgomes-rnavalho-project-ds" 
+    file="/aclgomes-rnavalho-project-ds/src/main/java/pt/uc/dei/ds/services/TasktypeService.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="53" width="118" x="1436" y="130"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="false"/>    
+    </display>  
+  </class>  
+  <class id="20" language="java" name="pt.uc.dei.ds.services.RoleService" project="aclgomes-rnavalho-project-ds" 
+    file="/aclgomes-rnavalho-project-ds/src/main/java/pt/uc/dei/ds/services/RoleService.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="53" width="98" x="1601" y="130"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="false"/>    
+    </display>  
+  </class>  
+  <class id="21" language="java" name="pt.uc.dei.ds.services.ClientService" project="aclgomes-rnavalho-project-ds" 
+    file="/aclgomes-rnavalho-project-ds/src/main/java/pt/uc/dei/ds/services/ClientService.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="53" width="99" x="823" y="130"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="false"/>    
+    </display>  
+  </class>  
+  <class id="22" language="java" name="pt.uc.dei.ds.services.HolidayService" project="aclgomes-rnavalho-project-ds" 
+    file="/aclgomes-rnavalho-project-ds/src/main/java/pt/uc/dei/ds/services/HolidayService.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="53" width="108" x="969" y="130"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="false"/>    
+    </display>  
+  </class>  
+  <class id="23" language="java" name="pt.uc.dei.ds.services.ProjectService" project="aclgomes-rnavalho-project-ds" 
+    file="/aclgomes-rnavalho-project-ds/src/main/java/pt/uc/dei/ds/services/ProjectService.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="53" width="108" x="549" y="223"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="false"/>    
+    </display>  
+  </class>  
+  <class id="24" language="java" name="pt.uc.dei.ds.services.TaskstageService" project="aclgomes-rnavalho-project-ds" 
+    file="/aclgomes-rnavalho-project-ds/src/main/java/pt/uc/dei/ds/services/TaskstageService.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="53" width="126" x="512" y="130"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="false"/>    
+    </display>  
+  </class>  
+  <class id="25" language="java" name="pt.uc.dei.ds.services.AllocationService" project="aclgomes-rnavalho-project-ds" 
+    file="/aclgomes-rnavalho-project-ds/src/main/java/pt/uc/dei/ds/services/AllocationService.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="53" width="123" x="1124" y="130"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="false"/>    
+    </display>  
+  </class>  
+  <class id="26" language="java" name="pt.uc.dei.ds.services.BusinessService" project="aclgomes-rnavalho-project-ds" 
+    file="/aclgomes-rnavalho-project-ds/src/main/java/pt/uc/dei/ds/services/BusinessService.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="53" width="120" x="197" y="130"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="false"/>    
+    </display>  
+  </class>  
+  <class id="27" language="java" name="pt.uc.dei.ds.services.TaskworkService" project="aclgomes-rnavalho-project-ds" 
+    file="/aclgomes-rnavalho-project-ds/src/main/java/pt/uc/dei/ds/services/TaskworkService.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="53" width="123" x="718" y="316"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="false"/>    
+    </display>  
+  </class>  
+  <class id="28" language="java" name="pt.uc.dei.ds.services.ChartService" project="aclgomes-rnavalho-project-ds" 
+    file="/aclgomes-rnavalho-project-ds/src/main/java/pt/uc/dei/ds/services/ChartService.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="53" width="98" x="678" y="130"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="false"/>    
+    </display>  
+  </class>  
+  <class id="29" language="java" name="pt.uc.dei.ds.services.SkillService" project="aclgomes-rnavalho-project-ds" 
+    file="/aclgomes-rnavalho-project-ds/src/main/java/pt/uc/dei/ds/services/SkillService.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="53" width="98" x="1294" y="130"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="false"/>    
+    </display>  
+  </class>  
+  <class id="30" language="java" name="pt.uc.dei.ds.services.TypologyService" project="aclgomes-rnavalho-project-ds" 
+    file="/aclgomes-rnavalho-project-ds/src/main/java/pt/uc/dei/ds/services/TypologyService.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="53" width="116" x="41" y="130"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="false"/>    
+    </display>  
+  </class>  
+  <association id="31">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="32" name="taskService"/>      
+      <multiplicity id="33" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="16" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="34">    
+    <bendpoint x="687" y="223"/>    
+    <end type="SOURCE" refId="28" navigable="false">      
+      <attribute id="35" name="taskService"/>      
+      <multiplicity id="36" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="16" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="37">    
+    <end type="SOURCE" refId="28" navigable="false">      
+      <attribute id="38" name="projectService"/>      
+      <multiplicity id="39" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="23" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="40">    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="41" name="skillService"/>      
+      <multiplicity id="42" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="29" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="43">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="44" name="businessService"/>      
+      <multiplicity id="45" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="26" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="46">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="47" name="tasktypeService"/>      
+      <multiplicity id="48" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="19" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="49">    
+    <end type="SOURCE" refId="11" navigable="false">      
+      <attribute id="50" name="taskstageService"/>      
+      <multiplicity id="51" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="24" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="52">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="53" name="roleService"/>      
+      <multiplicity id="54" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="20" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="55">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="56" name="allocationService"/>      
+      <multiplicity id="57" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="25" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="58">    
+    <end type="SOURCE" refId="14" navigable="false">      
+      <attribute id="59" name="clientService"/>      
+      <multiplicity id="60" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="21" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="61">    
+    <end type="SOURCE" refId="12" navigable="false">      
+      <attribute id="62" name="taskworkService"/>      
+      <multiplicity id="63" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="27" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="64">    
+    <end type="SOURCE" refId="23" navigable="false">      
+      <attribute id="65" name="taskService"/>      
+      <multiplicity id="66" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="16" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="67">    
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="68" name="projectService"/>      
+      <multiplicity id="69" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="23" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="70">    
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="71" name="holidayService"/>      
+      <multiplicity id="72" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="22" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="73">    
+    <end type="SOURCE" refId="9" navigable="false">      
+      <attribute id="74" name="chartService"/>      
+      <multiplicity id="75" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="28" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="76">    
+    <end type="SOURCE" refId="13" navigable="false">      
+      <attribute id="77" name="stageService"/>      
+      <multiplicity id="78" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="18" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="79">    
+    <end type="SOURCE" refId="15" navigable="false">      
+      <attribute id="80" name="typologyService"/>      
+      <multiplicity id="81" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="30" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="82">    
+    <end type="SOURCE" refId="27" navigable="false">      
+      <attribute id="83" name="userService"/>      
+      <multiplicity id="84" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="17" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="85">    
+    <end type="SOURCE" refId="16" navigable="false">      
+      <attribute id="86" name="userService"/>      
+      <multiplicity id="87" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="17" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="88">    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="89" name="userService"/>      
+      <multiplicity id="90" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="17" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="false" package="false" protected="false" private="false" static="false"/>    
+    <operations public="false" package="false" protected="false" private="false" static="false"/>  
+  </classifier-display>  
+  <association-display labels="false" multiplicity="false"/>
+</class-diagram>

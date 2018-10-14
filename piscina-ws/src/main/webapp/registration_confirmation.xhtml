@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui">
+<h:head>
+
+	<f:metadata>
+		<f:viewParam id="token" name="token"
+			value="#{registrationConfirmation.token}" required="true" />
+	</f:metadata>
+
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+	<title>Blue Roots</title>
+	<link href="resources/css/style.css" rel="stylesheet" />
+	<link href="resources/css/custom.css" rel="stylesheet" />
+	
+	<link rel="shortcut icon" type="image/png"
+		href="resources/images/favicon.ico" />
+	<f:view locale="#{multilanguage.locale}" />
+</h:head>
+<h:body class="navbar-fixed sidebar-nav fixed-nav">
+
+	<header class="navbar">
+		<h:panelGroup layout="block" class="container-fluid">
+
+			<button class="navbar-toggler mobile-toggler hidden-lg-up"
+				type="button">&#9776;</button>
+			<a class="navbar-brand" href="#"></a>
+
+			<h:panelGroup layout="block" class="col-lg-1 pull-right">
+				<ui:insert name="languageLayout">
+					<ui:include src="language.xhtml" />
+				</ui:insert>
+			</h:panelGroup>
+		</h:panelGroup>
+
+	</header>
+
+
+
+	<h:panelGroup layout="block" class="container">
+		<h:panelGroup layout="block" class="row">
+			<h:panelGroup layout="block" class="col-md-8 col-md-offset-2">
+				<h:panelGroup layout="block" class="card-group vamiddle">
+					<h:panelGroup layout="block" class="card  p-a-2">
+						<h:panelGroup layout="block" class="card-block">
+
+							<h:form id="activateAccount">
+
+								<h:panelGroup layout="block"
+									rendered="#{registrationConfirmation.valid}">
+									<h1>#{msg['RegisterConfirmation']}</h1>
+									<p class="text-muted">#{msg['RegisterConfirmationSucess']}.</p>
+
+								</h:panelGroup>
+								<h:panelGroup layout="block"
+									rendered="#{!registrationConfirmation.valid}">
+									<h1>#{msg['AccessDenied']}</h1>
+									<p>#{msg['Error']}</p>
+								</h:panelGroup>
+							</h:form>
+
+							<h:form>
+								<h:panelGroup layout="block" class="input-group m-b-1">
+									<h:commandLink action="index.xhtml?faces-redirect=true"
+										value="#{msg['Continue']}" styleClass="btn btn-default btn-xs" />
+								</h:panelGroup>
+							</h:form>
+
+
+						</h:panelGroup>
+					</h:panelGroup>
+
+
+				</h:panelGroup>
+			</h:panelGroup>
+		</h:panelGroup>
+	</h:panelGroup>
+	<!-- JS -->
+
+
+	<footer class="home">
+		<span class="text-left"> Blue Roots © 2017 </span> <span
+			class="pull-right"> #{msg['Work']} : Catarina Gomes | Rui
+			Navalho </span>
+	</footer>
+
+
+	<!-- JS -->
+	<script src="resources/js/libs/jquery.min.js"></script>
+	<script>
+        function verticalAlignMiddle()
+        {
+            var bodyHeight = $(window).height();
+            var formHeight = $('.vamiddle').height();
+            var marginTop = (bodyHeight / 2) - (formHeight / 2);
+            if (marginTop > 0)
+            {
+                $('.vamiddle').css('margin-top', marginTop);
+            }
+        }
+        $(document).ready(function()
+        {
+            verticalAlignMiddle();
+        });
+        $(window).bind('resize', verticalAlignMiddle);
+        </script>
+</h:body>
+</html>

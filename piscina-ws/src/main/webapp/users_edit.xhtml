@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui">
+<h:head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+	<title>Blue Roots</title>
+	<f:view contentType="text/html" locale="#{multilanguage.locale}" />
+	<link href="resources/css/bootstrap.min.css" rel="stylesheet" />
+	<link href="resources/css/primefaces.css" rel="stylesheet" />
+	<link href="resources/css/style.css" rel="stylesheet" />
+	<link href="resources/css/custom.css" rel="stylesheet" />
+	<link href="resources/css/fixeb.css" rel="stylesheet" />
+	
+	<link rel="shortcut icon" type="image/png"
+		href="resources/images/favicon.ico" />
+
+</h:head>
+<h:body class="navbar-fixed sidebar-nav fixed-nav">
+
+	<!-- Header -->
+	<header class="navbar">
+		<h:panelGroup layout="block" class="container-fluid">
+			<ui:insert name="mtopLayout">
+				<ui:include src="mtop.xhtml" />
+			</ui:insert>
+		</h:panelGroup>
+	</header>
+
+	<!-- Sidebar -->
+	<h:panelGroup layout="block" class="sidebar">
+		<nav class="sidebar-nav">
+			<ui:insert name="mleftLayout">
+				<ui:include src="mleft.xhtml" />
+			</ui:insert>
+		</nav>
+	</h:panelGroup>
+
+	<!-- Main content -->
+	<h:panelGroup layout="block" class="main">
+		<!-- Breadcrumb -->
+		<ol class="breadcrumb r-0">
+			<li>#{msg['Home']}</li>
+			<li>#{msg['Users']}</li>
+			<li>#{msg['Add']} #{msg['User']}</li>
+		</ol>
+		<h:panelGroup layout="block" class="container-fluid">
+			<h:panelGroup layout="block" class="animated fadeIn">
+
+				<h:panelGroup layout="block" class="row">
+					<h:panelGroup layout="block" class="col-md-12">
+						<h:panelGroup layout="block" class="card">
+							<h:panelGroup layout="block" class="card-block">
+								<h:panelGroup layout="block" styleClass="">
+									<h:panelGroup layout="block" styleClass="icons-Text">
+										<i class="icon-people" aria-hidden="true"></i>
+									</h:panelGroup>
+									<h3 class="card-title clearfix m-b-0">#{msg['Users']}</h3>
+								</h:panelGroup>
+								<hr class="m-a-0" />
+								<h:panelGroup layout="block" class="row">
+									<h:panelGroup layout="block" class="col-md-12">
+
+										<h:form id="updateUserForm" enctype="multipart/form-data"
+											method="POST">
+											<h:panelGroup layout="block" class="col-md-6 p-y-2">
+												<h:panelGroup layout="block" class="form-group row">
+													<h:outputLabel class="col-md-12 form-control-label"
+														for="fullName">#{msg['Name']}</h:outputLabel>
+													<h:panelGroup layout="block" class="col-md-12">
+														<h:inputText id="fullName" name="fullName"
+															class="form-control"
+															value="#{listUsersBean.selectedUser.fullName}"
+															required="true"
+															requiredMessage="#{msg['NULL_OR_EMPTY_FIELDS']}"
+															validatorMessage="#{msg['NULL_OR_EMPTY_FIELDS']}"
+															disabled="#{not mySessionBean.administratorRole}">
+															<f:validateRegex pattern=".*[\S]+.*" />
+															<f:validateLength minimum="3" maximum="100"/>
+														</h:inputText>
+													</h:panelGroup>
+													<h:message for="fullName" styleClass="error" />
+												</h:panelGroup>
+
+												<h:panelGroup layout="block" class="form-group row">
+													<h:outputLabel class="col-md-12 form-control-label"
+														for="email">#{msg['Email']}</h:outputLabel>
+													<h:panelGroup layout="block" class="col-md-12">
+														<h:outputText id="email" name="email"
+															class="form-control input-off"
+															value="#{listUsersBean.selectedUser.email}" />
+													</h:panelGroup>
+													<h:message for="email" styleClass="error" />
+												</h:panelGroup>
+
+												<h:panelGroup layout="block" class="form-group row"
+													rendered="#{mySessionBean.administratorRole}">
+													<h:outputLabel class="col-md-12 form-control-label"
+														for="passw">#{msg['Password']}</h:outputLabel>
+													<h:panelGroup layout="block" class="col-md-12">
+														<h:inputSecret id="passw" name="passw"
+															class="form-control" value="#{listUsersBean.passw}"
+															disabled="#{not mySessionBean.administratorRole}">
+															<f:validateLength minimum="3" maximum="100"/>
+															</h:inputSecret>
+													</h:panelGroup>
+													<h:message for="passw" styleClass="error" />
+												</h:panelGroup>
+
+												<h:panelGroup layout="block" class="form-group row"
+													rendered="#{mySessionBean.administratorRole}">
+													<h:outputLabel class="col-md-12 form-control-label"
+														for="passwConfirm">#{msg['Confirm']} #{msg['Password']}</h:outputLabel>
+													<h:panelGroup layout="block" class="col-md-12">
+														<h:inputSecret id="passwConfirm" name="passwConfirm"
+															class="form-control" value="#{listUsersBean.passwConf}"
+															disabled="#{not mySessionBean.administratorRole}">
+															<f:validateLength minimum="3" maximum="100"/>
+															</h:inputSecret>
+													</h:panelGroup>
+													<h:message for="passwConfirm" styleClass="error " />
+													<o:validateEqual id="equal" components="passw passwConfirm"
+														message="#{msg['PassWordNotEqual']}" showMessageFor="passw" />
+												</h:panelGroup>
+
+												<h:panelGroup layout="block" class="form-group row">
+													<h:outputLabel class="col-md-12 form-control-label"
+														for="perfil">#{msg['Role']}</h:outputLabel>
+													<h:panelGroup layout="block" class="col-md-12">
+
+														<h:selectManyCheckbox id="perfil"
+															value="#{listUsersBean.selectedUser.roles}"
+															disabled="#{not mySessionBean.administratorRole}">
+															<f:selectItems value="#{util.rolesList}" var="role"
+																itemValue="#{role}" itemLabel="#{role.role}" />
+														</h:selectManyCheckbox>
+														<h:message for="perfil" styleClass="#{styleResponse.cssClass}"/>
+
+													</h:panelGroup>
+												</h:panelGroup>
+
+											</h:panelGroup>
+											<!--/.col-->
+
+											<h:panelGroup layout="block" class="col-md-6  p-y-2">
+
+												<h:panelGroup layout="block" class="form-group row">
+													<h:panelGroup layout="block" class="col-md-12 align-center">
+
+														<o:graphicImage
+															value="#{listUsersBean.selectedUser.photo}"
+															dataURI="true" width="180" height="180"
+															styleClass="img-circle"
+															rendered="#{listUsersBean.selectedUser.photo !=null}" />
+														<p:graphicImage value="resources/images/noPhotoBig.png"
+															width="180" height="180" styleClass="img-circle"
+															rendered="#{empty listUsersBean.selectedUser.photo}" />
+													</h:panelGroup>
+												</h:panelGroup>
+
+												<h:panelGroup layout="block" class="form-group row"
+													rendered="#{mySessionBean.administratorRole}">
+													<h:panelGroup layout="block" class="col-md-12">
+														<h:outputLabel for="file">#{msg['ChangePhoto']}</h:outputLabel>
+														<h:panelGroup layout="block" class="col-md-12">
+
+															<h:inputFile id="file" value="#{listUsersBean.file}"
+																accept="image/*" />
+														</h:panelGroup>
+
+													</h:panelGroup>
+												</h:panelGroup>
+
+												<h:panelGroup layout="block" class="form-group row">
+													<h:panelGroup layout="block" class="col-md-12">
+														<h:outputLabel for="funcao">#{msg['Skill']}</h:outputLabel>
+														<h:panelGroup layout="block" class="col-md-12">
+
+															<div class="changeTb">
+																<h:selectManyCheckbox id="funcao"
+																	value="#{listUsersBean.selectedUser.skills}"
+																	disabled="#{not mySessionBean.administratorRole}">
+																	<f:selectItems value="#{listSkillsBean.skillsList}"
+																		var="skill" itemLabel="#{skill.skill}"
+																		itemValue="#{skill}" />
+																</h:selectManyCheckbox>
+															</div>
+														</h:panelGroup>
+													</h:panelGroup>
+												</h:panelGroup>
+
+												<h:panelGroup layout="block" class="row">
+													<h:panelGroup layout="block" class="form-group">
+														<h:panelGroup layout="block" class="col-md-6">
+															<h:outputLabel for="stage">#{msg['Stage']}</h:outputLabel>
+															<h:panelGroup layout="block" class="input-group m-b-1">
+
+																<h:selectOneRadio id="stage"
+																	value="#{listUsersBean.selectedUser.active}"
+																	disabled="#{not mySessionBean.administratorRole}">
+																	<f:selectItem itemValue="true" itemLabel="Ativo" />
+																	<f:selectItem itemValue="false" itemLabel="Inativo" />
+																</h:selectOneRadio>
+
+															</h:panelGroup>
+														</h:panelGroup>
+													</h:panelGroup>
+
+
+												</h:panelGroup>
+
+
+												<h:panelGroup layout="block" class="form-actions row"
+													rendered="#{mySessionBean.administratorRole}">
+													<h:panelGroup layout="block" class="col-md-12">
+														<h:commandButton styleClass="btn btn-primary"
+															action="#{listUsersBean.updateUserProfile()}"
+															value="#{msg['Update']}">
+														</h:commandButton>
+													</h:panelGroup>
+												</h:panelGroup>
+
+												<h:panelGroup layout="block" styleClass="col-sm-12 p-y-1">
+													<h:panelGroup layout="block" styleClass="row #{styleResponse.cssClass}">
+														<h:message for="updateUserForm" />
+													</h:panelGroup>
+												</h:panelGroup>
+
+											</h:panelGroup>
+											<!--/.col-->
+
+
+
+										</h:form>
+									</h:panelGroup>
+
+
+								</h:panelGroup>
+								<!--/.card-block-->
+
+								<h:panelGroup layout="block" class="row">
+									<h:panelGroup layout="block" class="col-md-6">
+										<small>* #{msg['MandatoryFields']}</small>
+									</h:panelGroup>
+									<h:panelGroup layout="block" class="col-md-6 align-right">
+										<h:panelGroup layout="block" class="col-md-12">
+											<h:form>
+												<h:commandButton styleClass="btn btn-default"
+													value="#{msg['Cancel']}"
+													action="users.xhtml?faces-redirect=true">
+												</h:commandButton>
+											</h:form>
+
+											
+										</h:panelGroup>
+									</h:panelGroup>
+								</h:panelGroup>
+								<!--/.col-->
+
+
+							</h:panelGroup>
+						</h:panelGroup>
+					</h:panelGroup>
+					<!--/.col-->
+				</h:panelGroup>
+				<!--/.row-->
+
+
+
+			</h:panelGroup>
+			<!--/.animated -->
+		</h:panelGroup>
+		<!-- /.container-fluid -->
+
+	</h:panelGroup>
+	<!-- /.main -->
+
+	<!-- Footer -->
+	<ui:insert name="footerLayout">
+		<ui:include src="footer.xhtml" />
+	</ui:insert>
+
+	<!-- JS -->
+	<script src="resources/js/libs/jquery.min.js"></script>
+	<script src="resources/js/libs/bootstrap.min.js"></script>
+	<script src="resources/js/app.js"></script>
+
+	<script type="text/javascript" src="resources/js/js_index.js" />
+
+
+</h:body>
+</html>
