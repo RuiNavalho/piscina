@@ -16,7 +16,7 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `telefone_telemovel`
+-- Table structure for table `telefone_telemovel` 555555
 --
 
 DROP TABLE IF EXISTS `telefone_telemovel`;
