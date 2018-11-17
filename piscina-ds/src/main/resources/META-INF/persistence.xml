@@ -5,23 +5,7 @@
 	<persistence-unit name="piscina-ds">
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 
-		<jta-data-source>java:/Piscina</jta-data-source>
-		<class>pt.uc.dei.ds.entities.Allocation</class>
-		<class>pt.uc.dei.ds.entities.Attachment</class>
-		<class>pt.uc.dei.ds.entities.Business</class>
-		<class>pt.uc.dei.ds.entities.Client</class>
-		<class>pt.uc.dei.ds.entities.Project</class>
-		<class>pt.uc.dei.ds.entities.Projmanager</class>
-		<class>pt.uc.dei.ds.entities.Role</class>
-		<class>pt.uc.dei.ds.entities.Skill</class>
-		<class>pt.uc.dei.ds.entities.Stage</class>
-		<class>pt.uc.dei.ds.entities.Task</class>
-		<class>pt.uc.dei.ds.entities.Taskstage</class>
-		<class>pt.uc.dei.ds.entities.Tasktype</class>
-		<class>pt.uc.dei.ds.entities.Taskwork</class>
-		<class>pt.uc.dei.ds.entities.Tipology</class>
-		<class>pt.uc.dei.ds.entities.User</class>
-		<class>pt.uc.dei.ds.entities.Holiday</class>
+		<jta-data-source>java:/piscina</jta-data-source>
 
 		<properties>
 			<property name="hibernate.hbm2ddl.auto" value="validate" />
