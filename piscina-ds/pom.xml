@@ -29,8 +29,8 @@
 		</dependency>
 
 		<dependency>
-			<groupId>pt.uc.dei</groupId>
-			<artifactId>aclgomes-rnavalho-project-itf</artifactId>
+			<groupId>pt.piscina</groupId>
+			<artifactId>piscina-itf</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 
