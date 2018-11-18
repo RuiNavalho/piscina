@@ -179,7 +179,7 @@ public class UserService implements Serializable{
 				List<Role> myRoles = getRoleList(userDto.getRoles());
 				userToUpdate.setRoles(myRoles);
 				List<Skill> mySkills = getSkillList(userDto.getSkills());
-				userToUpdate.setSkills(mySkills);
+				//userToUpdate.setSkills(mySkills);
 				userDao.merge(userToUpdate);
 				logger.info("SUCESS - "+sb.toString());
 				return Response.ok(true).build();
@@ -271,12 +271,14 @@ public class UserService implements Serializable{
 	}
 
 	public Response loginUser(UserLoginDto userLoginDto) {
+		System.out.println("loginUser DS 1");
 		try {
 			StringBuilder sb = new StringBuilder();
 			sb.append("User with email ").append(userLoginDto.getEmail()).append(" LOGIN - NOT Google");
 			ResponseBuilder statusNOK = Response.status(Response.Status.UNAUTHORIZED);
 			List<ErrorMessage> errorMessages = new ArrayList<ErrorMessage>();
 			boolean sucess=true;
+			/*
 			boolean emailExists=userDao.verifyEmailExistence(userLoginDto.getEmail());
 
 			if (emailExists) {
@@ -293,13 +295,14 @@ public class UserService implements Serializable{
 			String passAndSalt = userLoginDto.getPassword()+salt;
 			String hashedValue = Cripter.cryptMyPass(passAndSalt);
 			sucess = userDao.loginUser(userLoginDto.getEmail(), hashedValue);
-
+*/
 			if (sucess) {
 				SessionDto sessionDto = new SessionDto();
 				String token = MyJwt.createJWT(userLoginDto.getEmail(), getUserRolesDto(userLoginDto.getEmail()));
 				UserLoggedDto userLoggedDto = getLoggedUser(token);
 				sessionDto.setToken(token);
 				sessionDto.setLoggedUser(userLoggedDto);
+				/*
 				List<RoleDto> roles = userLoggedDto.getRoles();
 				boolean roleDirectOrUser=false;
 				for (int i=0; i<roles.size(); i++) {
@@ -315,6 +318,7 @@ public class UserService implements Serializable{
 					sessionDto.setTodayRegisterList(lastDayRegisterList);
 				}
 				logger.info("SUCESS - "+sb.toString());
+				*/
 				return Response.ok(sessionDto).build();
 			} else {
 				sb.append("\t").append("Motives for Failure: ").append("\n");
@@ -564,7 +568,8 @@ public class UserService implements Serializable{
 			String email = MyJwt.parseJWT(token).getSubject();
 			User user = userDao.getUserWithEmail(email);
 			List<RoleDto> userRolesDto = getUserRolesDto(email);
-			List<SkillDto> userSkillsDto = getUserSkillsDto(email);
+			List<SkillDto> userSkillsDto = null;
+			//List<SkillDto> userSkillsDto = getUserSkillsDto(email);
 			UserLoggedDto userLoggedDto = new UserLoggedDto(user.getEmail(), user.getFullName(), user.getPhoto(), userRolesDto, userSkillsDto);
 			return userLoggedDto;
 		} catch (Exception e) {

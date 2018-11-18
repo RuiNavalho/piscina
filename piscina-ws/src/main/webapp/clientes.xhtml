@@ -52,7 +52,7 @@
 		<!-- Breadcrumb -->
 		<ol class="breadcrumb r-0">
 			<li>#{msg['Home']}</li>
-			<li>#{msg['ProjectSearch']}</li>
+			<li>#{msg['SearchClients']}</li>
 		</ol>
 		<h:panelGroup layout="block" class="container-fluid">
 			<h:panelGroup layout="block" class="animated fadeIn">
@@ -66,13 +66,13 @@
 									<h:panelGroup layout="block" styleClass="icons-Text">
 										<i class="fa fa-search" aria-hidden="true"></i>
 									</h:panelGroup>
-									<h3 class="card-title clearfix m-b-0">#{msg['ProjectSearch']}</h3>
+									<h3 class="card-title clearfix m-b-0">#{msg['SearchClients']}</h3>
 								</h:panelGroup>
 								<h:panelGroup layout="block" class="col-sm-2 text-sm-right">
 									<h:form>
 										<h:panelGroup layout="block" class="col-sm-12"
 											rendered="#{mySessionBean.directorRole}">
-											<h:commandLink action="projects_new.xhtml" value="+"
+											<h:commandLink action="clientes_new.xhtml" value="+"
 												class="btn btn-primary btnBig">
 												<f:actionListener
 													binding="#{createProjectBean.resetFields()}" />

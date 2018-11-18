@@ -31,12 +31,12 @@
 				rendered="#{mySessionBean.directorRole or mySessionBean.userRole}">
 				<li class="nav-item nav-dropdown"><a
 					class="nav-link nav-dropdown-toggle" href="#"><i
-						class="icon-layers"></i> #{msg['Projects']} </a>
+						class="icon-layers"></i> #{msg['Clients']} </a>
 					<ul class="nav-dropdown-items">
 						<h:panelGroup
 							rendered="#{mySessionBean.directorRole or mySessionBean.userRole}">
 							<li class="nav-item submenu"><h:commandLink
-									styleClass="nav-link" action="#{tabs.goToPage('projects')}">
+									styleClass="nav-link" action="#{tabs.goToPage('clientes')}">
 									<f:actionListener binding="#{tabs.showProject('details',1)}" />
 									<f:actionListener binding="#{tabs.showActivities('details',1)}" />
 									<f:actionListener binding="#{tabs.showClient('details',1)}" />
@@ -44,16 +44,16 @@
 									<f:actionListener
 										binding="#{tabs.showRegistoHoras('details',1)}" />
 									<f:actionListener
-										binding="#{tabs.setProjectInclude('projects_search')}" />
+										binding="#{tabs.setProjectInclude('clientes_search')}" />
 									<f:actionListener
 										binding="#{tabs.setProjectSearchInclude('none')}" />
 									<f:actionListener binding="#{listProjectsBean.cleanFields()}" />
-									 #{msg['SearchProjects']}</h:commandLink></li>
+									 #{msg['SearchClients']}</h:commandLink></li>
 						</h:panelGroup>
 
 						<h:panelGroup rendered="#{mySessionBean.directorRole}">
 							<li class="nav-item submenu"><h:commandLink
-									styleClass="nav-link" action="#{tabs.goToPage('projects_new')}">
+									styleClass="nav-link" action="#{tabs.goToPage('clientes_new')}">
 									<f:actionListener binding="#{tabs.showProject('details',1)}" />
 									<f:actionListener binding="#{tabs.showActivities('details',1)}" />
 									<f:actionListener binding="#{tabs.showClient('details',1)}" />

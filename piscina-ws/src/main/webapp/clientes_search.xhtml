@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui">
+
+<ui:composition>
+<f:view contentType="text/html" locale="#{multilanguage.locale}" />
+	<h:panelGroup layout="block" class="col-sm-12">
+
+		<h:panelGroup layout="block" class="col-md-12 bkg-color4Radius">
+			#{msg['Search']}:
+		</h:panelGroup>
+
+		<h:panelGroup layout="block" class="col-sm-12 p-y-1 bkg-color2"
+			id="searchFast">
+			<h:form id="projectsFastSearchForm">
+
+				<h:panelGroup layout="block" class="col-sm-12">
+
+					<h:panelGroup layout="block" class="box-left padRight10 padTop5">
+						<h6>
+							<i class="fa fa-search" aria-hidden="true"></i> #{msg['FastSearch']}:
+						</h6>
+					</h:panelGroup>
+
+					<h:panelGroup layout="block" class="box-left padLR10">
+						<h:panelGroup layout="block" class="">
+							<h:panelGroup layout="block" class="input-group">
+
+								<p:selectOneRadio id="typeSearch" value="#{listProjectsBean.type}">
+									<p:ajax event="change" update="searchResults searchAdvancedBox"
+										process="#{tabs.showProjectSearchInclude('search_results')}"
+										listener="#{listProjectsBean.projectAdvancedSearch()}" />
+									<f:selectItem itemValue="open" itemLabel="#{msg['Opened']}" />
+									<f:selectItem itemValue="closed" itemLabel="#{msg['Closed']}" />
+									<f:selectItem itemValue="all" itemLabel="#{msg['All']}" />
+								</p:selectOneRadio>
+
+							</h:panelGroup>
+						</h:panelGroup>
+					</h:panelGroup>
+
+				</h:panelGroup>
+
+			</h:form>
+
+		</h:panelGroup>
+
+		<h:panelGroup layout="block"
+			class="col-sm-12 p-y-1 bkg-color2Radius borderBottom"
+			id="searchAdvancedBox">
+			<h:form id="projectsAdvancedSearchForm">
+
+				<h:panelGroup layout="block" class="col-sm-7">
+					<h:panelGroup layout="block" class="col-sm-12" id="searchAdvanced">
+
+						<h:panelGroup layout="block" class="row">
+							<h6>
+								<i class="fa fa-search" aria-hidden="true"></i> #{msg['AdvancedSearch']}
+							</h6>
+						</h:panelGroup>
+
+
+						<h:panelGroup layout="block" class="form-group">
+							<h:panelGroup layout="block" class="input-group">
+
+								<p:selectOneRadio id="typeSearch"
+									value="#{listProjectsBean.type}">
+									<p:ajax update="extraSearchType" />
+									<f:selectItem itemValue="name" itemLabel="#{msg['Code']}/#{msg['Name']}" />
+									<f:selectItem itemValue="date" itemLabel="#{msg['Date']}" />
+									<f:selectItem itemValue="client" itemLabel="#{msg['Company']}" />
+									<f:selectItem itemValue="stage" itemLabel="#{msg['Stage']} #{msg['Project']} " />
+									<f:selectItem itemValue="business" itemLabel="#{msg['BusinessArea']}" />
+								</p:selectOneRadio>
+							</h:panelGroup>
+							<h:message for="typeSearch" styleClass="error" />
+						</h:panelGroup>
+					</h:panelGroup>
+				</h:panelGroup>
+
+
+
+				<h:panelGroup layout="block" class="col-sm-5" id="extraSearchType">
+
+					<h:panelGroup layout="block" class="form-group col-sm-12"
+						rendered="#{listProjectsBean.type eq 'name' or listProjectsBean.type eq 'client'}">
+						<h:panelGroup layout="block" class="col-sm-12">
+							<h:outputLabel class="capitalizeText" for="searchString">#{listProjectsBean.type}</h:outputLabel>
+							<h:inputText id="searchString" name="searchString"
+								class="form-control" value="#{listProjectsBean.searchText}"
+								required="true" requiredMessage="#{msg['NULL_OR_EMPTY_FIELDS']}"
+								validatorMessage="#{msg['NULL_OR_EMPTY_FIELDS']} * #{msg['LimitCharacters']}">
+								<f:validateRegex pattern=".*[\S]+.*" />
+								<f:validateLength minimum="3" />
+							</h:inputText>
+						</h:panelGroup>
+						<h:message for="searchString" styleClass="error" />
+					</h:panelGroup>
+
+					<h:panelGroup layout="block" class="form-group col-sm-12"
+						rendered="#{listProjectsBean.type eq 'date'}">
+						<h:panelGroup layout="block" class="col-sm-6">
+							<h:outputLabel for="data" value="Data" />
+							<p:calendar styleClass="form-control" name="data" id="data"
+								value="#{listProjectsBean.searchDate}"
+								locale="#{multilanguage.locale}" required="true">
+							</p:calendar>
+						</h:panelGroup>
+					</h:panelGroup>
+
+					<h:panelGroup layout="block" class="form-group col-sm-6"
+						rendered="#{listProjectsBean.type eq 'stage'}">
+						<h:panelGroup layout="block" class="form-group col-sm-12">
+							<h:outputLabel for="stage">#{msg['Stage']}</h:outputLabel>
+							<h:selectOneMenu value="#{listProjectsBean.searchText}"
+								id="stage" styleClass="form-control"
+								requiredMessage="#{msg['NULL_OR_EMPTY_FIELDS']}">
+								<f:selectItems value="#{util.stagesList}" var="stage"
+									itemValue="#{stage.stage}" itemLabel="#{stage.stage}" />
+							</h:selectOneMenu>
+							<h:panelGroup layout="block" styleClass="col-sm-12">
+								<h:message for="stage" styleClass="error" />
+							</h:panelGroup>
+						</h:panelGroup>
+					</h:panelGroup>
+
+
+					<h:panelGroup layout="block" class="form-group col-sm-6"
+						rendered="#{listProjectsBean.type eq 'business'}">
+						<h:panelGroup layout="block" class="form-group col-sm-12">
+							<h:outputLabel for="business">#{msg['Business']}</h:outputLabel>
+							<h:selectOneMenu value="#{listProjectsBean.searchText}"
+								id="business" styleClass="form-control"
+								requiredMessage="#{msg['NULL_OR_EMPTY_FIELDS']}">
+								<f:selectItems value="#{util.businessList}" var="business"
+									itemValue="#{business.area}" itemLabel="#{business.area}" />
+							</h:selectOneMenu>
+							<h:panelGroup layout="block" styleClass="col-sm-12">
+								<h:message for="business" styleClass="error" />
+							</h:panelGroup>
+						</h:panelGroup>
+					</h:panelGroup>
+
+					<h:panelGroup layout="block" class="form-group col-sm-12"
+						rendered="#{listProjectsBean.showAdvancedSearchBtn}">
+						<h:panelGroup layout="block" class="col-sm-12">
+							<p:commandButton styleClass="btn btn-info btn-xs btn-primefaces"
+								action="#{tabs.showProjectSearchInclude('search_results')}"
+								actionListener="#{listProjectsBean.projectAdvancedSearch()}"
+								update="searchResults searchFast searchAdvanced" value="#{msg['Search']}"></p:commandButton>
+						</h:panelGroup>
+					</h:panelGroup>
+
+					<h:panelGroup layout="block" class="col-sm-12">
+						<p:outputPanel layout="block"
+							styleClass="#{styleResponse.cssClass}">
+							<h:message for="projectsAdvancedSearchForm" />
+						</p:outputPanel>
+					</h:panelGroup>
+
+				</h:panelGroup>
+			</h:form>
+
+		</h:panelGroup>
+
+
+		<h:panelGroup layout="block" class="col-sm-12" id="searchResults">
+			<ui:insert>
+				<ui:include src="#{tabs.projectSearchInclude}.xhtml" />
+			</ui:insert>
+		</h:panelGroup>
+
+
+	</h:panelGroup>
+
+</ui:composition>
+
+</html>

@@ -54,6 +54,7 @@ public class UserEndPoint {
 	@Path("/login")
 	@NoTokenNeeded
 	public Response loginUser(UserLoginDto userLoginDto) {
+		System.out.println("loginUser DS LOGIN endpoint");
 		return userService.loginUser(userLoginDto);
 	}
 	

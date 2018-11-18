@@ -1,5 +1,5 @@
 package pt.piscina.ds.entities;
-// Generated 17/nov/2018 20:51:16 by Hibernate Tools 5.2.3.Final
+// Generated 17/nov/2018 23:41:51 by Hibernate Tools 5.2.3.Final
 
 import java.util.Date;
 import javax.persistence.Column;

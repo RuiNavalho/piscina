@@ -37,7 +37,7 @@ public class UserBridge implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private final String URI="http://localhost:8080/aclgomes-rnavalho-project-ds/user";
+	private final String URI="http://localhost:8080/piscina-ds/user";
 	//private final String URI="https://localhost:8443/aclgomes-rnavalho-project-ds/user";
 
 	@Inject
@@ -133,6 +133,7 @@ public class UserBridge implements Serializable {
 	}
 
 	public SessionDto loginUser(String email, String password) {
+		System.out.println("loginUser1");
 		try {
 			Response response = null;
 			SessionDto sessionDto=null;
@@ -142,12 +143,15 @@ public class UserBridge implements Serializable {
 			response = client.target(URI).path("/login").request(MediaType.APPLICATION_JSON).put(Entity.json(userLoginDto), Response.class);	
 			
 			if (response.getStatus()==200) {
+				System.out.println("loginUser response.getStatus()==200");
 				sessionDto = response.readEntity(SessionDto.class);
 			} else {
+				System.out.println("loginUser response.getStatus()<> 200");
 				List<ErrorMessage> errors = response.readEntity(new GenericType<List<ErrorMessage>>() {});
 				errorsHandler.loginUser(false, errors);
 			}
 			client.close();
+			System.out.println("loginUser2");
 			return sessionDto;
 		} catch (Exception e) {
 			e.printStackTrace();

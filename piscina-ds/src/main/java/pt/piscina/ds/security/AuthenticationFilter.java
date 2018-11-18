@@ -33,6 +33,9 @@ public class AuthenticationFilter implements javax.ws.rs.container.ContainerRequ
 	@Override
 	public void filter(ContainerRequestContext requestContext)
 	{	
+		
+		System.out.println("loginUser DS LOGIN FILTER");
+		/*
 		//method beeing accessed
 		Method method = resourceInfo.getResourceMethod();
 		
@@ -101,6 +104,8 @@ public class AuthenticationFilter implements javax.ws.rs.container.ContainerRequ
 			}
 		} else {
 		}	
+		
+		*/
 	}
 
 	private boolean allowUser(List<String> roles, String[] allowedTo) {

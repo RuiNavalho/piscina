@@ -4,29 +4,27 @@ import java.io.Serializable;
 import javax.persistence.*;
 import java.util.List;
 
-
 /**
  * The persistent class for the role database table.
  * 
  */
-/*
+
 @Entity
-@NamedQueries({ @NamedQuery(name="Role.findAll", query="SELECT r FROM Role r"),
-	@NamedQuery(name="Role.findUsersWithRole", query="SELECT u from User u join u.roles r where r.id=:id"),
-	@NamedQuery(name="Role.findRoleWithName", query="SELECT r FROM Role r WHERE r.role=:role")
-})
-*/
+@NamedQueries({ @NamedQuery(name = "Role.findAll", query = "SELECT r FROM Role r"),
+		@NamedQuery(name = "Role.findUsersWithRole", query = "SELECT u from User u join u.roles r where r.id=:id"),
+		@NamedQuery(name = "Role.findRoleWithName", query = "SELECT r FROM Role r WHERE r.role=:role") })
+@Table(name = "role", catalog = "gestgym")
 public class Role implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
 	private String role;
 
 	//bi-directional many-to-many association to User
-	@ManyToMany(mappedBy="roles")
+	@ManyToMany(mappedBy = "roles")
 	private List<User> users;
 
 	public Role() {

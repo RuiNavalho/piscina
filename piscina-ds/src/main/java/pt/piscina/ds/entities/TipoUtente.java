@@ -1,5 +1,5 @@
 package pt.piscina.ds.entities;
-// Generated 17/nov/2018 20:51:16 by Hibernate Tools 5.2.3.Final
+// Generated 17/nov/2018 23:41:51 by Hibernate Tools 5.2.3.Final
 
 import java.util.HashSet;
 import java.util.Set;
@@ -22,21 +22,20 @@ public class TipoUtente implements java.io.Serializable {
 	private Long id;
 	private int NOrdem;
 	private String descricao;
-	private float descontoPercentagem;
-	private float descontoValor;
+	private Float descontoPercentagem;
+	private Float descontoValor;
 	private Set<Utente> utentes = new HashSet<Utente>(0);
 
 	public TipoUtente() {
 	}
 
-	public TipoUtente(int NOrdem, String descricao, float descontoPercentagem, float descontoValor) {
+	public TipoUtente(int NOrdem, String descricao) {
 		this.NOrdem = NOrdem;
 		this.descricao = descricao;
-		this.descontoPercentagem = descontoPercentagem;
-		this.descontoValor = descontoValor;
 	}
 
-	public TipoUtente(int NOrdem, String descricao, float descontoPercentagem, float descontoValor, Set<Utente> utentes) {
+	public TipoUtente(int NOrdem, String descricao, Float descontoPercentagem, Float descontoValor,
+			Set<Utente> utentes) {
 		this.NOrdem = NOrdem;
 		this.descricao = descricao;
 		this.descontoPercentagem = descontoPercentagem;
@@ -74,21 +73,21 @@ public class TipoUtente implements java.io.Serializable {
 		this.descricao = descricao;
 	}
 
-	@Column(name = "desconto_percentagem", nullable = false, precision = 10, scale = 0)
-	public float getDescontoPercentagem() {
+	@Column(name = "desconto_percentagem", precision = 12, scale = 0)
+	public Float getDescontoPercentagem() {
 		return this.descontoPercentagem;
 	}
 
-	public void setDescontoPercentagem(float descontoPercentagem) {
+	public void setDescontoPercentagem(Float descontoPercentagem) {
 		this.descontoPercentagem = descontoPercentagem;
 	}
 
-	@Column(name = "desconto_valor", nullable = false, precision = 10, scale = 0)
-	public float getDescontoValor() {
+	@Column(name = "desconto_valor", precision = 12, scale = 0)
+	public Float getDescontoValor() {
 		return this.descontoValor;
 	}
 
-	public void setDescontoValor(float descontoValor) {
+	public void setDescontoValor(Float descontoValor) {
 		this.descontoValor = descontoValor;
 	}
 
