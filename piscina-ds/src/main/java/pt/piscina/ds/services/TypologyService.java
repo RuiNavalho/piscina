@@ -11,7 +11,7 @@ import org.apache.log4j.Logger;
 import pt.piscina.ds.daos.TypologyDao;
 import pt.piscina.ds.entities.Tipology;
 import pt.piscina.ds.util.InternalError;
-import pt.uc.dei.itf.dtos.TypologyDto;
+import pt.piscina.itf.dtos.TypologyDto;
 
 @Stateless
 public class TypologyService implements Serializable{

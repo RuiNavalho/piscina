@@ -18,12 +18,12 @@ import pt.piscina.ds.annotations.AdminOnly;
 import pt.piscina.ds.annotations.DirectorOrUser;
 import pt.piscina.ds.annotations.NoTokenNeeded;
 import pt.piscina.ds.services.UserService;
-import pt.uc.dei.itf.dtos.UserLoggedDto;
-import pt.uc.dei.itf.dtos.UserLoginDto;
-import pt.uc.dei.itf.dtos.UserChangeRoleDto;
-import pt.uc.dei.itf.dtos.UserNewDto;
-import pt.uc.dei.itf.dtos.UserProfileDto;
-import pt.uc.dei.itf.dtos.UserUpdateSelfDto;
+import pt.piscina.itf.dtos.UserChangeRoleDto;
+import pt.piscina.itf.dtos.UserLoggedDto;
+import pt.piscina.itf.dtos.UserLoginDto;
+import pt.piscina.itf.dtos.UserNewDto;
+import pt.piscina.itf.dtos.UserProfileDto;
+import pt.piscina.itf.dtos.UserUpdateSelfDto;
 
 @Path("/user")
 @Stateless

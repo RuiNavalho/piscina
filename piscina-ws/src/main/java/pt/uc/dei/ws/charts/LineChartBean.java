@@ -8,6 +8,10 @@ import javax.ws.rs.core.Response;
 import org.primefaces.model.timeline.TimelineEvent;
 import org.primefaces.model.timeline.TimelineModel;
 
+import pt.piscina.itf.dtos.BusinessStatsDto;
+import pt.piscina.itf.dtos.ClientDto;
+import pt.piscina.itf.dtos.ProjectDto;
+import pt.piscina.itf.dtos.TaskLightDto;
 import pt.uc.dei.itf.charts.BudgetDto;
 import pt.uc.dei.itf.charts.ChartCountAndBudgetDto;
 import pt.uc.dei.itf.charts.ChartCpiSpiDto;
@@ -16,10 +20,6 @@ import pt.uc.dei.itf.charts.ChartTimePercHoursCost;
 import pt.uc.dei.itf.charts.CountDto;
 import pt.uc.dei.itf.charts.CpiSpiDto;
 import pt.uc.dei.itf.charts.TaskGanttDto;
-import pt.uc.dei.itf.dtos.BusinessStatsDto;
-import pt.uc.dei.itf.dtos.ClientDto;
-import pt.uc.dei.itf.dtos.ProjectDto;
-import pt.uc.dei.itf.dtos.TaskLightDto;
 import pt.uc.dei.ws.bridges.ChartBridge;
 
 import java.io.Serializable;

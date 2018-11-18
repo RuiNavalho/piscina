@@ -13,8 +13,8 @@ import javax.servlet.http.Part;
 import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.Response;
 
-import pt.uc.dei.itf.dtos.TaskworkNewDto;
-import pt.uc.dei.itf.dtos.WorkRegisterDto;
+import pt.piscina.itf.dtos.TaskworkNewDto;
+import pt.piscina.itf.dtos.WorkRegisterDto;
 import pt.uc.dei.itf.errors.ErrorMessage;
 import pt.uc.dei.ws.bridges.TaskWorkBridge;
 import pt.uc.dei.ws.bridges.UserBridge;

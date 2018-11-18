@@ -11,10 +11,11 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
-import pt.uc.dei.itf.dtos.AttachmentDto;
-import pt.uc.dei.itf.dtos.ProjectDto;
-import pt.uc.dei.itf.dtos.TaskLightDto;
-import pt.uc.dei.itf.dtos.TaskworkDto;
+
+import pt.piscina.itf.dtos.AttachmentDto;
+import pt.piscina.itf.dtos.ProjectDto;
+import pt.piscina.itf.dtos.TaskLightDto;
+import pt.piscina.itf.dtos.TaskworkDto;
 import pt.uc.dei.ws.bridges.TaskWorkBridge;
 
 @Named("listTaskworksBean")

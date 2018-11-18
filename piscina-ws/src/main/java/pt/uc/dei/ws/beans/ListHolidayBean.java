@@ -10,7 +10,8 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.Response;
-import pt.uc.dei.itf.dtos.HolidayDto;
+
+import pt.piscina.itf.dtos.HolidayDto;
 import pt.uc.dei.itf.errors.ErrorMessage;
 import pt.uc.dei.ws.bridges.HolidayBridge;
 import pt.uc.dei.ws.util.ErrorsHandler;

@@ -14,7 +14,7 @@ import javax.ws.rs.core.Response;
 
 import pt.piscina.ds.annotations.DirectorOrUser;
 import pt.piscina.ds.services.TaskworkService;
-import pt.uc.dei.itf.dtos.TaskworkNewDto;
+import pt.piscina.itf.dtos.TaskworkNewDto;
 
 @Path("/taskwork")
 @Stateless

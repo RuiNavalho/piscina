@@ -14,7 +14,7 @@ import javax.ws.rs.core.Response;
 import pt.piscina.ds.annotations.AdminOnly;
 import pt.piscina.ds.annotations.NoTokenNeeded;
 import pt.piscina.ds.services.SkillService;
-import pt.uc.dei.itf.dtos.SkillDto;
+import pt.piscina.itf.dtos.SkillDto;
 
 @Path("/skill")
 @Stateless

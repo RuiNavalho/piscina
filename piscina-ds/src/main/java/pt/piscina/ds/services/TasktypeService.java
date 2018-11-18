@@ -11,7 +11,7 @@ import org.apache.log4j.Logger;
 import pt.piscina.ds.daos.TasktypeDao;
 import pt.piscina.ds.entities.Tasktype;
 import pt.piscina.ds.util.InternalError;
-import pt.uc.dei.itf.dtos.TasktypeDto;
+import pt.piscina.itf.dtos.TasktypeDto;
 
 public class TasktypeService implements Serializable{
 

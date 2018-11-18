@@ -16,9 +16,9 @@ import javax.ws.rs.core.Response;
 import pt.piscina.ds.annotations.DirectorOnly;
 import pt.piscina.ds.annotations.DirectorOrUser;
 import pt.piscina.ds.services.TaskService;
-import pt.uc.dei.itf.dtos.AllocationDto;
-import pt.uc.dei.itf.dtos.TaskLightDto;
-import pt.uc.dei.itf.dtos.TaskNewDto;
+import pt.piscina.itf.dtos.AllocationDto;
+import pt.piscina.itf.dtos.TaskLightDto;
+import pt.piscina.itf.dtos.TaskNewDto;
 
 @Path("/task")
 @Stateless

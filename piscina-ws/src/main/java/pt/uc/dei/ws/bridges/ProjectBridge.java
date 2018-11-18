@@ -13,11 +13,11 @@ import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import pt.uc.dei.itf.dtos.AllocationDto;
-import pt.uc.dei.itf.dtos.ClientDto;
-import pt.uc.dei.itf.dtos.ProjectDto;
-import pt.uc.dei.itf.dtos.ProjectNewDto;
-import pt.uc.dei.itf.dtos.TaskLightDto;
+import pt.piscina.itf.dtos.AllocationDto;
+import pt.piscina.itf.dtos.ClientDto;
+import pt.piscina.itf.dtos.ProjectDto;
+import pt.piscina.itf.dtos.ProjectNewDto;
+import pt.piscina.itf.dtos.TaskLightDto;
 import pt.uc.dei.ws.beans.MySessionBean;
 
 @Stateless

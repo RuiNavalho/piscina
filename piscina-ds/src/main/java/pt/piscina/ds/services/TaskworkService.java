@@ -28,9 +28,9 @@ import pt.piscina.ds.security.MyJwt;
 import pt.piscina.ds.util.InternalError;
 import pt.piscina.ds.util.TimeCalc;
 import pt.piscina.ds.util.Trimmer;
-import pt.uc.dei.itf.dtos.AttachmentDto;
-import pt.uc.dei.itf.dtos.TaskworkDto;
-import pt.uc.dei.itf.dtos.TaskworkNewDto;
+import pt.piscina.itf.dtos.AttachmentDto;
+import pt.piscina.itf.dtos.TaskworkDto;
+import pt.piscina.itf.dtos.TaskworkNewDto;
 import pt.uc.dei.itf.errors.ErrorMessage;
 
 @Stateless

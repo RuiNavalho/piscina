@@ -40,12 +40,12 @@ import pt.piscina.ds.util.InternalError;
 import pt.piscina.ds.util.MyProjectMail;
 import pt.piscina.ds.util.TimeCalc;
 import pt.piscina.ds.util.Trimmer;
-import pt.uc.dei.itf.dtos.AllocationDto;
-import pt.uc.dei.itf.dtos.BusinessDto;
-import pt.uc.dei.itf.dtos.ClientLightDto;
-import pt.uc.dei.itf.dtos.ProjectDto;
-import pt.uc.dei.itf.dtos.ProjectNewDto;
-import pt.uc.dei.itf.dtos.TaskLightDto;
+import pt.piscina.itf.dtos.AllocationDto;
+import pt.piscina.itf.dtos.BusinessDto;
+import pt.piscina.itf.dtos.ClientLightDto;
+import pt.piscina.itf.dtos.ProjectDto;
+import pt.piscina.itf.dtos.ProjectNewDto;
+import pt.piscina.itf.dtos.TaskLightDto;
 import pt.uc.dei.itf.errors.ErrorMessage;
 
 @Stateless

@@ -8,9 +8,10 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.Response;
-import pt.uc.dei.itf.dtos.AllocationDto;
-import pt.uc.dei.itf.dtos.ChartUserAllocations;
-import pt.uc.dei.itf.dtos.TaskLightDto;
+
+import pt.piscina.itf.dtos.AllocationDto;
+import pt.piscina.itf.dtos.ChartUserAllocations;
+import pt.piscina.itf.dtos.TaskLightDto;
 import pt.uc.dei.itf.errors.ErrorMessage;
 import pt.uc.dei.ws.bridges.ProjectBridge;
 import pt.uc.dei.ws.bridges.TaskBridge;

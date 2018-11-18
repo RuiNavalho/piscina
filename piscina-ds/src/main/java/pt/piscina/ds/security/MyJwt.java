@@ -9,7 +9,7 @@ import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.impl.crypto.MacProvider;
-import pt.uc.dei.itf.dtos.RoleDto;
+import pt.piscina.itf.dtos.RoleDto;
 
 public class MyJwt {
 

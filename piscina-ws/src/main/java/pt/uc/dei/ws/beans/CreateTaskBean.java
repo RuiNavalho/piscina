@@ -8,7 +8,8 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.Response;
-import pt.uc.dei.itf.dtos.TaskNewDto;
+
+import pt.piscina.itf.dtos.TaskNewDto;
 import pt.uc.dei.itf.errors.ErrorMessage;
 import pt.uc.dei.ws.bridges.ProjectBridge;
 import pt.uc.dei.ws.bridges.TaskBridge;

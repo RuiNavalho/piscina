@@ -26,6 +26,7 @@ import pt.piscina.ds.entities.Taskwork;
 import pt.piscina.ds.entities.User;
 import pt.piscina.ds.util.InternalError;
 import pt.piscina.ds.util.TimeCalc;
+import pt.piscina.itf.dtos.AllocationDto;
 import pt.uc.dei.itf.charts.ChartCountAndBudgetDto;
 import pt.uc.dei.itf.charts.ChartCpiSpiDto;
 import pt.uc.dei.itf.charts.ChartProjectAllocationsDto;
@@ -37,7 +38,6 @@ import pt.uc.dei.itf.charts.CpiSpiDto;
 import pt.uc.dei.itf.charts.HourPercCostDto;
 import pt.uc.dei.itf.charts.TaskGanttDto;
 import pt.uc.dei.itf.charts.UserPerformanceDto;
-import pt.uc.dei.itf.dtos.AllocationDto;
 
 @Stateless
 public class ChartService implements Serializable{

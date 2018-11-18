@@ -7,7 +7,8 @@ import javax.servlet.http.Part;
 import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.Response;
 import org.omnifaces.util.Utils;
-import pt.uc.dei.itf.dtos.UserNewDto;
+
+import pt.piscina.itf.dtos.UserNewDto;
 import pt.uc.dei.itf.errors.ErrorMessage;
 import pt.uc.dei.ws.bridges.UserBridge;
 import pt.uc.dei.ws.util.ErrorsHandler;

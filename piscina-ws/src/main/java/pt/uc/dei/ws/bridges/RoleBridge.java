@@ -11,7 +11,7 @@ import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import pt.uc.dei.itf.dtos.RoleDto;
+import pt.piscina.itf.dtos.RoleDto;
 import pt.uc.dei.ws.beans.MySessionBean;
 
 @Stateless

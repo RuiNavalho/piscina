@@ -16,8 +16,8 @@ import javax.ws.rs.core.Response;
 import pt.piscina.ds.annotations.DirectorOnly;
 import pt.piscina.ds.annotations.DirectorOrUser;
 import pt.piscina.ds.services.ProjectService;
-import pt.uc.dei.itf.dtos.ProjectDto;
-import pt.uc.dei.itf.dtos.ProjectNewDto;
+import pt.piscina.itf.dtos.ProjectDto;
+import pt.piscina.itf.dtos.ProjectNewDto;
 
 @Path("/project")
 @Stateless

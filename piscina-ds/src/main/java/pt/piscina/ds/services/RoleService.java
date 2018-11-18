@@ -11,7 +11,7 @@ import org.apache.log4j.Logger;
 import pt.piscina.ds.daos.RoleDao;
 import pt.piscina.ds.entities.Role;
 import pt.piscina.ds.util.InternalError;
-import pt.uc.dei.itf.dtos.RoleDto;
+import pt.piscina.itf.dtos.RoleDto;
 
 @Stateless
 public class RoleService implements Serializable{

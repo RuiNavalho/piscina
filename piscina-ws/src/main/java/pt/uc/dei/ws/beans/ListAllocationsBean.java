@@ -8,10 +8,11 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.Response;
+
+import pt.piscina.itf.dtos.AllocationDto;
 import pt.uc.dei.itf.charts.ChartProjectAllocationsDto;
 import pt.uc.dei.itf.charts.ChartUserPerformanceDto;
 import pt.uc.dei.itf.charts.UserPerformanceDto;
-import pt.uc.dei.itf.dtos.AllocationDto;
 import pt.uc.dei.itf.errors.ErrorMessage;
 import pt.uc.dei.ws.bridges.AllocationBridge;
 import pt.uc.dei.ws.bridges.ChartBridge;

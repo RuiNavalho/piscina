@@ -7,9 +7,10 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.Response;
-import pt.uc.dei.itf.dtos.BusinessDto;
-import pt.uc.dei.itf.dtos.BusinessStatsDto;
-import pt.uc.dei.itf.dtos.ClientDto;
+
+import pt.piscina.itf.dtos.BusinessDto;
+import pt.piscina.itf.dtos.BusinessStatsDto;
+import pt.piscina.itf.dtos.ClientDto;
 import pt.uc.dei.itf.errors.ErrorMessage;
 import pt.uc.dei.ws.bridges.BusinessBridge;
 import pt.uc.dei.ws.util.ErrorsHandler;

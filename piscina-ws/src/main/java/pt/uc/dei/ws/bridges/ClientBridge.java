@@ -11,9 +11,10 @@ import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import pt.uc.dei.itf.dtos.BusinessStatsDto;
-import pt.uc.dei.itf.dtos.ClientDto;
-import pt.uc.dei.itf.dtos.ClientNewDto;
+
+import pt.piscina.itf.dtos.BusinessStatsDto;
+import pt.piscina.itf.dtos.ClientDto;
+import pt.piscina.itf.dtos.ClientNewDto;
 import pt.uc.dei.ws.beans.MySessionBean;
 
 @Stateless

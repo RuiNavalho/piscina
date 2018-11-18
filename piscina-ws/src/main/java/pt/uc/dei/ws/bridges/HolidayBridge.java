@@ -10,7 +10,8 @@ import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import pt.uc.dei.itf.dtos.HolidayDto;
+
+import pt.piscina.itf.dtos.HolidayDto;
 import pt.uc.dei.ws.beans.MySessionBean;
 
 @Stateless

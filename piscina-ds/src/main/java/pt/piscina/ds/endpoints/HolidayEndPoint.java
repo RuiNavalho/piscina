@@ -15,7 +15,7 @@ import javax.ws.rs.core.Response;
 import pt.piscina.ds.annotations.AdminOnly;
 import pt.piscina.ds.annotations.NoTokenNeeded;
 import pt.piscina.ds.services.HolidayService;
-import pt.uc.dei.itf.dtos.HolidayDto;
+import pt.piscina.itf.dtos.HolidayDto;
 
 @Path("/holiday")
 @Stateless

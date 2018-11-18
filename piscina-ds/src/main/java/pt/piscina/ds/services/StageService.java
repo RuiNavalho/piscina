@@ -11,7 +11,7 @@ import org.apache.log4j.Logger;
 import pt.piscina.ds.daos.StageDao;
 import pt.piscina.ds.entities.Stage;
 import pt.piscina.ds.util.InternalError;
-import pt.uc.dei.itf.dtos.StageDto;
+import pt.piscina.itf.dtos.StageDto;
 
 @Stateless
 public class StageService implements Serializable{

@@ -14,7 +14,7 @@ import pt.piscina.ds.entities.Skill;
 import pt.piscina.ds.security.MyJwt;
 import pt.piscina.ds.util.InternalError;
 import pt.piscina.ds.util.Trimmer;
-import pt.uc.dei.itf.dtos.SkillDto;
+import pt.piscina.itf.dtos.SkillDto;
 import pt.uc.dei.itf.errors.ErrorMessage;
 
 @Stateless

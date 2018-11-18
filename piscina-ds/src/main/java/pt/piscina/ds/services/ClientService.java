@@ -17,9 +17,9 @@ import pt.piscina.ds.entities.Client;
 import pt.piscina.ds.security.MyJwt;
 import pt.piscina.ds.util.InternalError;
 import pt.piscina.ds.util.Trimmer;
-import pt.uc.dei.itf.dtos.BusinessDto;
-import pt.uc.dei.itf.dtos.ClientDto;
-import pt.uc.dei.itf.dtos.ClientNewDto;
+import pt.piscina.itf.dtos.BusinessDto;
+import pt.piscina.itf.dtos.ClientDto;
+import pt.piscina.itf.dtos.ClientNewDto;
 import pt.uc.dei.itf.errors.ErrorMessage;
 
 @Stateless

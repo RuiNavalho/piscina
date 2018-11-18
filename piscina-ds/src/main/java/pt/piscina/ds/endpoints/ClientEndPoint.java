@@ -15,8 +15,8 @@ import javax.ws.rs.core.Response;
 
 import pt.piscina.ds.annotations.DirectorOnly;
 import pt.piscina.ds.services.ClientService;
-import pt.uc.dei.itf.dtos.ClientDto;
-import pt.uc.dei.itf.dtos.ClientNewDto;
+import pt.piscina.itf.dtos.ClientDto;
+import pt.piscina.itf.dtos.ClientNewDto;
 
 @Path("/client")
 @Stateless

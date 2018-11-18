@@ -17,7 +17,7 @@ import pt.piscina.ds.security.MyJwt;
 import pt.piscina.ds.util.InternalError;
 import pt.piscina.ds.util.TimeCalc;
 import pt.piscina.ds.util.Trimmer;
-import pt.uc.dei.itf.dtos.HolidayDto;
+import pt.piscina.itf.dtos.HolidayDto;
 import pt.uc.dei.itf.errors.ErrorMessage;
 
 @Stateless

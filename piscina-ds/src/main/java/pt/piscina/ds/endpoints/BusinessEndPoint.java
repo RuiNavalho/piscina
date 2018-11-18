@@ -15,7 +15,7 @@ import javax.ws.rs.core.Response;
 import pt.piscina.ds.annotations.DirectorOnly;
 import pt.piscina.ds.annotations.NoTokenNeeded;
 import pt.piscina.ds.services.BusinessService;
-import pt.uc.dei.itf.dtos.BusinessDto;
+import pt.piscina.itf.dtos.BusinessDto;
 
 @Path("/business")
 @Stateless

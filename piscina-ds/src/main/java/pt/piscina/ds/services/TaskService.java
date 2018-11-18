@@ -36,12 +36,12 @@ import pt.piscina.ds.security.MyJwt;
 import pt.piscina.ds.util.InternalError;
 import pt.piscina.ds.util.TimeCalc;
 import pt.piscina.ds.util.Trimmer;
-import pt.uc.dei.itf.dtos.AllocationDto;
-import pt.uc.dei.itf.dtos.ChartUserAllocations;
-import pt.uc.dei.itf.dtos.TaskLightDto;
-import pt.uc.dei.itf.dtos.TaskNewDto;
-import pt.uc.dei.itf.dtos.TaskPrecedence;
-import pt.uc.dei.itf.dtos.UserAllocationGraph;
+import pt.piscina.itf.dtos.AllocationDto;
+import pt.piscina.itf.dtos.ChartUserAllocations;
+import pt.piscina.itf.dtos.TaskLightDto;
+import pt.piscina.itf.dtos.TaskNewDto;
+import pt.piscina.itf.dtos.TaskPrecedence;
+import pt.piscina.itf.dtos.UserAllocationGraph;
 import pt.uc.dei.itf.errors.ErrorMessage;
 
 

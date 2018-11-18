@@ -12,11 +12,12 @@ import javax.inject.Named;
 import javax.servlet.http.Part;
 import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.Response;
+
+import pt.piscina.itf.dtos.SessionDto;
+import pt.piscina.itf.dtos.UserLoggedDto;
+import pt.piscina.itf.dtos.UserUpdateSelfDto;
 import pt.uc.dei.itf.agenda.DailyAgenda;
 import pt.uc.dei.itf.agenda.SimpleRegisterDto;
-import pt.uc.dei.itf.dtos.SessionDto;
-import pt.uc.dei.itf.dtos.UserLoggedDto;
-import pt.uc.dei.itf.dtos.UserUpdateSelfDto;
 import pt.uc.dei.itf.errors.ErrorMessage;
 import pt.uc.dei.ws.bridges.UserBridge;
 import pt.uc.dei.ws.charts.ChartBarUserPerformance;

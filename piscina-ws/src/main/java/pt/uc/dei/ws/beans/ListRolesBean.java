@@ -6,7 +6,8 @@ import java.util.List;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import pt.uc.dei.itf.dtos.RoleDto;
+
+import pt.piscina.itf.dtos.RoleDto;
 import pt.uc.dei.ws.bridges.RoleBridge;
 
 @Named("listRolesBean")

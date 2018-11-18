@@ -11,8 +11,9 @@ import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import pt.uc.dei.itf.dtos.TaskworkDto;
-import pt.uc.dei.itf.dtos.TaskworkNewDto;
+
+import pt.piscina.itf.dtos.TaskworkDto;
+import pt.piscina.itf.dtos.TaskworkNewDto;
 import pt.uc.dei.ws.beans.MySessionBean;
 
 @Stateless

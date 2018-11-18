@@ -22,12 +22,12 @@ import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import pt.uc.dei.itf.dtos.SessionDto;
-import pt.uc.dei.itf.dtos.UserLoggedDto;
-import pt.uc.dei.itf.dtos.UserLoginDto;
-import pt.uc.dei.itf.dtos.UserNewDto;
-import pt.uc.dei.itf.dtos.UserProfileDto;
-import pt.uc.dei.itf.dtos.UserUpdateSelfDto;
+import pt.piscina.itf.dtos.SessionDto;
+import pt.piscina.itf.dtos.UserLoggedDto;
+import pt.piscina.itf.dtos.UserLoginDto;
+import pt.piscina.itf.dtos.UserNewDto;
+import pt.piscina.itf.dtos.UserProfileDto;
+import pt.piscina.itf.dtos.UserUpdateSelfDto;
 import pt.uc.dei.itf.errors.ErrorMessage;
 import pt.uc.dei.ws.beans.MySessionBean;
 import pt.uc.dei.ws.util.ErrorsHandler;

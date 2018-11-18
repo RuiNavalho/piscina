@@ -5,7 +5,8 @@ import java.util.List;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import pt.uc.dei.itf.dtos.TypologyDto;
+
+import pt.piscina.itf.dtos.TypologyDto;
 import pt.uc.dei.ws.bridges.TypologyBridge;
 
 @Named("listTypologiesBean")

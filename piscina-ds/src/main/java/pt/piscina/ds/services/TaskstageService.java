@@ -11,7 +11,7 @@ import org.apache.log4j.Logger;
 import pt.piscina.ds.daos.TaskstageDao;
 import pt.piscina.ds.entities.Taskstage;
 import pt.piscina.ds.util.InternalError;
-import pt.uc.dei.itf.dtos.TaskstageDto;
+import pt.piscina.itf.dtos.TaskstageDto;
 
 public class TaskstageService implements Serializable{
 

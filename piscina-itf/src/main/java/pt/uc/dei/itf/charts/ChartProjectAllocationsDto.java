@@ -2,7 +2,8 @@ package pt.uc.dei.itf.charts;
 
 import java.util.Date;
 import java.util.List;
-import pt.uc.dei.itf.dtos.AllocationDto;
+
+import pt.piscina.itf.dtos.AllocationDto;
 
 public class ChartProjectAllocationsDto {
 	

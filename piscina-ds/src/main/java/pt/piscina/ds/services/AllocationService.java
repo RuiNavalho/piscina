@@ -17,7 +17,7 @@ import pt.piscina.ds.daos.AllocationDao;
 import pt.piscina.ds.entities.Allocation;
 import pt.piscina.ds.security.MyJwt;
 import pt.piscina.ds.util.InternalError;
-import pt.uc.dei.itf.dtos.AllocationDto;
+import pt.piscina.itf.dtos.AllocationDto;
 import pt.uc.dei.itf.errors.ErrorMessage;
 
 @Stateless

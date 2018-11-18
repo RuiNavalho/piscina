@@ -10,12 +10,13 @@ import javax.inject.Named;
 import javax.ws.rs.core.Response;
 import org.primefaces.model.timeline.TimelineEvent;
 import org.primefaces.model.timeline.TimelineModel;
+
+import pt.piscina.itf.dtos.AllocationDto;
+import pt.piscina.itf.dtos.ProjectDto;
+import pt.piscina.itf.dtos.TaskLightDto;
 import pt.uc.dei.itf.charts.ChartProjectAllocationsDto;
 import pt.uc.dei.itf.charts.ChartProjectGanttDto;
 import pt.uc.dei.itf.charts.TaskGanttDto;
-import pt.uc.dei.itf.dtos.AllocationDto;
-import pt.uc.dei.itf.dtos.ProjectDto;
-import pt.uc.dei.itf.dtos.TaskLightDto;
 import pt.uc.dei.ws.bridges.ChartBridge;
 import pt.uc.dei.ws.util.ErrorsHandler;
 
